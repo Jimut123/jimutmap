@@ -124,7 +124,7 @@ Ops Blown Off!
 #### Perks 
 
 Well I'm not that bad. This is done through parallel proccessing, so this will take all the thread in your CPU, change the 
-code to your own requirements! This is done so that you could download about 40K images in 30 mins! (That's fuckin fast!!!)
+code to your own requirements! This is done so that you could download about **40K** images in **30 mins!** (That's fuckin fast!!!)
 
 Do this :
 
