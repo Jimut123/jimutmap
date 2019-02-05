@@ -28,7 +28,7 @@ import time
 import math
 from os import listdir
 from os.path import isfile, join
-
+from tqdm import tqdm
 # Ignore SSL certificate errors
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
@@ -129,9 +129,18 @@ class api:
             j_l = min_lon
         print(i_l,j_l)
         k_dum = 0
-        for i in np.arange(float(i_l),float(max_lat),0.0005):
+        if i_l > max_lat:
+            i_val = -1
+        else:
+            i_val = 1
+        
+        if j_l > max_lon:
+            j_val = -1
+        else:
+            j_val = 1
+        for i in tqdm(np.arange(float(i_l),float(max_lat),i_val*0.0005)):
             URL_ALL = []
-            for j in np.arange(float(min_lon),float(max_lon),0.0005):
+            for j in np.arange(float(min_lon),float(max_lon),j_val*0.0005):
                 get_urls = self.make_url(i,j,ac_key,19)
                 #print(get_urls)
                 for item in get_urls:
