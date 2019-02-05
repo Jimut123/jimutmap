@@ -18,7 +18,7 @@ to decipher. If anyone finds it, let me know, I'll add you to the contributor's 
 #### Need for hacking and scraping satellite data
 
 Well it's good (best in the world) satellite images, we just need to give the coordinates (Lat,Lon, and zoom) to get your dataset
-of high resolution satellite images! Create your won dataset and apply ML algorithms :')
+of high resolution satellite images! Create your own dataset and apply ML algorithms :')
 
 #### Some of the example images downloaded :
 
