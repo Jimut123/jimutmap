@@ -29,17 +29,6 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 |<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/zoom_30/320558_197531.jpeg">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/zoom_30/320565_197531.jpeg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/169868_178212.jpg">|
 
 
-| | | |
-|:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src=""> 
-blah | <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src=""> 
-blah | <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="">  
-blah | <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src=""> 
-blah | <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="">  
-blah | <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src=""> |
-
-
-
 The scraping API is present, call it and download it.
 ```
 >>from satcdnApplScrap import api
