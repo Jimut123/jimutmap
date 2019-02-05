@@ -23,10 +23,12 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 #### Some of the example images downloaded :
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/133478_203289.jpeg"> blah | <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/133479_203290.jpeg"> blah |  <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/338161_175520.jpeg">
- blah | <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/338350_175520.jpeg">
- blah | <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/338359_175520.jpeg">
- blah | <img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/zoom_30/320523_197531.jpeg"> |
+|<img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/133478_203289.jpeg"> blah | 
+<img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/133479_203290.jpeg"> blah |  
+<img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/338161_175520.jpeg">  blah | 
+<img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/338350_175520.jpeg"> blah | 
+<img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/338359_175520.jpeg">  blah | 
+<img width="400" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/Jimut123/apple_maps_api/blob/master/satellite_data/zoom_30/320523_197531.jpeg"> |
 
 
 
