@@ -8,6 +8,17 @@ scrap apple-map and I'm sharing this code with you. Why am I sharing? cause I do
 world, neither the close source monopoly of things. 
 
 #### First things first
+
+Firstly remove satellite_data folder
+```
+$ rm -rf satellite_data
+```
+
+Install the requirements
+```
+$ sudo pip install -r requirements.txt
+```
+
 Note :
 
 The api acess-key is valid for a period of 10-15 mins. You need to manually go to [apple-map](https://satellites.pro/#32.916485,62.578125,4), get the API access key by pressing ctrl+shift+E and going to the network area. I tried to reverse engineer this thing
