@@ -49,9 +49,9 @@ The scraping API is present, call it and download it.
 # give the (min_lat,max_lat,min_lon,max_lon,access_key) in this function
 # note the access key is manually changed all the time here!
 
->>a.download_images(1,100,1,100,'&accessKey=1549282557_3509328514294679933_%2F_kcs5gIr9wyBn278MUbK7I55sHNmwhULq0csC3E4IFvM%3D&emphasis=standard&tint=dark')
+>>a.download_images(40,40.5,40,40.5,'&accessKey=1549375931_5723979149709274034_%2F_iOwwf%2B70uM1bJHAEcHbkhV9zbC3RUKbTCT3LEtkJQa8%3D&emphasis=standard&tint=dark',4)
 
-a.download_images(40,40.5,40,40.5,'&accessKey=1549375931_5723979149709274034_%2F_iOwwf%2B70uM1bJHAEcHbkhV9zbC3RUKbTCT3LEtkJQa8%3D&emphasis=standard&tint=dark',4)
+100%|██████████████████████████████████████████████████████████████                     | 1000/10000000 [00:02<00:00, 3913.19it/s
 NO FOLDER PRESENT! ... creating one!
 NONE IS PRESENT... 
 40 40
@@ -132,10 +132,11 @@ Do this :
 $ mv *.jpeg satellite_data
 ```
 
-To store all the JPEG images to the folder, when you will fetch the high resolution images the next time, you will get all the
-images after that images, if you give the same lat,lon. So, you don't need a DB to store the update information... LOL.
-But you have to do this manually everytime!
+Please move this data after every fetch request done! Else you won't get the updated information (tiles) of satellite data after
+that tile. It is calculated automatically so that all the progress remains saved!
 
+#### Note
+This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! 
 
 Author:
 * [Jimut Bahan Pal](https://jimut123.github.io/)
