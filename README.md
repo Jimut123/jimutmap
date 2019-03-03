@@ -21,7 +21,7 @@ $ sudo pip install -r requirements.txt
 
 Note :
 
-The api acess-key is valid for a period of 10-15 mins. You need to manually go to [apple-map](https://satellites.pro/#32.916485,62.578125,4), get the API access key by pressing ctrl+shift+E and going to the network area. I tried to reverse engineer this thing
+The api acess-key (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network and then it is this part of the link &accessKey...dark) is valid for a period of 10-15 mins. You need to manually go to [apple-map](https://satellites.pro/#32.916485,62.578125,4), get the API access key by pressing ctrl+shift+E and going to the network area. I tried to reverse engineer this thing
 but couldn't. First part of the key is time in sec from 1970, but other part is some output of complex function which needs time
 to decipher. If anyone finds it, let me know, I'll add you to the contributor's section and may make this API fully automatic.
 
