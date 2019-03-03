@@ -7,6 +7,9 @@ data (P.S.: I'm a noob, but I'm curious). I found that it is actually not. After
 scrap apple-map and I'm sharing this code with you. Why am I sharing? cause I don't give a fuck to these tiny little things in this
 world, neither the close source monopoly of things. 
 
+#### YouTube video : 
+If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
+
 #### First things first
 
 Firstly remove satellite_data folder
