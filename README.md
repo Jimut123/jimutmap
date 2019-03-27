@@ -44,7 +44,7 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 
 
 The scraping API is present, call it and download it.
-```
+```python
 >>from satcdnApplScrap import api
 >>a=api()
 
