@@ -46,6 +46,10 @@ a =api()
 a.
 """
 
+LOCK_VAR = 0
+UNLOCK_VAR = 0
+LOCKING_LIMIT = 50 # MAX NO OF THREADS
+
 class api:
 
     def ret_xy_tiles(self,lat_deg,lon_deg,zoom=19):
@@ -77,7 +81,15 @@ class api:
     
     def get_img(self,url_str):
         # to get the images from the url provided and save it
-        global headers
+        global headers, LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
+        UNLOCK_VAR = UNLOCK_VAR + 1
+        LOCK_VAR = 1
+        print("UNLOCK VAR : ",UNLOCK_VAR)
+        if UNLOCK_VAR >= LOCKING_LIMIT:
+            LOCK_VAR = 0
+            UNLOCK_VAR = 0
+            print("-------- UNLOCKING")
+        
         try:
             x_ = url_str.find('&x=')
             y_ = url_str.find('&y=')
@@ -138,9 +150,10 @@ class api:
             j_val = -1
         else:
             j_val = 1
+        URL_ALL = []
         for i in tqdm(np.arange(float(i_l),float(max_lat),i_val*0.0005)):
-            URL_ALL = []
-            for j in np.arange(float(min_lon),float(max_lon),j_val*0.0005):
+            
+            for j in tqdm(np.arange(float(min_lon),float(max_lon),j_val*0.0005)):
                 get_urls = self.make_url(i,j,ac_key,19)
                 #print(get_urls)
                 for item in get_urls:
@@ -148,15 +161,13 @@ class api:
                     k_dum+=1
                 #print(URL_ALL)
         print("ALL URL CREATED! ...")
-        url_part=[]
-        k_ = 0
-        # For fast proccessing and avoiding overloads
-        for url in URL_ALL:
-            url_part.append(url)
-            if k_%30==0:
-                ThreadPool(40).imap_unordered(self.get_img, url_part)
-                url_part=[]
-            k_+=1
-            print("Downloading ...",k_,"/",k_dum)
+
+        global LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
+        if LOCK_VAR == 0:
+            print("LOCKING")
+            LOCK_VAR = 1
+            UNLOCK_VAR = 0
+            ThreadPool(LOCKING_LIMIT).imap_unordered(self.get_img, URL_ALL)
+            
                 
 
