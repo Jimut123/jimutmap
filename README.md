@@ -10,6 +10,16 @@ world, neither the close source monopoly of things.
 #### YouTube video : 
 If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
 
+#### Installation
+
+```
+sudo pip install jimutmap
+```
+
+#### Pypi
+*   [jimutmap](https://pypi.org/project/jimutmap/)
+
+
 #### First things first
 
 Firstly remove satellite_data folder
