@@ -45,14 +45,14 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 
 The scraping API is present, call it and download it.
 ```python
->>from satcdnApplScrap import api
->>a=api()
+>>from jmap import api
+>>a=api('&api-access-key',ac_key,min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom)
 
 # Change the access key here
 # give the (min_lat,max_lat,min_lon,max_lon,access_key) in this function
 # note the access key is manually changed all the time here!
 
->>a.download_images(40,40.5,40,40.5,'&accessKey=1549375931_5723979149709274034_%2F_iOwwf%2B70uM1bJHAEcHbkhV9zbC3RUKbTCT3LEtkJQa8%3D&emphasis=standard&tint=dark',4)
+>>a.download_images()
 
 100%|██████████████████████████████████████████████████████████████                     | 1000/10000000 [00:02<00:00, 3913.19it/s
 NO FOLDER PRESENT! ... creating one!
