@@ -39,6 +39,7 @@ class api:
         self.min_lon_deg = min_lon_deg
         self.max_lon_deg = max_lon_deg
         self.zoom = zoom
+        print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom)
 
     def ret_xy_tiles(self,lat_deg,lon_deg):
         # changes for 0.0005
@@ -78,10 +79,10 @@ class api:
         x_tyle = url_str[0]
         y_tyle = url_str[1]
         file_name = str(x_tyle)+"_"+str(y_tyle)+".jpeg"
-        
-        if open(str(file_name),'r') == True:
-            pass
-        else:
+        try:
+            if open(str(file_name),'r') == True:
+                pass
+        except:
             try:
                 req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
                 print(req_url)
