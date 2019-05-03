@@ -1,0 +1,8 @@
+README.md
+setup.py
+jmap/__init__.py
+jmap/jmap.py
+jmap.egg-info/PKG-INFO
+jmap.egg-info/SOURCES.txt
+jmap.egg-info/dependency_links.txt
+jmap.egg-info/top_level.txt
