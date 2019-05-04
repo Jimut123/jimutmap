@@ -1,6 +1,4 @@
 wget
-shutil
-imghdr
 bs4
 numpy
 tqdm
