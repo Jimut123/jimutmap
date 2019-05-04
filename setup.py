@@ -5,13 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="jimutmap",
-    version="1.2",
+    version="1.2.1",
     author="Jimut Bahan Pal",
     author_email="jimutbahanpal@yahoo.com",
     description="To get enormous amount of Apple Maps tile with ease",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Jimut123/jimutmap",
+    install_requires=['wget', 'shutil','imghdr','bs4','numpy','tqdm'],
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

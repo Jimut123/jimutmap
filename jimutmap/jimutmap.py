@@ -32,8 +32,8 @@ LOCKING_LIMIT = 50 # MAX NO OF THREADS
 
 class api:
     
-    def __init__(self,ac_key,min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False):
-
+    def __init__(self,ac_key,min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False,threads_=50):
+        global LOCKING_LIMIT
         self.ac_key = ac_key
         self.min_lat_deg = min_lat_deg
         self.max_lat_deg = max_lat_deg
@@ -41,7 +41,8 @@ class api:
         self.max_lon_deg = max_lon_deg
         self.zoom = zoom
         self.verbose = verbose
-        print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom)
+        LOCKING_LIMIT = threads_
+        print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom,self.verbose,LOCKING_LIMIT)
 
     def ret_xy_tiles(self,lat_deg,lon_deg):
         # changes for 0.0005
@@ -182,10 +183,12 @@ class api:
             for j in np.arange(float(min_lon),float(max_lon),j_val*0.0005):
                 get_urls = self.make_url(i,j)
                 URL_ALL.append([get_urls[0],get_urls[1]])
-            print("ALL URL CREATED! ...")
+            if self.verbose == True:
+                print("ALL URL CREATED! ...")
             global LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
             if LOCK_VAR == 0:
-                print("LOCKING")
+                if self.verbose == True:
+                    print("LOCKING")
                 LOCK_VAR = 1
                 UNLOCK_VAR = 0
                 ThreadPool(LOCKING_LIMIT).imap_unordered(self.get_img, URL_ALL)
