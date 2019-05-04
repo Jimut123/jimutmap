@@ -1,3 +1,9 @@
+"""
+This program downloads / scraps Apple maps for free.
+OPEN SOURCED UNDER GPL-V3.0.
+Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
+"""
+
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
@@ -14,21 +20,20 @@ import math
 from os import listdir
 from os.path import isfile, join
 from tqdm import tqdm
+
 # Ignore SSL certificate errors
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0'#,
-    #'From': 'youremail@domain.com'  # This is another valid field
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0'
 }
 
 LOCK_VAR = 0
 UNLOCK_VAR = 0
 LOCKING_LIMIT = 50 # MAX NO OF THREADS
-# https://sat-cdn2.apple-mapkit.com/tile?style=7&size=1&scale=1&z=19&x=289808&y=238513&v=4072&accessKey=1556903270_5215579321017512928_%2F_q0%2B6IlMhz2PBhhaYAP3dfwNP4ljXIXe2fJtTNx5pC5Y%3D&emphasis=standard&tint=dark
-# https://sat-cdn3.apple-mapkit.com/tile?style=7&size=1&scale=1&z=19&x=97496&y=201038&v=4072&accessKey=1556903619_2786168994573642268_%2F_J3koxLSTvwJHwL0tHgR5SkpU6C5VBpbNh1wY0%2FSPWBk%3D&emphasis=standard&tint=dark
+
 
 class api:
     
@@ -192,3 +197,7 @@ class api:
                 LOCK_VAR = 1
                 UNLOCK_VAR = 0
                 ThreadPool(LOCKING_LIMIT).imap_unordered(self.get_img, URL_ALL)
+            # SEMAPHORE KINDA THINGIE
+            while LOCK_VAR == 1:
+                print("WAITING",end="")
+                pass
