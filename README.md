@@ -17,7 +17,9 @@ sudo pip install jimutmap
 #### Pypi
 *   [jimutmap](https://pypi.org/project/jimutmap/)
 
+#### Works in Colab too!
 
+[colab-notebook](maps_scraper.ipynb)
 
 Note :
 
