@@ -31,7 +31,8 @@ LOCKING_LIMIT = 50 # MAX NO OF THREADS
 # https://sat-cdn3.apple-mapkit.com/tile?style=7&size=1&scale=1&z=19&x=97496&y=201038&v=4072&accessKey=1556903619_2786168994573642268_%2F_J3koxLSTvwJHwL0tHgR5SkpU6C5VBpbNh1wY0%2FSPWBk%3D&emphasis=standard&tint=dark
 
 class api:
-    def __init__(self,ac_key,min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19):
+    
+    def __init__(self,ac_key,min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False):
 
         self.ac_key = ac_key
         self.min_lat_deg = min_lat_deg
@@ -39,6 +40,7 @@ class api:
         self.min_lon_deg = min_lon_deg
         self.max_lon_deg = max_lon_deg
         self.zoom = zoom
+        self.verbose = verbose
         print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom)
 
     def ret_xy_tiles(self,lat_deg,lon_deg):
@@ -68,76 +70,97 @@ class api:
     def get_img(self,url_str):
         # to get the images from the url provided and save it
         global headers, LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
-        print(url_str)
+        if self.verbose == True:
+            print(url_str)
         UNLOCK_VAR = UNLOCK_VAR + 1
         LOCK_VAR = 1
-        print("UNLOCK VAR : ",UNLOCK_VAR)
+        if self.verbose == True:
+            print("UNLOCK VAR : ",UNLOCK_VAR)
         if UNLOCK_VAR >= LOCKING_LIMIT:
             LOCK_VAR = 0
             UNLOCK_VAR = 0
-            print("-------- UNLOCKING")
+            if self.verbose == True:
+                print("-------- UNLOCKING")
         x_tyle = url_str[0]
         y_tyle = url_str[1]
         file_name = str(x_tyle)+"_"+str(y_tyle)+".jpeg"
         try:
             if open(str(file_name),'r') == True:
+                if self.verbose == True:
+                    print(file_name,"file is present")
                 pass
         except:
             try:
                 req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
-                print(req_url)
+                if self.verbose == True:
+                    print(req_url)
                 r = requests.get(req_url, #allow_redirects=True,
                                 headers=headers)
                 open(file_name, 'wb').write(r.content)
                 if imghdr.what(file_name) is 'jpeg':
-                    print(file_name,"JPEG")
+                    if self.verbose == True:
+                        print(file_name,"JPEG")
                 else:
                     os.remove(file_name)
-                    print(file_name,"NOT JPEG")
-            except:
-                print("Ops Blown Off!")
+                    if self.verbose == True:
+                        print(file_name,"NOT JPEG")
+            except Exception as e:
+                if self.verbose == True:
+                    print(e)
             
             try:
                 req_url = str("https://sat-cdn"+str(2)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
-                print(req_url)
+                if self.verbose == True:
+                    print(req_url)
                 r = requests.get(req_url, #allow_redirects=True,
                                 headers=headers)
                 open(file_name, 'wb').write(r.content)
                 if imghdr.what(file_name) is 'jpeg':
-                    print(file_name,"JPEG")
+                    if self.verbose == True:
+                        print(file_name,"JPEG")
                 else:
                     os.remove(file_name)
-                    print(file_name,"NOT JPEG")
-            except:
-                print("Ops Blown Off!")
+                    if self.verbose == True:
+                        print(file_name,"NOT JPEG")
+            except Exception as e:
+                if self.verbose == True:
+                    print(e)
             
             try:
                 req_url = str("https://sat-cdn"+str(3)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
-                print(req_url)
+                if self.verbose == True:
+                    print(req_url)
                 r = requests.get(req_url, #allow_redirects=True,
                                 headers=headers)
                 open(file_name, 'wb').write(r.content)
                 if imghdr.what(file_name) is 'jpeg':
-                    print(file_name,"JPEG")
+                    if self.verbose == True:
+                        print(file_name,"JPEG")
                 else:
                     os.remove(file_name)
-                    print(file_name,"NOT JPEG")
-            except:
-                print("Ops Blown Off!")
+                    if self.verbose == True:
+                        print(file_name,"NOT JPEG")
+            except Exception as e:
+                if self.verbose == True:
+                    print(e)
 
             try:
                 req_url = str("https://sat-cdn"+str(4)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
-                print(req_url)
+                if self.verbose == True:
+                    print(req_url)
                 r = requests.get(req_url, #allow_redirects=True,
                                 headers=headers)
                 open(file_name, 'wb').write(r.content)
                 if imghdr.what(file_name) is 'jpeg':
-                    print(file_name,"JPEG")
+                    if self.verbose == True:
+                        print(file_name,"JPEG")
                 else:
                     os.remove(file_name)
-                    print(file_name,"NOT JPEG")
-            except:
-                print("Ops Blown Off!")
+                    if self.verbose == True:
+                        print(file_name,"NOT JPEG")
+            except Exception as e:
+                if self.verbose == True:
+                    print(e)
 
     def download(self):
         min_lat = self.min_lat_deg
@@ -153,19 +176,16 @@ class api:
             j_val = -1
         else:
             j_val = 1
-        URL_ALL = []
+        
         for i in tqdm(np.arange(float(min_lat),float(max_lat),i_val*0.0005)):
-            
+            URL_ALL = []
             for j in np.arange(float(min_lon),float(max_lon),j_val*0.0005):
                 get_urls = self.make_url(i,j)
                 URL_ALL.append([get_urls[0],get_urls[1]])
-                #URL_ALL.append([2,get_urls[0],get_urls[1]])
-                #URL_ALL.append([3,get_urls[0],get_urls[1]])
-                #URL_ALL.append([4,get_urls[0],get_urls[1]])
-        print("ALL URL CREATED! ...")
-        global LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
-        if LOCK_VAR == 0:
-            print("LOCKING")
-            LOCK_VAR = 1
-            UNLOCK_VAR = 0
-            ThreadPool(LOCKING_LIMIT).imap_unordered(self.get_img, URL_ALL)
+            print("ALL URL CREATED! ...")
+            global LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
+            if LOCK_VAR == 0:
+                print("LOCKING")
+                LOCK_VAR = 1
+                UNLOCK_VAR = 0
+                ThreadPool(LOCKING_LIMIT).imap_unordered(self.get_img, URL_ALL)

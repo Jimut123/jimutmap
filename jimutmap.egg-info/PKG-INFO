@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: jimutmap
-Version: 0.0.1
+Version: 1.2
 Summary: To get enormous amount of Apple Maps tile with ease
 Home-page: https://github.com/Jimut123/jimutmap
 Author: Jimut Bahan Pal
@@ -17,6 +17,16 @@ Description: # jimutmap
         
         #### YouTube video : 
         If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
+        
+        #### Installation
+        
+        ```
+        sudo pip install jimutmap
+        ```
+        
+        #### Pypi
+        *   [jimutmap](https://pypi.org/project/jimutmap/)
+        
         
         #### First things first
         
@@ -53,7 +63,7 @@ Description: # jimutmap
         
         The scraping API is present, call it and download it.
         ```python
-        >>from jmap import api
+        >>from jimutmap import api
         >>a=api('&api-access-key',ac_key,min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom)
         
         # Change the access key here

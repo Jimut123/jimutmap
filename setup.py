@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="jimutmap",
-    version="0.0.1",
+    version="1.2",
     author="Jimut Bahan Pal",
     author_email="jimutbahanpal@yahoo.com",
     description="To get enormous amount of Apple Maps tile with ease",
