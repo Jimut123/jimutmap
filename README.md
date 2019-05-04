@@ -1,4 +1,4 @@
-# jimutmap
+# jimutmap [![PyPI version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.2.4)](https://pypi.org/project/jimutmap/)
 
 #### Purpose 
 
