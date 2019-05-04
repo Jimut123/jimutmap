@@ -21,6 +21,14 @@ sudo pip install jimutmap
 
 [colab-notebook](maps_scraper.ipynb)
 
+
+#### Image
+
+<center>
+<img src="satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%>
+</center>
+
+
 Note :
 
 The api acess-key (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network and then it is this part of the link &accessKey...dark) is valid for a period of 10-15 mins. You need to manually go to [apple-map](https://satellites.pro/#32.916485,62.578125,4), get the API access key by pressing ctrl+shift+E and going to the network area. I tried to reverse engineer this thing
