@@ -1,4 +1,6 @@
-# jimutmap [![PyPI version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.2.4)](https://pypi.org/project/jimutmap/)
+# jimutmap 
+[![PyPI version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.2.4)](https://pypi.org/project/jimutmap/)
+![Contribute](https://img.shields.io/badge/-contribute-0a0a0a.svg?style=flat&colorA=0a0a0a)
 
 #### Purpose 
 
