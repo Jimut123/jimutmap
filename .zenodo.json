@@ -1,0 +1,26 @@
+{
+    "description": "<p>version 1</p>", 
+    "license": "other-open", 
+    "title": "Jimut123/jimutmap: version 1", 
+    "version": "v1.0", 
+    "upload_type": "software", 
+    "publication_date": "2019-06-24", 
+    "creators": [
+        {
+            "name": "Jimut Bahan Pal"
+        }
+    ], 
+    "access_right": "open", 
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/Jimut123/jimutmap/tree/v1.0", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.3254869", 
+            "relation": "isVersionOf"
+        }
+    ]
+}
