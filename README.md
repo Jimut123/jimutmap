@@ -66,7 +66,7 @@ The scraping API is present, call it and download it.
 # give the (min_lat,max_lat,min_lon,max_lon,access_key) in this function
 # note the access key is manually changed all the time here!
 
->>a.download_images()
+>>a.download()
 
 100%|██████████████████████████████████████████████████████████████                     | 1000/10000000 [00:02<00:00, 3913.19it/s
 
