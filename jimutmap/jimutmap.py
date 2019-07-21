@@ -199,5 +199,6 @@ class api:
                 ThreadPool(LOCKING_LIMIT).imap_unordered(self.get_img, URL_ALL)
             # SEMAPHORE KINDA THINGIE
             while LOCK_VAR == 1:
-                print("WAITING",end="")
+                if self.verbose == True:
+                    print("WAITING",end="")
                 pass
