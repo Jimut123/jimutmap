@@ -15,8 +15,7 @@ parameters provided by the user.
 #### YouTube video : 
 If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
 
-or
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wCbZhtWe72w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 #### Installation
 
@@ -35,7 +34,7 @@ sudo pip install jimutmap
 #### Image
 
 <center>
-<img src="satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%>
+<a href="https://www.youtube.com/watch?v=wCbZhtWe72w" alt="yt video" target="_blank"><img src="satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%></a>
 </center>
 
 
