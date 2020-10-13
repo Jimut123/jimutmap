@@ -92,7 +92,7 @@ that tile. It is calculated automatically so that all the progress remains saved
 This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! 
 
 
-## [LICENSE](https://github.com/Jimut123/wisp/blob/master/LICENSE)
+## [LICENSE](https://github.com/Jimut123/jimutmap/blob/master/LICENSE)
 ```
  GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
