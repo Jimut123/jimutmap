@@ -91,6 +91,18 @@ that tile. It is calculated automatically so that all the progress remains saved
 #### Note
 This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! 
 
+
+## [LICENSE](https://github.com/Jimut123/wisp/blob/master/LICENSE)
+```
+ GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2019-20 Jimut Bahan Pal, <https://jimut123.github.io/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+```
+
+
 Author:
 * [Jimut Bahan Pal](https://jimut123.github.io/)
 
