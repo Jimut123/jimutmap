@@ -4,12 +4,6 @@ OPEN SOURCED UNDER GPL-V3.0.
 Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
 """
 
-"""
-This program downloads / scraps Apple maps for free.
-OPEN SOURCED UNDER GPL-V3.0.
-Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
-"""
-
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
