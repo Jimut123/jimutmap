@@ -4,10 +4,17 @@ OPEN SOURCED UNDER GPL-V3.0.
 Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
 """
 
+"""
+This program downloads / scraps Apple maps for free.
+OPEN SOURCED UNDER GPL-V3.0.
+Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
+"""
+
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
 import os
+import cv2
 import wget
 import imghdr
 import shutil
@@ -97,76 +104,159 @@ class api:
                 pass
         except:
             try:
-                req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
+                #https://sat-cdn3.apple-mapkit.com/tile?style=7&size=1&scale=1&z=19&x=371320&y=219633&v=7072&accessKey=1597844285_2623996721767830360_%2F_2JSDgZLx9BNvymyuDPqmaVPQGKgIY6HNsMGvnWnVP74%3D
+                #https://cdn3.apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=371305&y=219636&z=19&scale=1&lang=en&v=2008184&poi=0&accessKey=1597846063_5668354640921081798_%2F_tDWzoV7s8c94X9yDuhnpOfUQadPrp82ogZuM%2BHwf50g%3D&labels=0
+                #https://cdn1.apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=371307&y=219638&z=19&scale=1&lang=en&v=2008184&poi=0&accessKey=1597846063_5668354640921081798_%2F_tDWzoV7s8c94X9yDuhnpOfUQadPrp82ogZuM%2BHwf50g%3D&labels=0
+                req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=7072"+str(self.ac_key))
+                if self.verbose == True:
+                    print(req_url)
+                img_name = file_name.split('.')[0]
+                file_name1 = str(img_name + ".jpeg")
+                r = requests.get(req_url, #allow_redirects=True,
+                                headers=headers)
+                open(file_name1, 'wb').write(r.content)
+                if imghdr.what(file_name1) is 'jpeg':
+                    if self.verbose == True:
+                        print(file_name1,"JPEG")
+                else:
+                    os.remove(file_name1)
+                    if self.verbose == True:
+                        print(file_name1,"NOT JPEG")
+                
+                # For the roads data
+                req_url = str("https://cdn"+str(1)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
+                #req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=7072"+str(self.ac_key))
+                
+                file_name_road = file_name.split('.')[0]+"_road.png"
                 if self.verbose == True:
                     print(req_url)
                 r = requests.get(req_url, #allow_redirects=True,
                                 headers=headers)
-                open(file_name, 'wb').write(r.content)
-                if imghdr.what(file_name) is 'jpeg':
+                open(file_name_road, 'wb').write(r.content)
+                if imghdr.what(file_name_road) is 'png':
                     if self.verbose == True:
-                        print(file_name,"JPEG")
+                        print(file_name_road,"PNG")
                 else:
-                    os.remove(file_name)
+                    os.remove(file_name_road)
                     if self.verbose == True:
-                        print(file_name,"NOT JPEG")
+                        print(file_name_road,"NOT PNG")
             except Exception as e:
                 if self.verbose == True:
                     print(e)
             
             try:
+                """
                 req_url = str("https://sat-cdn"+str(2)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
                 if self.verbose == True:
                     print(req_url)
                 r = requests.get(req_url, #allow_redirects=True,
                                 headers=headers)
-                open(file_name, 'wb').write(r.content)
-                if imghdr.what(file_name) is 'jpeg':
+                file_name2 = str(img_name + "_2.jpeg")
+                open(file_name2, 'wb').write(r.content)
+                if imghdr.what(file_name2) is 'jpeg':
                     if self.verbose == True:
-                        print(file_name,"JPEG")
+                        print(file_name2,"JPEG")
                 else:
-                    os.remove(file_name)
+                    os.remove(file_name2)
                     if self.verbose == True:
-                        print(file_name,"NOT JPEG")
+                        print(file_name2,"NOT JPEG")
+                """
+                # For the roads data
+                req_url = str("https://cdn"+str(2)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
+                
+                if self.verbose == True:
+                    print(req_url)
+                r = requests.get(req_url, #allow_redirects=True,
+                                headers=headers)
+                open(file_name_road, 'wb').write(r.content)
+                if imghdr.what(file_name_road) is 'png':
+                    if self.verbose == True:
+                        print(file_name_road,"PNG")
+                else:
+                    os.remove(file_name_road)
+                    if self.verbose == True:
+                        print(file_name_road,"NOT PNG")
+                        
             except Exception as e:
                 if self.verbose == True:
                     print(e)
             
+                
             try:
+                """
                 req_url = str("https://sat-cdn"+str(3)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
                 if self.verbose == True:
                     print(req_url)
                 r = requests.get(req_url, #allow_redirects=True,
                                 headers=headers)
-                open(file_name, 'wb').write(r.content)
-                if imghdr.what(file_name) is 'jpeg':
+                file_name3 = str(img_name + "_3.jpeg")
+                open(file_name3, 'wb').write(r.content)
+                if imghdr.what(file_name3) is 'jpeg':
                     if self.verbose == True:
-                        print(file_name,"JPEG")
+                        print(file_name3,"JPEG")
                 else:
-                    os.remove(file_name)
+                    os.remove(file_name3)
                     if self.verbose == True:
-                        print(file_name,"NOT JPEG")
+                        print(file_name3,"NOT JPEG")
+                """
+                # For the roads data
+                req_url = str("https://cdn"+str(3)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
+                #print(req_url)
+                if self.verbose == True:
+                    print(req_url)
+                r = requests.get(req_url, #allow_redirects=True,
+                                headers=headers)
+                open(file_name_road, 'wb').write(r.content)
+                if imghdr.what(file_name_road) is 'png':
+                    if self.verbose == True:
+                        print(file_name_road,"PNG")
+                else:
+                    os.remove(file_name_road)
+                    if self.verbose == True:
+                        print(file_name_road,"NOT PNG")
+                        
             except Exception as e:
                 if self.verbose == True:
                     print(e)
-
             try:
+                """
                 req_url = str("https://sat-cdn"+str(4)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
                 if self.verbose == True:
                     print(req_url)
                 r = requests.get(req_url, #allow_redirects=True,
                                 headers=headers)
-                open(file_name, 'wb').write(r.content)
-                if imghdr.what(file_name) is 'jpeg':
+                file_name4 = str(img_name + "_4.jpeg")
+                open(file_name4, 'wb').write(r.content)
+                if imghdr.what(file_name4) is 'jpeg':
                     if self.verbose == True:
-                        print(file_name,"JPEG")
+                        print(file_name4,"JPEG")
                 else:
-                    os.remove(file_name)
+                    os.remove(file_name4)
                     if self.verbose == True:
-                        print(file_name,"NOT JPEG")
+                        print(file_name4,"NOT JPEG")
+                """
+                # For the roads data
+                req_url = str("https://cdn"+str(4)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
+                #req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=7072"+str(self.ac_key))
+                
+                
+                if self.verbose == True:
+                    print(req_url)
+                r = requests.get(req_url, #allow_redirects=True,
+                                headers=headers)
+                open(file_name_road, 'wb').write(r.content)
+                if imghdr.what(file_name_road) is 'png':
+                    if self.verbose == True:
+                        print(file_name_road,"PNG")
+                else:
+                    os.remove(file_name_road)
+                    if self.verbose == True:
+                        print(file_name_road,"NOT PNG")
+                        
             except Exception as e:
                 if self.verbose == True:
                     print(e)
+        # delete unnecessary files
 
     def download(self):
         min_lat = self.min_lat_deg
@@ -199,6 +289,7 @@ class api:
                 ThreadPool(LOCKING_LIMIT).imap_unordered(self.get_img, URL_ALL)
             # SEMAPHORE KINDA THINGIE
             while LOCK_VAR == 1:
+                
                 if self.verbose == True:
                     print("WAITING",end="")
                 pass
