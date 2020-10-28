@@ -4,7 +4,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
 ![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)
 ![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Jimut123/jimutmap/blob/master/maps_scraper.ipynb]
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Jimut123/jimutmap/blob/master/maps_scraper.ipynb)
 
 #### Purpose 
 
