@@ -6,10 +6,10 @@
 ![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Jimut123/jimutmap/blob/master/maps_scraper.ipynb)
 
-#### Purpose 
+## Purpose 
 
 This manually brute forces [apple-map](https://satellites.pro/#32.916485,62.578125,4). It Then scraps all the tiles as given by the 
-parameters provided by the user. This uses an API-key generated at the time of browsing the map. The api acess-key (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network and then it is this part of the link &accessKey...dark) is valid for a period of 10-15 mins. You need to manually go to [apple-map](https://satellites.pro/#32.916485,62.578125,4), get the API access key by pressing ctrl+shift+E and going to the network area. I tried to reverse engineer this thing but couldn't. First part of the key is time in sec from 1970, but other part is some output of complex function which needs time to decipher. If anyone finds it, let me know, I'll add you to the contributor's section and may make this API fully automatic.
+parameters provided by the user. This uses an API-key generated at the time of browsing the map. The api acess-key (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network and then it is this part of the link &accessKey...dark) is valid for a period of 10-15 mins. You need to manually go to [apple-map](https://satellites.pro/#32.916485,62.578125,4), get the API access key by pressing ctrl+shift+E and going to the network area. I tried to reverse engineer this thing but couldn't. First part of the key is time in sec from 1970, but other part is some output of complex function which needs time to decipher. If anyone finds it, let me know, submit a P.R and which may make this API fully automatic.
 
 #### YouTube video : 
 If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
