@@ -8,21 +8,22 @@
 
 ## Purpose 
 
-This manually brute forces [apple-map](https://satellites.pro/#32.916485,62.578125,4). It Then scraps all the tiles as given by the 
+This manually brute forces [apple-map](https://satellites.pro/#32.916485,62.578125,4). It Then scraps all the tiles (image and road mask pair) as given by the 
 parameters provided by the user. This uses an API-key generated at the time of browsing the map. The api acess-key (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network and then it is this part of the link &accessKey...dark) is valid for a period of 10-15 mins. You need to manually go to [apple-map](https://satellites.pro/#32.916485,62.578125,4), get the API access key by pressing ctrl+shift+E and going to the network area. I tried to reverse engineer this thing but couldn't. First part of the key is time in sec from 1970, but other part is some output of complex function which needs time to decipher. If anyone finds it, let me know, submit a P.R and which may make this API fully automatic.
 
-#### YouTube video : 
+## YouTube video 
+
 If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
 
 
 
-#### Installation
+## Installation
 
 ```
 sudo pip install jimutmap
 ```
 
-#### Image
+## Image
 
 <center>
 <a href="https://www.youtube.com/watch?v=wCbZhtWe72w" alt="yt video" target="_blank"><img src="satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%></a>
@@ -36,12 +37,11 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 
 #### Some of the example images downloaded :
 
-| | | |
-|:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="satellite_data/133478_203289.jpeg">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="satellite_data/390804_228426.jpeg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="satellite_data/390804_228429.jpeg">|
-|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="satellite_data/390814_228427.jpeg">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="satellite_data/390814_228428.jpeg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="satellite_data/390814_228429.jpeg">|
-|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="satellite_data/390815_228435.jpeg">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="satellite_data/390827_228428.jpeg">|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="satellite_data/133479_203290.jpeg">|
-
+| | | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="1604" src="satellite_data/1_urban_map_mask.png">  |  <img width="1604" src="satellite_data/1_urban_map_sat.jpeg">|<img width="1604" src="satellite_data/different_zoom_map.jpeg">|<img width="1604" src="satellite_data/different_zoom_mask.png">|
+|<img width="1604" src="satellite_data/higher_scale_map.jpeg">  |  <img width="1604" src="satellite_data/higher_scale_mask.png">|<img width="1604" src="satellite_data/map_us_1.jpeg">|<img width="1604" src="satellite_data/mask_us_1.png">|
+|<img width="1604" src="satellite_data/raj_map_1.jpeg">  |  <img width="1604" src="satellite_data/raj_mask_1.png">|<img width="1604" src="satellite_data/us_1_map.jpeg">|<img width="1604" src="satellite_data/us_1_mask.png">|
 
 The scraping API is present, call it and download it.
 ```python
