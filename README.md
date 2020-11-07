@@ -38,7 +38,7 @@ sudo pip install jimutmap
 </center>
 
 
-## Need for hacking and scraping satellite data
+## Need for scraping satellite data
 
 Well it's good (best in the world) satellite images, we just need to give the coordinates (Lat,Lon, and zoom) to get your dataset
 of high resolution satellite images! Create your own dataset and apply ML algorithms :')
