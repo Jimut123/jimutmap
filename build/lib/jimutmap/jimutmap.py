@@ -1,8 +1,3 @@
-"""
-This program downloads / scraps Apple maps for free.
-OPEN SOURCED UNDER GPL-V3.0.
-Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
-"""
 
 """
 This program downloads / scraps Apple maps for free.
