@@ -1,4 +1,5 @@
-# jimutmap 
+<center> <h1> jimutmap </h1><center>
+ 
 [![PyPI version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.3.5)](https://pypi.org/project/jimutmap/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
 ![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)
