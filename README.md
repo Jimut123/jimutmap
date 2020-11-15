@@ -1,10 +1,11 @@
  <h1 align='center'> jimutmap </h1>
- 
-[![PyPI version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.3.5)](https://pypi.org/project/jimutmap/)
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
-![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)
-![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Jimut123/jimutmap/blob/master/maps_scraper.ipynb)
+<div align="center">
+<a href="https://pypi.org/project/jimutmap/"><img src="https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.3.5"></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
+<img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg">
+<img src="https://badges.frapsoft.com/os/v1/open-source.png?v=103">
+<a href="https://colab.research.google.com/github/Jimut123/jimutmap/blob/master/maps_scraper.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg"></a>
+</div>
 
 ## Purpose 
 
