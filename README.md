@@ -1,6 +1,6 @@
  <h1 align='center'> jimutmap </h1>
 <div align="center">
-<a href="https://pypi.org/project/jimutmap/"><img src="https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.3.5"></a>
+<a href="https://pypi.org/project/jimutmap/"><img src="https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.3.6"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg">
 <img src="https://badges.frapsoft.com/os/v1/open-source.png?v=103">
