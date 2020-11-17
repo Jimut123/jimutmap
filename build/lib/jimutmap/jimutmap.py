@@ -1,9 +1,9 @@
-
 """
 This program downloads / scraps Apple maps for free.
 OPEN SOURCED UNDER GPL-V3.0.
 Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
 """
+# imports
 
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
@@ -31,6 +31,8 @@ ctx.verify_mode = ssl.CERT_NONE
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0'
 }
+
+# To synchronize
 
 LOCK_VAR = 0
 UNLOCK_VAR = 0
@@ -99,9 +101,7 @@ class api:
                 pass
         except:
             try:
-                #https://sat-cdn3.apple-mapkit.com/tile?style=7&size=1&scale=1&z=19&x=371320&y=219633&v=7072&accessKey=1597844285_2623996721767830360_%2F_2JSDgZLx9BNvymyuDPqmaVPQGKgIY6HNsMGvnWnVP74%3D
-                #https://cdn3.apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=371305&y=219636&z=19&scale=1&lang=en&v=2008184&poi=0&accessKey=1597846063_5668354640921081798_%2F_tDWzoV7s8c94X9yDuhnpOfUQadPrp82ogZuM%2BHwf50g%3D&labels=0
-                #https://cdn1.apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=371307&y=219638&z=19&scale=1&lang=en&v=2008184&poi=0&accessKey=1597846063_5668354640921081798_%2F_tDWzoV7s8c94X9yDuhnpOfUQadPrp82ogZuM%2BHwf50g%3D&labels=0
+                # get the image tile and the mask tile for the same
                 req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=7072"+str(self.ac_key))
                 if self.verbose == True:
                     print(req_url)
@@ -140,22 +140,7 @@ class api:
                     print(e)
             
             try:
-                """
-                req_url = str("https://sat-cdn"+str(2)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
-                if self.verbose == True:
-                    print(req_url)
-                r = requests.get(req_url, #allow_redirects=True,
-                                headers=headers)
-                file_name2 = str(img_name + "_2.jpeg")
-                open(file_name2, 'wb').write(r.content)
-                if imghdr.what(file_name2) is 'jpeg':
-                    if self.verbose == True:
-                        print(file_name2,"JPEG")
-                else:
-                    os.remove(file_name2)
-                    if self.verbose == True:
-                        print(file_name2,"NOT JPEG")
-                """
+                # image and mask retrieval
                 # For the roads data
                 req_url = str("https://cdn"+str(2)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
                 
@@ -178,22 +163,7 @@ class api:
             
                 
             try:
-                """
-                req_url = str("https://sat-cdn"+str(3)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
-                if self.verbose == True:
-                    print(req_url)
-                r = requests.get(req_url, #allow_redirects=True,
-                                headers=headers)
-                file_name3 = str(img_name + "_3.jpeg")
-                open(file_name3, 'wb').write(r.content)
-                if imghdr.what(file_name3) is 'jpeg':
-                    if self.verbose == True:
-                        print(file_name3,"JPEG")
-                else:
-                    os.remove(file_name3)
-                    if self.verbose == True:
-                        print(file_name3,"NOT JPEG")
-                """
+                # image and mask
                 # For the roads data
                 req_url = str("https://cdn"+str(3)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
                 #print(req_url)
@@ -214,22 +184,7 @@ class api:
                 if self.verbose == True:
                     print(e)
             try:
-                """
-                req_url = str("https://sat-cdn"+str(4)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=4072"+str(self.ac_key))
-                if self.verbose == True:
-                    print(req_url)
-                r = requests.get(req_url, #allow_redirects=True,
-                                headers=headers)
-                file_name4 = str(img_name + "_4.jpeg")
-                open(file_name4, 'wb').write(r.content)
-                if imghdr.what(file_name4) is 'jpeg':
-                    if self.verbose == True:
-                        print(file_name4,"JPEG")
-                else:
-                    os.remove(file_name4)
-                    if self.verbose == True:
-                        print(file_name4,"NOT JPEG")
-                """
+                
                 # For the roads data
                 req_url = str("https://cdn"+str(4)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
                 #req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=7072"+str(self.ac_key))
