@@ -80,6 +80,21 @@ that tile. It is calculated automatically so that all the progress remains saved
 This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! 
 **This is created for educational and research purposes only! The author is not liable for any damage to private property.**
 
+## Contribution
+
+
+Please feel free to raise issues and fix any existing ones. Further details can be found in our [code of conduct](https://github.com/Jimut123/jimutmap/blob/master/CODE_OF_CONDUCT.md).
+
+### While making a PR, please make sure you:
+- [ ] Always start your PR description with "Fixes #issue_number", if you're fixing an issue.
+- [ ] Briefly mention the purpose of the PR, along with the tools/libraries you have used. It would be great if you could be version specific.
+- [ ] Briefly mention what logic you used to implement the changes/upgrades.
+- [ ] Provide in-code review comments on GitHub to highlight specific LOC if deemed necessary.
+- [ ] Please provide snapshots if deemed necessary.
+- [ ] Update readme if required.
+
+
+
 ## [LICENSE](https://github.com/Jimut123/jimutmap/blob/master/LICENSE)
 ```
  GNU GENERAL PUBLIC LICENSE
