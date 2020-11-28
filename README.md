@@ -76,9 +76,12 @@ $ mv *.jpeg satellite_data
 Please move this data after every fetch request done! Else you won't get the updated information (tiles) of satellite data after
 that tile. It is calculated automatically so that all the progress remains saved!
 
-#### Additional Note
+
+## Additional Note
+
 This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! 
 **This is created for educational and research purposes only! The author is not liable for any damage to private property.**
+
 
 ## Contribution
 
