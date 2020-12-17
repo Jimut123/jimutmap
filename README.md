@@ -98,6 +98,10 @@ Please feel free to raise issues and fix any existing ones. Further details can 
 - [ ] Update readme if required.
 
 
+## TODO
+
+- [ ] Generate the key automatically
+  - [ ] It is probably a sequence of timestamp, but it still needs to be pin pointed.
 
 ## [LICENSE](https://github.com/Jimut123/jimutmap/blob/master/LICENSE)
 ```
