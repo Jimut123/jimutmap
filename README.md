@@ -11,7 +11,9 @@
 ## Purpose 
 
 This manually brute forces [apple-map](https://satellites.pro/#32.916485,62.578125,4). It Then scraps all the tiles (image and road mask pair) as given by the 
-parameters provided by the user. This uses an API-key generated at the time of browsing the map. The api acess-key (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network and then it is this part of the link &accessKey...dark) is valid for a period of 10-15 mins. You need to manually go to [apple-map](https://satellites.pro/#32.916485,62.578125,4), get the API access key by pressing ctrl+shift+E and going to the network area. I tried to reverse engineer this thing but couldn't. First part of the key is time in sec from 1970, but other part is some output of complex function which needs time to decipher. If anyone finds it, let me know, submit a P.R and which may make this API fully automatic.
+parameters provided by the user. This uses an API-key generated at the time of browsing the map. 
+
+The api `accessKey` token is automatically fetched if you have Google Chrome or Chromium installed using `chromedriver-autoinstaller`. Otherwise, you'll have to fetch it manually and set the `ac_key` parameter (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network, looking at the assets, and finding the part of the link beginning with `&accessKey=` until the next `&`) every 10-15 mins. 
 
 ## Some of the example images downloaded at different scales
 
@@ -51,7 +53,7 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 The scraping API is present, call it and download it.
 ```python
 >>from jimutmap import api
->>a=api('&api-access-key',min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False,threads_=110)
+>>a=api(min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False,threads_=110, container_dir= "myOutputFolder")
 
 # Change the access key here
 # give the (min_lat,max_lat,min_lon,max_lon,access_key) in this function
@@ -68,14 +70,7 @@ The scraping API is present, call it and download it.
 Well I'm not that bad. This is done through parallel proccessing, so this will take all the thread in your CPU, change the 
 code to your own requirements! This is done so that you could download about **40K** images in **30 mins!** (That's too fast!!!)
 
-Do this :
-
-```
-$ mkdir satellite_data
-$ mv *.jpeg satellite_data
-```
-
-Please move this data after every fetch request done! Else you won't get the updated information (tiles) of satellite data after
+If you want to re-fetch tiles, remember to delete/move tiles after every fetch request done! Else you won't get the updated information (tiles) of satellite data after
 that tile. It is calculated automatically so that all the progress remains saved!
 
 
@@ -97,12 +92,6 @@ Please feel free to raise issues and fix any existing ones. Further details can 
 - [ ] Provide in-code review comments on GitHub to highlight specific LOC if deemed necessary.
 - [ ] Please provide snapshots if deemed necessary.
 - [ ] Update readme if required.
-
-
-## TODO
-
-- [ ] Generate the key automatically
-  - [ ] It is probably a sequence of timestamp, but it still needs to be pin pointed.
 
 ## [LICENSE](https://github.com/Jimut123/jimutmap/blob/master/LICENSE)
 ```
