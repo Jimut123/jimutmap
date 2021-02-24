@@ -55,9 +55,9 @@ The scraping API is present, call it and download it.
 >>from jimutmap import api
 >>a=api(min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False,threads_=110, container_dir= "myOutputFolder")
 
-# Change the access key here
-# give the (min_lat,max_lat,min_lon,max_lon,access_key) in this function
-# note the access key is manually changed all the time here!
+# If you don't have Chrome and can't take advantage of the auto access key fetch, set
+# a.ac_key = ACCESS_KEY_STRING
+# here
 
 >>a.download()
 
