@@ -4,7 +4,7 @@ OPEN SOURCED UNDER GPL-V3.0.
 Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
 """
 #pylint: disable= global-statement
-#cSpell:words imghdr, tqdm, asinh
+#cSpell:words imghdr, tqdm, asinh, jimut, bahan
 # imports
 
 import ssl
@@ -88,7 +88,7 @@ class api:
         LOCKING_LIMIT = threads_
         if self.verbose:
             print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom,self.verbose,LOCKING_LIMIT)
-        self.getMasks = True
+        self._getMasks = True
         self.dir = ""
         if isinstance(container_dir, str) and len(container_dir) > 0:
             container_dir = normpath(relpath(container_dir))
@@ -100,6 +100,9 @@ class api:
 
     @property
     def ac_key(self) -> str:
+        """
+        Get or set the internal accessKey for the tile requests
+        """
         return self._acKey
 
     @ac_key.setter
@@ -117,7 +120,7 @@ class api:
 
     def _getAPIKey(self) -> str:
         """
-        Use a headless Chrom(e/ium) instance to scrape the access key
+        Use a headless Chrome/Chromium instance to scrape the access key
         from the data-map-printing-background attribute of Apple Maps.
         """
         SAMPLE_KEY = r"1614125879_3642792122889215637_%2F_RwvhYZM5fKknqTdkXih2Wcu3s2f3Xea126uoIuDzUIY%3D"
@@ -176,7 +179,7 @@ class api:
         lat_deg = lat_rad * 180.0 / math.pi
         return lat_deg, lon_deg
 
-    def make_url(self, lat_deg, lon_deg):
+    def make_url(self, lat_deg:float, lon_deg:float):
         """
         returns the list of urls when lat, lon, zoom and accessKey is provided
 
@@ -189,14 +192,31 @@ class api:
         xTile, yTile = self.ret_xy_tiles(lat_deg, lon_deg)
         return [xTile, yTile]
 
-    def get_img(self, url_str, vNumber:int= 9042, getMask:bool= None, rerun:bool= False):
+    def get_img(self, url_str:str, vNumber:int= 9042, getMask:bool= None, _rerun:bool= False):
         """
         Get images from the URL provided and save them
+
+        Parameters
+        --------------------
+        url_str:str
+            The URL to read
+
+        vNumber:int (default= 9042)
+            The original version of this number was hardcoded as 7072,
+            which was no longer working. Moved to a kwarg.
+
+        getMask:bool (default= None)
+            By default, uses the internal self._getMasks variable set
+            on instantiation. If set to a boolean value, overrides the
+            current self._getMasks value
+
+        _rerun:bool (default= False)
+            Internal. Tracks retry status.
         """
         global headers, LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
         if isinstance(getMask, bool):
-            self.getMasks = getMask
-        getMask = self.getMasks
+            self._getMasks = getMask
+        getMask = self._getMasks
         if self.verbose:
             print(url_str)
         UNLOCK_VAR = UNLOCK_VAR + 1
@@ -224,11 +244,11 @@ class api:
                 r = requests.get(req_url, headers= headers)
                 try:
                     if "access denied" in str(r.content).lower():
-                        if rerun:
+                        if _rerun:
                             return False
                         # Refresh the API key
                         self._getAPIKey()
-                        return self.get_img(url_str, vNumber, getMask, rerun= True)
+                        return self.get_img(url_str, vNumber, getMask, _rerun= True)
                 except Exception: #pylint: disable= broad-except
                     pass
                 with open(file_name1, 'wb') as fh:
@@ -270,7 +290,7 @@ class api:
                         if self.verbose:
                             print(e)
 
-    def download(self, getMasks:bool= False):
+    def download(self, getMasks:bool= False, **kwargs):
         """
         Downloads the tiles as initialized.
 
@@ -279,8 +299,10 @@ class api:
 
         getMasks:bool (default= False)
             Download the road PNG mask tile if true
+
+        Also accepts kwargs for `get_img`.
         """
-        self.getMasks = bool(getMasks)
+        self._getMasks = bool(getMasks)
         min_lat = self.min_lat_deg
         max_lat = self.max_lat_deg
         min_lon = self.min_lon_deg
@@ -308,7 +330,7 @@ class api:
                     print("LOCKING")
                 LOCK_VAR = 1
                 UNLOCK_VAR = 0
-                ThreadPool(LOCKING_LIMIT).imap_unordered(self.get_img, URL_ALL) #cSpell:words imap
+                ThreadPool(LOCKING_LIMIT).imap_unordered(lambda x: self.get_img(x, **kwargs), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
             # SEMAPHORE KINDA THINGIE
             while LOCK_VAR == 1:
                 if self.verbose:
