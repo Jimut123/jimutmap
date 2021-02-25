@@ -69,12 +69,48 @@ class api:
         """
         global LOCKING_LIMIT
         self._acKey = None
+        self._containerDir = ""
         if ac_key is None:
             self._getAPIKey()
         else:
             self.ac_key = ac_key
-        assert 0 < min_lat_deg < 90
-        assert 0 < max_lat_deg < 90
+        self.set_bounds(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg)
+        self.zoom = zoom
+        self.verbose = bool(verbose)
+        LOCKING_LIMIT = threads_
+        if self.verbose:
+            print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom,self.verbose,LOCKING_LIMIT)
+        self._getMasks = True
+        self.container_dir = container_dir
+
+    @property
+    def container_dir(self) -> str:
+        """
+        Get the output directory
+        """
+        return self._containerDir
+
+    @container_dir.setter
+    def container_dir(self, newDir:str):
+        try:
+            if isinstance(newDir, str) and len(newDir) > 0:
+                newDir = normpath(relpath(newDir))
+                if not exists(newDir):
+                    if self.verbose:
+                        print(f"Creating target directory `{newDir}`")
+                    os.makedirs(newDir)
+                assert exists(newDir)
+                self._containerDir = newDir
+        except Exception: #pylint: disable= broad-except
+            self._containerDir = ""
+
+
+    def set_bounds(self, min_lat_deg:float, max_lat_deg:float, min_lon_deg:float, max_lon_deg:float):
+        """
+        Set the viewport bounds
+        """
+        assert -90 < min_lat_deg < 90
+        assert -90 < max_lat_deg < 90
         assert min_lat_deg < max_lat_deg
         assert -180 < min_lon_deg < 180
         assert -180 < max_lon_deg < 180
@@ -83,20 +119,8 @@ class api:
         self.max_lat_deg = max_lat_deg
         self.min_lon_deg = min_lon_deg
         self.max_lon_deg = max_lon_deg
-        self.zoom = zoom
-        self.verbose = bool(verbose)
-        LOCKING_LIMIT = threads_
-        if self.verbose:
-            print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom,self.verbose,LOCKING_LIMIT)
-        self._getMasks = True
-        self.dir = ""
-        if isinstance(container_dir, str) and len(container_dir) > 0:
-            container_dir = normpath(relpath(container_dir))
-            if not exists(container_dir):
-                if verbose:
-                    print(f"Creating target directory `{container_dir}`")
-                os.makedirs(container_dir)
-            self.dir = container_dir
+
+
 
     @property
     def ac_key(self) -> str:
@@ -230,7 +254,7 @@ class api:
                 print("-------- UNLOCKING")
         xTile = url_str[0]
         yTile = url_str[1]
-        file_name = join(self.dir, f"{xTile}_{yTile}.jpg")
+        file_name = join(self.container_dir, f"{xTile}_{yTile}.jpg")
         try:
             assert exists(file_name)
         except AssertionError:
