@@ -59,7 +59,7 @@ The scraping API is present, call it and download it.
 # a.ac_key = ACCESS_KEY_STRING
 # here
 
->>a.download()
+>>a.download(getMasks=True)
 
 100%|██████████████████████████████████████████████████████████████                     | 1000/10000000 [00:02<00:00, 3913.19it/s
 
