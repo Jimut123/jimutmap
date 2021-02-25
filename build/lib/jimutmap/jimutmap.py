@@ -3,25 +3,23 @@ This program downloads / scraps Apple maps for free.
 OPEN SOURCED UNDER GPL-V3.0.
 Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
 """
+#pylint: disable= global-statement
+#cSpell:words imghdr, tqdm, asinh, jimut, bahan
 # imports
 
-import urllib.request, urllib.parse, urllib.error
-from bs4 import BeautifulSoup
 import ssl
 import os
-import cv2
-import wget
-import imghdr
-import shutil
-import numpy as np
-import requests
-from time import time as timer
-from multiprocessing.pool import ThreadPool
 import time
 import math
-from os import listdir
-from os.path import isfile, join
+from os.path import join, exists, normpath, relpath
+import imghdr
+from multiprocessing.pool import ThreadPool
+from typing import Tuple
 from tqdm import tqdm
+import numpy as np
+import requests
+from selenium import webdriver
+import chromedriver_autoinstaller
 
 # Ignore SSL certificate errors
 ctx = ssl.create_default_context()
@@ -40,175 +38,295 @@ LOCKING_LIMIT = 50 # MAX NO OF THREADS
 
 
 class api:
-    
-    def __init__(self,ac_key,min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False,threads_=50):
+    """
+    Pull tiles from Apple Maps
+    """
+    def __init__(self, min_lat_deg:float, max_lat_deg:float, min_lon_deg:float, max_lon_deg:float, zoom= 19, ac_key:str= None, verbose:bool= False, threads_:int= 4, container_dir:str= ""):
+        """
+        Parameters
+        -------------------------------------
+
+        min_lat_deg: float
+        max_lat_deg: float
+        min_lon_deg: float
+        max_lon_deg: float
+
+        zoom: int
+            Zoom level. Between  1 and 20.
+
+        ac_key:str (default= None)
+            Access key to Apple Maps. If not provided, will use a headless Chrome instance to fetch a session key.
+
+        verbose:bool (default= False)
+            Helpful debugging output
+
+        threads_: int (default= 4)
+            Thread limit for process. Max 50
+
+        container_dir:str (default= "")
+            When downloading images, place them in this directory.
+            It will be created if it does not exist.
+        """
         global LOCKING_LIMIT
-        self.ac_key = ac_key
+        self._acKey = None
+        self._containerDir = ""
+        if ac_key is None:
+            self._getAPIKey()
+        else:
+            self.ac_key = ac_key
+        self.set_bounds(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg)
+        self.zoom = zoom
+        self.verbose = bool(verbose)
+        LOCKING_LIMIT = threads_
+        if self.verbose:
+            print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom,self.verbose,LOCKING_LIMIT)
+        self._getMasks = True
+        self.container_dir = container_dir
+
+    @property
+    def container_dir(self) -> str:
+        """
+        Get the output directory
+        """
+        return self._containerDir
+
+    @container_dir.setter
+    def container_dir(self, newDir:str):
+        try:
+            if isinstance(newDir, str) and len(newDir) > 0:
+                newDir = normpath(relpath(newDir))
+                if not exists(newDir):
+                    if self.verbose:
+                        print(f"Creating target directory `{newDir}`")
+                    os.makedirs(newDir)
+                assert exists(newDir)
+                self._containerDir = newDir
+        except Exception: #pylint: disable= broad-except
+            self._containerDir = ""
+
+
+    def set_bounds(self, min_lat_deg:float, max_lat_deg:float, min_lon_deg:float, max_lon_deg:float):
+        """
+        Set the viewport bounds
+        """
+        assert -90 < min_lat_deg < 90
+        assert -90 < max_lat_deg < 90
+        assert min_lat_deg < max_lat_deg
+        assert -180 < min_lon_deg < 180
+        assert -180 < max_lon_deg < 180
+        assert min_lon_deg < max_lon_deg
         self.min_lat_deg = min_lat_deg
         self.max_lat_deg = max_lat_deg
         self.min_lon_deg = min_lon_deg
         self.max_lon_deg = max_lon_deg
-        self.zoom = zoom
-        self.verbose = verbose
-        LOCKING_LIMIT = threads_
-        print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom,self.verbose,LOCKING_LIMIT)
 
-    def ret_xy_tiles(self,lat_deg,lon_deg):
-        # changes for 0.0005
-        # This function returns the tilex and tiley in tuple
-        # Takes latitude, longitude and zoom_level
+
+
+    @property
+    def ac_key(self) -> str:
+        """
+        Get or set the internal accessKey for the tile requests
+        """
+        return self._acKey
+
+    @ac_key.setter
+    def ac_key(self, newACKey:str):
+        try:
+            if not newACKey.startswith("&"):
+                if not newACKey.lower().startswith("a"):
+                    newACKey = f"accessKey={newACKey}"
+                newACKey = f"&{newACKey}"
+            self._acKey = newACKey
+        except (AttributeError, TypeError):
+            self._acKey = None
+            if newACKey is not None:
+                raise ValueError("Invalid AccessKey string")
+
+    def _getAPIKey(self) -> str:
+        """
+        Use a headless Chrome/Chromium instance to scrape the access key
+        from the data-map-printing-background attribute of Apple Maps.
+        """
+        SAMPLE_KEY = r"1614125879_3642792122889215637_%2F_RwvhYZM5fKknqTdkXih2Wcu3s2f3Xea126uoIuDzUIY%3D"
+        KEY_START = r"&accessKey="
+        chromeDriverPath = chromedriver_autoinstaller.install(cwd= True)
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        driver = webdriver.Chrome(executable_path= chromeDriverPath, options=options)
+        driver.get("https://satellites.pro/USA_map#37.405074,-94.284668,5")
+        time.sleep(5)
+        baseMap = driver.find_element_by_css_selector("#map-canvas .leaflet-mapkit-mutant")
+        mapData = baseMap.get_attribute("data-map-printing-background")
+        accessKeyStart = mapData.find(KEY_START)
+        accessKeyEnd = accessKeyStart + int(1.5 * len(SAMPLE_KEY))
+        searchForKey = mapData[accessKeyStart:accessKeyEnd]
+        keyContents = searchForKey[len(KEY_START):]
+        keyEnd = keyContents.find("&")
+        keyContents = keyContents[:keyEnd]
+        self.ac_key = keyContents
+        return keyContents
+
+
+    def ret_xy_tiles(self, lat_deg:float, lon_deg:float) -> Tuple[int, int]:
+        """
+        Parameters
+        -----------------------
+
+        lat_deg:float
+        lon_deg:float
+
+        Returns
+        ----------------------
+        tuple: (xTile, yTile)
+        """
         n = 2**self.zoom
-        xtile = n * ((lon_deg + 180) / 360)
+        xTile = n * ((lon_deg + 180) / 360)
         lat_rad = lat_deg * math.pi / 180.0
-        ytile = n * (1 - (math.log(math.tan(lat_rad) + 1/math.cos(lat_rad)) / math.pi)) / 2
-        return int(xtile),int(ytile)
+        yTile = n * (1 - (math.log(math.tan(lat_rad) + 1/math.cos(lat_rad)) / math.pi)) / 2
+        return int(xTile),int(yTile)
 
-    def ret_lat_lon(self,x_tyle,y_tyle):
-        # This function returns the lat, lon as a tuple
-        # Takes x_tyle, y_tyle and zoom_level
+    def ret_lat_lon(self, xTile:int, yTile:int) -> Tuple[float, float]:
+        """
+        Parameters
+        -----------------------
+
+        xTile:int
+        yTile:int
+
+        Returns
+        ----------------------
+        tuple: (lat, lng)
+        """
         n = 2**self.zoom
-        lon_deg = int(x_tyle)/n * 360.0 - 180.0
-        lat_rad = math.atan(math.asinh(math.pi * (1 - 2 * int(y_tyle)/n)))
+        lon_deg = int(xTile)/n * 360.0 - 180.0
+        lat_rad = math.atan(math.asinh(math.pi * (1 - 2 * int(yTile)/n)))
         lat_deg = lat_rad * 180.0 / math.pi
         return lat_deg, lon_deg
-    
-    def make_url(self,lat_deg,lon_deg):
-        # returns the list of urls when lat, lon, zoom and accessKey is provided
-        x_tyle,y_tyle = self.ret_xy_tiles(lat_deg,lon_deg)
-        return [x_tyle,y_tyle]
-    
-    def get_img(self,url_str):
-        # to get the images from the url provided and save it
+
+    def make_url(self, lat_deg:float, lon_deg:float):
+        """
+        returns the list of urls when lat, lon, zoom and accessKey is provided
+
+        Parameters
+        -----------------------
+
+        lat_deg:float
+        lon_deg:float
+        """
+        xTile, yTile = self.ret_xy_tiles(lat_deg, lon_deg)
+        return [xTile, yTile]
+
+    def get_img(self, url_str:str, vNumber:int= 9042, getMask:bool= None, _rerun:bool= False):
+        """
+        Get images from the URL provided and save them
+
+        Parameters
+        --------------------
+        url_str:str
+            The URL to read
+
+        vNumber:int (default= 9042)
+            The original version of this number was hardcoded as 7072,
+            which was no longer working. Moved to a kwarg.
+
+        getMask:bool (default= None)
+            By default, uses the internal self._getMasks variable set
+            on instantiation. If set to a boolean value, overrides the
+            current self._getMasks value
+
+        _rerun:bool (default= False)
+            Internal. Tracks retry status.
+        """
         global headers, LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
-        if self.verbose == True:
+        if isinstance(getMask, bool):
+            self._getMasks = getMask
+        getMask = self._getMasks
+        if self.verbose:
             print(url_str)
         UNLOCK_VAR = UNLOCK_VAR + 1
         LOCK_VAR = 1
-        if self.verbose == True:
+        if self.verbose:
             print("UNLOCK VAR : ",UNLOCK_VAR)
         if UNLOCK_VAR >= LOCKING_LIMIT:
             LOCK_VAR = 0
             UNLOCK_VAR = 0
-            if self.verbose == True:
+            if self.verbose:
                 print("-------- UNLOCKING")
-        x_tyle = url_str[0]
-        y_tyle = url_str[1]
-        file_name = str(x_tyle)+"_"+str(y_tyle)+".jpeg"
+        xTile = url_str[0]
+        yTile = url_str[1]
+        file_name = join(self.container_dir, f"{xTile}_{yTile}.jpg")
         try:
-            if open(str(file_name),'r') == True:
-                if self.verbose == True:
-                    print(file_name,"file is present")
-                pass
-        except:
+            assert exists(file_name)
+        except AssertionError:
             try:
                 # get the image tile and the mask tile for the same
-                req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=7072"+str(self.ac_key))
-                if self.verbose == True:
+                req_url = f"https://sat-cdn1.apple-mapkit.com/tile?style=7&size=1&scale=1&z={self.zoom}&x={xTile}&y={yTile}&v={vNumber}{self.ac_key}"
+                if self.verbose:
                     print(req_url)
                 img_name = file_name.split('.')[0]
-                file_name1 = str(img_name + ".jpeg")
-                r = requests.get(req_url, #allow_redirects=True,
-                                headers=headers)
-                open(file_name1, 'wb').write(r.content)
+                file_name1 = f"{img_name}.jpg"
+                r = requests.get(req_url, headers= headers)
+                try:
+                    if "access denied" in str(r.content).lower():
+                        if _rerun:
+                            return False
+                        # Refresh the API key
+                        self._getAPIKey()
+                        return self.get_img(url_str, vNumber, getMask, _rerun= True)
+                except Exception: #pylint: disable= broad-except
+                    pass
+                with open(file_name1, 'wb') as fh:
+                    fh.write(r.content)
                 if imghdr.what(file_name1) is 'jpeg':
-                    if self.verbose == True:
+                    if self.verbose:
                         print(file_name1,"JPEG")
                 else:
                     os.remove(file_name1)
-                    if self.verbose == True:
+                    if self.verbose:
                         print(file_name1,"NOT JPEG")
-                
-                # For the roads data
-                req_url = str("https://cdn"+str(1)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
-                #req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=7072"+str(self.ac_key))
-                
-                file_name_road = file_name.split('.')[0]+"_road.png"
-                if self.verbose == True:
-                    print(req_url)
-                r = requests.get(req_url, #allow_redirects=True,
-                                headers=headers)
-                open(file_name_road, 'wb').write(r.content)
-                if imghdr.what(file_name_road) is 'png':
-                    if self.verbose == True:
-                        print(file_name_road,"PNG")
-                else:
-                    os.remove(file_name_road)
-                    if self.verbose == True:
-                        print(file_name_road,"NOT PNG")
-            except Exception as e:
-                if self.verbose == True:
+            except Exception as e: #pylint: disable= broad-except
+                if self.verbose:
                     print(e)
-            
+        if getMask:
+            file_name_road = file_name.split('.')[0]+"_road.png"
             try:
-                # image and mask retrieval
-                # For the roads data
-                req_url = str("https://cdn"+str(2)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
-                
-                if self.verbose == True:
-                    print(req_url)
-                r = requests.get(req_url, #allow_redirects=True,
-                                headers=headers)
-                open(file_name_road, 'wb').write(r.content)
-                if imghdr.what(file_name_road) is 'png':
-                    if self.verbose == True:
-                        print(file_name_road,"PNG")
-                else:
-                    os.remove(file_name_road)
-                    if self.verbose == True:
-                        print(file_name_road,"NOT PNG")
-                        
-            except Exception as e:
-                if self.verbose == True:
-                    print(e)
-            
-                
-            try:
-                # image and mask
-                # For the roads data
-                req_url = str("https://cdn"+str(3)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
-                #print(req_url)
-                if self.verbose == True:
-                    print(req_url)
-                r = requests.get(req_url, #allow_redirects=True,
-                                headers=headers)
-                open(file_name_road, 'wb').write(r.content)
-                if imghdr.what(file_name_road) is 'png':
-                    if self.verbose == True:
-                        print(file_name_road,"PNG")
-                else:
-                    os.remove(file_name_road)
-                    if self.verbose == True:
-                        print(file_name_road,"NOT PNG")
-                        
-            except Exception as e:
-                if self.verbose == True:
-                    print(e)
-            try:
-                
-                # For the roads data
-                req_url = str("https://cdn"+str(4)+".apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=")+str(x_tyle)+str("&y=")+str(y_tyle)+str("&z=")+str(self.zoom)+"&scale=1&lang=en&v=2008184&poi=0"+str(self.ac_key)+"&labels=0"
-                #req_url = str("https://sat-cdn"+str(1)+".apple-mapkit.com/tile?style=7&size=1&scale=1&z="+str(self.zoom)+"&x="+str(x_tyle)+"&y="+str(y_tyle)+"&v=7072"+str(self.ac_key))
-                
-                
-                if self.verbose == True:
-                    print(req_url)
-                r = requests.get(req_url, #allow_redirects=True,
-                                headers=headers)
-                open(file_name_road, 'wb').write(r.content)
-                if imghdr.what(file_name_road) is 'png':
-                    if self.verbose == True:
-                        print(file_name_road,"PNG")
-                else:
-                    os.remove(file_name_road)
-                    if self.verbose == True:
-                        print(file_name_road,"NOT PNG")
-                        
-            except Exception as e:
-                if self.verbose == True:
-                    print(e)
-        # delete unnecessary files
+                assert exists(file_name_road)
+            except AssertionError:
+                for cdnLevel in range(1, 5):
+                    req_url = f"https://cdn{cdnLevel}.apple-mapkit.com/ti/tile?country=US&region=US&style=46&size=1&x={xTile}&y={yTile}&z={self.zoom}&scale=1&lang=en&v=2008184&poi=0{self.ac_key}&labels=0"
+                    try:
+                        # image and mask retrieval
+                        # For the roads data
+                        if self.verbose:
+                            print(req_url)
+                        r = requests.get(req_url, headers= headers)
+                        with open(file_name_road, 'wb') as fh:
+                            fh.write(r.content)
+                        if imghdr.what(file_name_road) is 'png':
+                            if self.verbose:
+                                print(file_name_road,"PNG")
+                            break # Success
+                        else:
+                            os.remove(file_name_road)
+                            if self.verbose:
+                                print(file_name_road,"NOT PNG")
+                    except Exception as e: #pylint: disable= broad-except
+                        if self.verbose:
+                            print(e)
 
-    def download(self):
+    def download(self, getMasks:bool= False, **kwargs):
+        """
+        Downloads the tiles as initialized.
+
+        Parameters
+        --------------------------------
+
+        getMasks:bool (default= False)
+            Download the road PNG mask tile if true
+
+        Also accepts kwargs for `get_img`.
+        """
+        self._getMasks = bool(getMasks)
         min_lat = self.min_lat_deg
         max_lat = self.max_lat_deg
         min_lon = self.min_lon_deg
@@ -217,29 +335,27 @@ class api:
             i_val = -1
         else:
             i_val = 1
-        
+
         if max_lon > max_lon:
             j_val = -1
         else:
             j_val = 1
-        
+
         for i in tqdm(np.arange(float(min_lat),float(max_lat),i_val*0.0005)):
             URL_ALL = []
             for j in np.arange(float(min_lon),float(max_lon),j_val*0.0005):
                 get_urls = self.make_url(i,j)
                 URL_ALL.append([get_urls[0],get_urls[1]])
-            if self.verbose == True:
+            if self.verbose:
                 print("ALL URL CREATED! ...")
             global LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
             if LOCK_VAR == 0:
-                if self.verbose == True:
+                if self.verbose:
                     print("LOCKING")
                 LOCK_VAR = 1
                 UNLOCK_VAR = 0
-                ThreadPool(LOCKING_LIMIT).imap_unordered(self.get_img, URL_ALL)
+                ThreadPool(LOCKING_LIMIT).imap_unordered(lambda x: self.get_img(x, **kwargs), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
             # SEMAPHORE KINDA THINGIE
             while LOCK_VAR == 1:
-                
-                if self.verbose == True:
-                    print("WAITING",end="")
-                pass
+                if self.verbose:
+                    print(".", end="")
