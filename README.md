@@ -53,7 +53,7 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 The scraping API is present, call it and download it.
 ```python
 >>from jimutmap import api
->>a=api(min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False,threads_=110, container_dir= "myOutputFolder")
+>>a=api(min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False,threads_=5, container_dir= "myOutputFolder")
 
 # If you don't have Chrome and can't take advantage of the auto access key fetch, set
 # a.ac_key = ACCESS_KEY_STRING
