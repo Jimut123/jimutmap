@@ -1,5 +1,5 @@
 """
-This program downloads / scraps Apple maps for free.
+This program downloads / scrapes Apple maps for free.
 OPEN SOURCED UNDER GPL-V3.0.
 Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
 """
@@ -115,12 +115,24 @@ class api:
         assert -180 < min_lon_deg < 180
         assert -180 < max_lon_deg < 180
         assert min_lon_deg < max_lon_deg
-        self.min_lat_deg = min_lat_deg
-        self.max_lat_deg = max_lat_deg
-        self.min_lon_deg = min_lon_deg
-        self.max_lon_deg = max_lon_deg
+        # For compatibility with other funcs,
+        # explicitly cast to float
+        self.min_lat_deg = float(min_lat_deg)
+        self.max_lat_deg = float(max_lat_deg)
+        self.min_lon_deg = float(min_lon_deg)
+        self.max_lon_deg = float(max_lon_deg)
 
+    def _getLatBounds(self) -> Tuple[float, float]:
+        """
+        Internal getter for (min, max) latitude
+        """
+        return self.min_lat_deg, self.max_lat_deg
 
+    def _getLonBounds(self) -> Tuple[float, float]:
+        """
+        Internal getter for (min, max) longitude
+        """
+        return self.min_lon_deg, self.max_lon_deg
 
     @property
     def ac_key(self) -> str:
@@ -216,7 +228,7 @@ class api:
         xTile, yTile = self.ret_xy_tiles(lat_deg, lon_deg)
         return [xTile, yTile]
 
-    def get_img(self, url_str:str, vNumber:int= 9042, getMask:bool= None, _rerun:bool= False):
+    def get_img(self, url_str:str, vNumber:int= 9042, getMask:bool= None, prefix:str= "", _rerun:bool= False):
         """
         Get images from the URL provided and save them
 
@@ -254,7 +266,7 @@ class api:
                 print("-------- UNLOCKING")
         xTile = url_str[0]
         yTile = url_str[1]
-        file_name = join(self.container_dir, f"{xTile}_{yTile}.jpg")
+        file_name = join(self.container_dir, f"{prefix}{xTile}_{yTile}.jpg")
         try:
             assert exists(file_name)
         except AssertionError:
@@ -263,8 +275,6 @@ class api:
                 req_url = f"https://sat-cdn1.apple-mapkit.com/tile?style=7&size=1&scale=1&z={self.zoom}&x={xTile}&y={yTile}&v={vNumber}{self.ac_key}"
                 if self.verbose:
                     print(req_url)
-                img_name = file_name.split('.')[0]
-                file_name1 = f"{img_name}.jpg"
                 r = requests.get(req_url, headers= headers)
                 try:
                     if "access denied" in str(r.content).lower():
@@ -275,20 +285,21 @@ class api:
                         return self.get_img(url_str, vNumber, getMask, _rerun= True)
                 except Exception: #pylint: disable= broad-except
                     pass
-                with open(file_name1, 'wb') as fh:
+                with open(file_name, 'wb') as fh:
                     fh.write(r.content)
-                if imghdr.what(file_name1) is 'jpeg':
+                if imghdr.what(file_name) is 'jpeg':
                     if self.verbose:
-                        print(file_name1,"JPEG")
+                        print(file_name,"JPEG")
                 else:
-                    os.remove(file_name1)
+                    os.remove(file_name)
                     if self.verbose:
-                        print(file_name1,"NOT JPEG")
+                        print(file_name, "NOT JPEG")
             except Exception as e: #pylint: disable= broad-except
                 if self.verbose:
                     print(e)
         if getMask:
-            file_name_road = file_name.split('.')[0]+"_road.png"
+            ext = file_name.split('.').pop()
+            file_name_road = file_name[:-len(ext)]+"_road.png"
             try:
                 assert exists(file_name_road)
             except AssertionError:
@@ -314,7 +325,7 @@ class api:
                         if self.verbose:
                             print(e)
 
-    def download(self, getMasks:bool= False, **kwargs):
+    def download(self, getMasks:bool= False, latLonResolution:float= 0.0005, **kwargs):
         """
         Downloads the tiles as initialized.
 
@@ -324,28 +335,24 @@ class api:
         getMasks:bool (default= False)
             Download the road PNG mask tile if true
 
+        latLonResolution:float (default= 0.0005)
+            The step size to use when creating tiles
+
         Also accepts kwargs for `get_img`.
         """
         self._getMasks = bool(getMasks)
-        min_lat = self.min_lat_deg
-        max_lat = self.max_lat_deg
-        min_lon = self.min_lon_deg
-        max_lon = self.max_lon_deg
-        if min_lat > max_lat:
-            i_val = -1
-        else:
-            i_val = 1
+        min_lat, max_lat = self._getLatBounds()
+        min_lon, max_lon = self._getLonBounds()
+        if (max_lat - min_lat <= latLonResolution) or (max_lon - min_lon <= latLonResolution):
+            # If we fail this check, then our arange will return no
+            # results and we'll fetch nothing
+            raise ValueError(f"Latitude and longitude bounds must be separated by at least the latLonResolution (currently {latLonResolution}). Either shrink the resolution value or increase the separation of your minimum/maximum latitude and longitude.")
 
-        if max_lon > max_lon:
-            j_val = -1
-        else:
-            j_val = 1
-
-        for i in tqdm(np.arange(float(min_lat),float(max_lat),i_val*0.0005)):
+        for i in tqdm(np.arange(min_lat, max_lat, latLonResolution)):
+            tp = None
             URL_ALL = []
-            for j in np.arange(float(min_lon),float(max_lon),j_val*0.0005):
-                get_urls = self.make_url(i,j)
-                URL_ALL.append([get_urls[0],get_urls[1]])
+            for j in np.arange(min_lon, max_lon, latLonResolution):
+                URL_ALL.append(self.make_url(i,j))
             if self.verbose:
                 print("ALL URL CREATED! ...")
             global LOCK_VAR, UNLOCK_VAR, LOCKING_LIMIT
@@ -354,8 +361,13 @@ class api:
                     print("LOCKING")
                 LOCK_VAR = 1
                 UNLOCK_VAR = 0
-                ThreadPool(LOCKING_LIMIT).imap_unordered(lambda x: self.get_img(x, **kwargs), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
+                tp = ThreadPool(LOCKING_LIMIT)
+                tp.imap_unordered(lambda x: self.get_img(x, **kwargs), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
+                tp.close()
             # SEMAPHORE KINDA THINGIE
-            while LOCK_VAR == 1:
-                if self.verbose:
-                    print(".", end="")
+            if UNLOCK_VAR >= LOCKING_LIMIT and tp is not None:
+                # If we have too many threads running, explicitly call
+                # a wait on the threads until the most recent
+                # process has cleared. As a practical matter, this will
+                # clear _several_ threads and keep up performance
+                tp.join()
