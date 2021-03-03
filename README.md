@@ -1,6 +1,6 @@
  <h1 align='center'> jimutmap </h1>
 <div align="center">
-<a href="https://pypi.org/project/jimutmap/"><img src="https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.3.6"></a>
+<a href="https://pypi.org/project/jimutmap/"><img src="https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.3.7"></a>
 <a href="https://zenodo.org/badge/latestdoi/169246557"><img src="https://zenodo.org/badge/169246557.svg" alt="DOI"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 <img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg">
@@ -53,13 +53,13 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 The scraping API is present, call it and download it.
 ```python
 >>from jimutmap import api
->>a=api(min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False,threads_=110, container_dir= "myOutputFolder")
+>>a=api(min_lat_deg,max_lat_deg,min_lon_deg,max_lon_deg,zoom=19,verbose=False,threads_=5, container_dir= "myOutputFolder")
 
 # If you don't have Chrome and can't take advantage of the auto access key fetch, set
 # a.ac_key = ACCESS_KEY_STRING
 # here
 
->>a.download()
+>>a.download(getMasks=True)
 
 100%|██████████████████████████████████████████████████████████████                     | 1000/10000000 [00:02<00:00, 3913.19it/s
 
@@ -77,21 +77,13 @@ that tile. It is calculated automatically so that all the progress remains saved
 ## Additional Note
 
 This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! 
-**This is created for educational and research purposes only! The author is not liable for any damage to private property.**
+**This is created for educational and research purposes only! The [authors](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md) are not liable for any damage to private property.**
 
 
 ## Contribution
 
+Please see [Contributing.md](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTING.md)
 
-Please feel free to raise issues and fix any existing ones. Further details can be found in our [code of conduct](https://github.com/Jimut123/jimutmap/blob/master/CODE_OF_CONDUCT.md).
-
-### While making a PR, please make sure you:
-- [ ] Always start your PR description with "Fixes #issue_number", if you're fixing an issue.
-- [ ] Briefly mention the purpose of the PR, along with the tools/libraries you have used. It would be great if you could be version specific.
-- [ ] Briefly mention what logic you used to implement the changes/upgrades.
-- [ ] Provide in-code review comments on GitHub to highlight specific LOC if deemed necessary.
-- [ ] Please provide snapshots if deemed necessary.
-- [ ] Update readme if required.
 
 ## [LICENSE](https://github.com/Jimut123/jimutmap/blob/master/LICENSE)
 ```
