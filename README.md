@@ -73,6 +73,9 @@ code to your own requirements! This is done so that you could download about **4
 If you want to re-fetch tiles, remember to delete/move tiles after every fetch request done! Else you won't get the updated information (tiles) of satellite data after
 that tile. It is calculated automatically so that all the progress remains saved!
 
+## TODOs
+
+Check [TODO](https://github.com/Jimut123/jimutmap/blob/master/TODO.md)
 
 ## Additional Note
 
