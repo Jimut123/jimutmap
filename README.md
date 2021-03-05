@@ -1,4 +1,8 @@
- <h1 align='center'> jimutmap </h1>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/logo.png" style="width:50%;height=50%;">
+</p>
+
+--------------------------------------------------------------------
 <div align="center">
 <a href="https://pypi.org/project/jimutmap/"><img src="https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.3.8"></a>
 <a href="https://zenodo.org/badge/latestdoi/169246557"><img src="https://zenodo.org/badge/169246557.svg" alt="DOI"></a>
