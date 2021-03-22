@@ -1,4 +1,0 @@
-wget
-bs4
-numpy
-tqdm
