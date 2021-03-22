@@ -1,3 +1,8 @@
+"""
+Jimut Bahan Pal
+22-03-2021
+"""
+
 from jimutmap import api
 
 download_obj = api(min_lat_deg = 10,
