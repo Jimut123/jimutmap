@@ -2,6 +2,7 @@
 .ipynb_checkpoints
 notebooks
 build  
-dist 
+dist
+.zenodo.json 
 jimutmap.egg-info  
- __pycache__  
+__pycache__  
