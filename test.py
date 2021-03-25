@@ -6,9 +6,9 @@ Jimut Bahan Pal
 from jimutmap import api
 
 download_obj = api(min_lat_deg = 10,
-                      max_lat_deg = 10.01,
-                      min_lon_deg = 10.1,
-                      max_lon_deg = 10.11,
+                      max_lat_deg = 10.2,
+                      min_lon_deg = 10,
+                      max_lon_deg = 11,
                       zoom = 19,
                       verbose = False,
                       threads_ = 5, 

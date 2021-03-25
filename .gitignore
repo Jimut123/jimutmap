@@ -1,8 +1,11 @@
-88/
+8*/
 .ipynb_checkpoints
+jimutmap/__pycache__
+__pycache__ 
 notebooks
 build  
 dist
+myOutputFolder
 .zenodo.json 
 jimutmap.egg-info  
-__pycache__  
+ 
