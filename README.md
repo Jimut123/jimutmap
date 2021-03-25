@@ -36,7 +36,7 @@ If you are confused with the documentation, please see this video, to see the sc
 ## Installation
 
 ```
-sudo pip install jimutmap
+sudo pip3 install jimutmap
 ```
 
 ## Sample of the images downloaded
@@ -55,6 +55,7 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 
 
 The scraping API is present, call it and download it.
+
 ```python3
 >>from jimutmap import api
 
