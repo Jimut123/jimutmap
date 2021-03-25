@@ -82,6 +82,8 @@ class api:
             print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom,self.verbose,LOCKING_LIMIT)
         self._getMasks = True
         self.container_dir = container_dir
+        print("Initializing jimutmap ... Please wait...")
+        
 
     @property
     def container_dir(self) -> str:
