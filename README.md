@@ -114,7 +114,7 @@ Please see [Contributing.md](https://github.com/Jimut123/jimutmap/blob/master/CO
 
 ```
 @misc{jimutmap_2019,
-  author = {Jimut Bahan Pal and Philip Kahn},
+  author = {Jimut Bahan Pal},
   title = {jimutmap},
   year = {2019},
   publisher = {GitHub},
