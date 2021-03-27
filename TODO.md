@@ -1,5 +1,12 @@
-Here are the possible list of todos:
+Here are the list of todos **(Open an issue if you want to contribute!)**:
 
-* Generate a high resolution map by assembling tiles
-* Probably make a documentation website similar to [GPy](https://gpy.readthedocs.io) or [requests](https://requests.readthedocs.io). Though first template is preferable. 
+* Generate a high resolution map by assembling tiles.
+
+* Probably make a documentation website similar to 
+  * [GPy](https://gpy.readthedocs.io) or 
+  * [requests](https://requests.readthedocs.io) or 
+  * [AX](https://ax.dev/) 
+
+Though first template is preferable. 
+
 * Get roads route in json format from specified latitude longitudes. 
