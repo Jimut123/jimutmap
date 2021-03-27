@@ -8,3 +8,9 @@ Please feel free to raise issues and fix any existing ones. Further details can 
 - [ ] Provide in-code review comments on GitHub to highlight specific LOC if deemed necessary.
 - [ ] Please provide snapshots if deemed necessary.
 - [ ] Update readme if required.
+
+### TODO
+
+There are various developments that needs to be done in this project. Please 
+[check TODO](https://github.com/Jimut123/jimutmap/blob/master/TODO.md) if you are willing to contribute in 
+this repository.
