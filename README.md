@@ -76,7 +76,8 @@ If you are confused with the documentation, please see this video, to see the sc
 <a href="https://www.youtube.com/watch?v=wCbZhtWe72w" alt="yt video" target="_blank"><img src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%></a>
 </center>
 
-#### Download the whole dataset [https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp](https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp).
+#### 📁 Download the whole dataset 
+* [https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp](https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp).
 
 
 #### Perks 
