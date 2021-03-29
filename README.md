@@ -77,7 +77,7 @@ If you are confused with the documentation, please see this video, to see the sc
 </center>
 
 #### 📁 Download the whole dataset 
-* [https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp](https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp).
+* Contains map tiles for Kolkata region [https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp](https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp).
 
 
 #### Perks 
@@ -102,7 +102,7 @@ Please check [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), 
 
 
 
-## Contribution
+## 💻 Contribution
 
 Please see [Contributing.md](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTING.md)
 
