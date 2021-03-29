@@ -18,42 +18,21 @@ parameters provided by the user. This uses an API-key generated at the time of b
 
 The api `accessKey` token is automatically fetched if you have Google Chrome or Chromium installed using `chromedriver-autoinstaller`. Otherwise, you'll have to fetch it manually and set the `ac_key` parameter (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network, looking at the assets, and finding the part of the link beginning with `&accessKey=` until the next `&`) every 10-15 mins. 
 
-## Some of the example images downloaded at different scales
-
-| | | | |
-|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
-| <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/1_urban_map_sat.jpeg"> | <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/1_urban_map_mask.png"> | <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/different_zoom_map.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/different_zoom_mask.png">|
-|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/higher_scale_map.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/higher_scale_mask.png">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/map_us_1.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/mask_us_1.png">|
-|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/raj_map_1.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/raj_mask_1.png">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/us_1_map.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/us_1_mask.png">|
-
-## YouTube video 
-
-If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
-
-
-
-## Installation
-
-```
-sudo pip3 install jimutmap
-```
-
-## Sample of the images downloaded
-
-<center>
-<a href="https://www.youtube.com/watch?v=wCbZhtWe72w" alt="yt video" target="_blank"><img src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%></a>
-</center>
-
-#### Download the whole dataset [https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp](https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp).
-
 ## Need for scraping satellite data
 
 Well it's good (best in the world) satellite images, we just need to give the coordinates (Lat,Lon, and zoom) to get your dataset
 of high resolution satellite images! Create your own dataset and apply ML algorithms :')
 
 
-
 The scraping API is present, call it and download it.
+
+
+## Installation and Usages
+
+```
+sudo pip3 install jimutmap
+```
+
 
 ```python3
 >>from jimutmap import api
@@ -77,6 +56,29 @@ The scraping API is present, call it and download it.
 
 ```
 
+## Some of the example images downloaded at different scales
+
+| | | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
+| <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/1_urban_map_sat.jpeg"> | <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/1_urban_map_mask.png"> | <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/different_zoom_map.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/different_zoom_mask.png">|
+|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/higher_scale_map.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/higher_scale_mask.png">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/map_us_1.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/mask_us_1.png">|
+|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/raj_map_1.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/raj_mask_1.png">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/us_1_map.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/us_1_mask.png">|
+
+## YouTube video 
+
+If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
+
+
+
+## Sample of the images downloaded
+
+<center>
+<a href="https://www.youtube.com/watch?v=wCbZhtWe72w" alt="yt video" target="_blank"><img src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%></a>
+</center>
+
+#### Download the whole dataset [https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp](https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp).
+
+
 #### Perks 
 
 Well I'm not that bad. This is done through parallel proccessing, so this will take all the thread in your CPU, change the 
@@ -85,14 +87,18 @@ code to your own requirements! This is done so that you could download about **4
 If you want to re-fetch tiles, remember to delete/move tiles after every fetch request done! Else you won't get the updated information (tiles) of satellite data after
 that tile. It is calculated automatically so that all the progress remains saved!
 
-## 📓 TODOs
-
-Please check [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), since this project needs collaborators.
 
 ## Additional Note
 
 This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! 
 **This is created for educational and research purposes only! The [authors](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md) are not liable for any damage to private property.**
+
+
+
+## 📓 TODOs
+
+Please check [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), since this project needs collaborators.
+
 
 
 ## Contribution
