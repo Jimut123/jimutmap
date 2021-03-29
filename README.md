@@ -87,7 +87,7 @@ that tile. It is calculated automatically so that all the progress remains saved
 
 ## 📓 TODOs
 
-Please check [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), since this project needs maintainers.
+Please check [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), since this project needs collaborators.
 
 ## Additional Note
 
