@@ -1,6 +1,6 @@
 Here are the list of todos **(Open an issue if you want to contribute!)**:
 
-* Generate a high resolution map by assembling tiles.
+* Generate a high resolution map by assembling tiles, similar to [label-maker](https://github.com/developmentseed/label-maker).
 
 * Probably make a documentation website similar to 
   * [GPy](https://gpy.readthedocs.io) or 
