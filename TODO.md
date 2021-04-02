@@ -1,5 +1,7 @@
 Here are the list of todos **(Open an issue if you want to contribute!)**:
 
+* Create a conda package
+
 * Generate a high resolution map by assembling tiles, similar to [label-maker](https://github.com/developmentseed/label-maker).
 
 * Probably make a documentation website similar to 
