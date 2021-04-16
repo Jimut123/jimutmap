@@ -11,4 +11,6 @@ Here are the list of todos **(Open an issue if you want to contribute!)**:
 
 Though first template is preferable. 
 
-* Get roads route in json format from specified latitude longitudes. 
+* Get roads route in json format from specified latitude longitudes.
+
+* Get all the local stores and shops in a certain radius of a coordinate.
