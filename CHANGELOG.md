@@ -15,17 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-## [0.5.0] - 2020-03-04
+## [1.3.8] - 2021-02-25
 
 ### Added
 - pip 1.3.8
-- major refactoring
+- major refactoring by Philip Kahn
 
 ### Modified
 - jimutmap.py
 
 ### Removed
 - unnecessary files
+
+## [1.2.1] - 2019-05-04
 
 ### Added
 - pip version 1.2.1
