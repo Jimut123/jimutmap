@@ -22,7 +22,9 @@ Note:
 * Probably create a separate module for all these stuffs
 
 * Also create a separate branch like **feature-name** for each feature, and then after all the tests
- and stuffs, merge them to master branch
+ and stuffs, merge them to master branch. 
+ 
+* Maintain the [CHANGELOG.md](https://github.com/Jimut123/jimutmap/blob/master/CHANGELOG.md) in a detailed way from now onwards (Only add significant changes after deploying to master)
 
 * After a feature is deployed to master, [x] it here.
 
