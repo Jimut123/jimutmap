@@ -17,3 +17,10 @@ Though first template is preferable.
 
 ------------------------------------------------------------------------------
 [Probably create a separate module for all these stuffs]
+
+[Also create a separate branch like **feature-name** for each feature, and then after all the tests
+ and stuffs, merge them to master branch]
+
+
+Note:
+Master should always contain production-ready code for deployment to pip and conda
