@@ -14,3 +14,6 @@ Though first template is preferable.
 * Get roads route in json format from specified latitude longitudes.
 
 * Get all the local stores and shops in a certain radius of a coordinate.
+
+------------------------------------------------------------------------------
+[Probably create a separate module for all these stuffs]
