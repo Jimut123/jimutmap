@@ -12,6 +12,18 @@
 The **jimutmap** Documentation
 ===============================
 
+.. image:: https://pepy.tech/badge/jimutmap
+    :target: https://pepy.tech/project/jimutmap
+    
+.. image:: https://img.shields.io/pypi/l/jimutmap.svg
+    :target: https://pypi.org/project/jimutmap/
+
+.. image:: https://img.shields.io/pypi/wheel/jimutmap.svg
+    :target: https://pypi.org/project/jimutmap/
+
+.. image:: https://img.shields.io/pypi/pyversions/jimutmap.svg
+    :target: https://pypi.org/project/jimutmap/
+
 API to get enormous amount of high resolution satellite images from apple maps quickly through multi-threading! create map your own map dataset (**for research purposes only**). 
 This manually brute forces `apple-map <https://satellites.pro/#32.916485,62.578125,4)>`_. It Then scraps all the tiles (image and road mask pair) as given by the 
 parameters provided by the user. This uses an API-key generated at the time of browsing the map. 
