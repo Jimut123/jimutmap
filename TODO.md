@@ -4,8 +4,8 @@
 - [ ] Generate a high resolution map by assembling tiles, similar to [label-maker](https://github.com/developmentseed/label-maker).
 
 - [x] Probably make a documentation website similar to 
-  - [ ] [GPy](https://gpy.readthedocs.io) or 
-  - [x] [requests](https://requests.readthedocs.io) or 
+  - [ ] [GPy](https://gpy.readthedocs.io) 
+  - [x] [requests](https://requests.readthedocs.io) -- with Sphinx theme
   - [ ] [AX](https://ax.dev/) 
 
 Though first template is preferable. 
