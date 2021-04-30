@@ -89,12 +89,16 @@ youtube tutorial
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   
+
+   LICENSE
    Requirements
    Parameters
+   Datasets
    Contributing
    TODO
-   LICENSE
+   
+
+
    
 
 
@@ -105,4 +109,17 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+.. note::
+	Bibtex and Citations (if you are into research):
+
+	@misc{jimutmap_2019,
+		author = {Jimut Bahan Pal and Philip Kahn},
+		title = {jimutmap},
+		year = {2019},
+		publisher = {GitHub},
+		journal = {GitHub repository},
+		howpublished = {\url{https://github.com/Jimut123/jimutmap}}
+		}
+
 
