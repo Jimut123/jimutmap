@@ -20,13 +20,13 @@
 # -- Project information -----------------------------------------------------
 
 project = 'jimutmap'
-copyright = '2021, Jimut Bahan pal, Philip Kahn'
+copyright = '2019-2021, Jimut Bahan pal and Philip Kahn'
 author = 'Jimut Bahan pal, Philip Kahn'
 
 # The short X.Y version
-version = ''
+version = '1.3.9'
 # The full version, including alpha/beta/rc tags
-release = '1.3.9'
+release = '1.3.9-stable'
 
 
 # -- General configuration ---------------------------------------------------
