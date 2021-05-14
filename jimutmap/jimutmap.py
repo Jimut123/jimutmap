@@ -351,9 +351,9 @@ class api:
             # results and we'll fetch nothing
             raise ValueError(f"Latitude and longitude bounds must be separated by at least the latLonResolution (currently {latLonResolution}). Either shrink the resolution value or increase the separation of your minimum/maximum latitude and longitude.")
 
+        URL_ALL = []
         for i in tqdm(np.arange(min_lat, max_lat, latLonResolution)):
             tp = None
-            URL_ALL = []
             for j in np.arange(min_lon, max_lon, latLonResolution):
                 URL_ALL.append(self.make_url(i,j))
             if self.verbose:
