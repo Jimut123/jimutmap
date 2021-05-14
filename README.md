@@ -100,8 +100,8 @@ This also uses multithreading, which may overload your computer, so set the para
 
 Please check [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), since this project needs collaborators.
 
-## Questions ?
-Submit an issue
+## Questions or want to discuss about something ?
+Submit an issue. 
 
 ## 💻 Contribution
 
