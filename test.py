@@ -18,4 +18,5 @@ download_obj = api(min_lat_deg = 10,
 # a.ac_key = ACCESS_KEY_STRING
 # here
 
+# getMasks = False if you just need the tiles 
 download_obj.download(getMasks = True)
