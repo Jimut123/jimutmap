@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/logo.png" width="40%" height="40%">
+  <img src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/logo.png" width="40%" height="40%">
 </p>
 
 --------------------------------------------------------------------
@@ -65,9 +65,9 @@ sudo pip3 install jimutmap
 
 | | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
-| <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/1_urban_map_sat.jpeg"> | <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/1_urban_map_mask.png"> | <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/different_zoom_map.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/different_zoom_mask.png">|
-|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/higher_scale_map.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/higher_scale_mask.png">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/map_us_1.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/mask_us_1.png">|
-|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/raj_map_1.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/raj_mask_1.png">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/us_1_map.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/us_1_mask.png">|
+| <img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/1_urban_map_sat.jpeg"> | <img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/1_urban_map_mask.png"> | <img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/different_zoom_map.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/different_zoom_mask.png">|
+|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/higher_scale_map.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/higher_scale_mask.png">|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/map_us_1.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/mask_us_1.png">|
+|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/raj_map_1.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/raj_mask_1.png">|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/us_1_map.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/us_1_mask.png">|
 
 ## YouTube video 
 
@@ -78,7 +78,7 @@ If you are confused with the documentation, please see this video, to see the sc
 ## Sample of the images downloaded
 
 <center>
-<a href="https://www.youtube.com/watch?v=wCbZhtWe72w" alt="yt video" target="_blank"><img src="https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%></a>
+<a href="https://www.youtube.com/watch?v=wCbZhtWe72w" alt="yt video" target="_blank"><img src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%></a>
 </center>
 
 #### 📁 Download the whole dataset 
