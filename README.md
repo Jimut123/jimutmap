@@ -38,6 +38,7 @@ The scraping API is present, call it and download it.
 sudo pip3 install jimutmap
 ```
 
+Needs to have google chrome web browser in the system.
 
 ```python3
 >>from jimutmap import api
