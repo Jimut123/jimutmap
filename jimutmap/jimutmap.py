@@ -311,7 +311,7 @@ class api:
                     print(e)
         if getMask:
             ext = file_name.split('.').pop()
-            file_name_road = file_name[:-len(ext)]+"_road.png"
+            file_name_road = file_name[:-len(ext)-1]+"_road.png"
             try:
                 assert exists(file_name_road)
             except AssertionError:
