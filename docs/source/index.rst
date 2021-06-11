@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. image:: https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/logo.png
+.. image:: https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/logo.png
     :alt: jimutmap logo
 	:width: 100 %
 
@@ -14,7 +14,13 @@ The **jimutmap** Documentation
 
 .. image:: https://pepy.tech/badge/jimutmap
     :target: https://pepy.tech/project/jimutmap
-    
+
+.. image:: https://img.shields.io/pypi/dm/jimutmap.svg
+    :target: https://pypistats.org/packages/jimutmap
+
+.. image:: https://readthedocs.org/projects/pip/badge/?version=latest&style=plastic
+    :target: https://jimutmap.readthedocs.io/en/latest/index.html
+
 .. image:: https://img.shields.io/pypi/l/jimutmap.svg
     :target: https://pypi.org/project/jimutmap/
 
@@ -84,6 +90,9 @@ After setting the parameters, the files will start downloading as follows:
 .. note::
 
 	This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! This is created for educational and research purposes only! The `authors <https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md>`_ are not liable for any damage to private property.
+
+
+
 
 
 
