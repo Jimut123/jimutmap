@@ -17,6 +17,7 @@ import imghdr
 from multiprocessing.pool import ThreadPool
 from typing import Tuple
 from tqdm import tqdm
+import datetime as dt
 import numpy as np
 import requests
 from selenium import webdriver
@@ -157,7 +158,7 @@ class api:
             if newACKey is not None:
                 raise ValueError("Invalid AccessKey string")
 
-    def _getAPIKey(self) -> str:
+    def _getAPIKey(self, timeout:float= 60) -> str:
         """
         Use a headless Chrome/Chromium instance to scrape the access key
         from the data-map-printing-background attribute of Apple Maps.
@@ -169,15 +170,23 @@ class api:
         options.add_argument('headless')
         driver = webdriver.Chrome(executable_path= chromeDriverPath, options=options)
         driver.get("https://satellites.pro/USA_map#37.405074,-94.284668,5")
-        time.sleep(5)
-        baseMap = driver.find_element_by_css_selector("#map-canvas .leaflet-mapkit-mutant")
-        mapData = baseMap.get_attribute("data-map-printing-background")
-        accessKeyStart = mapData.find(KEY_START)
-        accessKeyEnd = accessKeyStart + int(1.5 * len(SAMPLE_KEY))
-        searchForKey = mapData[accessKeyStart:accessKeyEnd]
-        keyContents = searchForKey[len(KEY_START):]
-        keyEnd = keyContents.find("&")
-        keyContents = keyContents[:keyEnd]
+        keyContents = None
+        loopStartTime = dt.datetime.now()
+        while keyContents is None and (dt.datetime.now() - loopStartTime).total_seconds() < timeout:
+            time.sleep(2.5)
+            try:
+                baseMap = driver.find_element_by_css_selector("#map-canvas .leaflet-mapkit-mutant")
+                mapData = baseMap.get_attribute("data-map-printing-background")
+                accessKeyStart = mapData.find(KEY_START)
+                accessKeyEnd = accessKeyStart + int(1.5 * len(SAMPLE_KEY))
+                searchForKey = mapData[accessKeyStart:accessKeyEnd]
+                keyContents = searchForKey[len(KEY_START):]
+                keyEnd = keyContents.find("&")
+                keyContents = keyContents[:keyEnd]
+            except Exception: #pylint: disable= broad-except
+                keyContents = None
+        if keyContents is None:
+            raise TimeoutError(f"Unable to automatically fetch API key in {timeout}s")
         self.ac_key = keyContents
         return keyContents
 
