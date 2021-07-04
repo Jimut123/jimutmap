@@ -1,5 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/logo.png" width="40%" height="40%">
+  ...Bringing Data to Humans
 </p>
 
 --------------------------------------------------------------------
