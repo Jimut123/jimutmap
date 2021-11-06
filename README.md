@@ -138,5 +138,4 @@ Please see [Contributing.md](https://github.com/Jimut123/jimutmap/blob/master/CO
 }
 ```
 
-
-
+[Back to Top](#purpose)
