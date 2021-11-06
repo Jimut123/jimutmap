@@ -1,8 +1,11 @@
+--------------------------------------------------------------------
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/logo.png" width="40%" height="40%">
   ...Bringing Data to Humans
 </p>
 
+--------------------------------------------------------------------
 --------------------------------------------------------------------
 <div align="center">
   <a href="https://pepy.tech/project/jimutmap"><img src="https://pepy.tech/badge/jimutmap"></a>
@@ -16,6 +19,20 @@
   </a>
 </div>
 
+## Contents
+
+* [Purpose](#purpose)
+* [Need for scraping satellite data](#need-for-scraping-satellite-data)
+* [Installation and Usages](#installation-and-usages)
+* [Some of the example images downloaded at different scales](#some-of-the-example-images-downloaded-at-different-scales)
+* [YouTube video](#youtube-video)
+* [Sample of the images downloaded](#sample-of-the-images-downloaded)
+* [Perks](#perks)
+* [Additional Note](#additional-note)
+* [TODOs](#todos)
+* [Contribution](#contribution)
+* [LICENSE](#license)
+* [BibTeX and citations](#bibtex-and-citations)
 
 ## Purpose 
 
@@ -24,6 +41,9 @@ parameters provided by the user. This uses an API-key generated at the time of b
 
 The api `accessKey` token is automatically fetched if you have Google Chrome or Chromium installed using `chromedriver-autoinstaller`. Otherwise, you'll have to fetch it manually and set the `ac_key` parameter (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network, looking at the assets, and finding the part of the link beginning with `&accessKey=` until the next `&`) every 10-15 mins. 
 
+[Back to Top](#contents)
+
+
 ## Need for scraping satellite data
 
 Well it's good (best in the world) satellite images, we just need to give the coordinates (Lat,Lon, and zoom) to get your dataset
@@ -31,6 +51,8 @@ of high resolution satellite images! Create your own dataset and apply ML algori
 
 
 The scraping API is present, call it and download it.
+
+[Back to Top](#contents)
 
 
 ## Installation and Usages
@@ -63,6 +85,9 @@ Needs to have google chrome web browser in the system.
 
 ```
 
+[Back to Top](#contents)
+
+
 ## Some of the example images downloaded at different scales
 
 | | | | |
@@ -71,10 +96,14 @@ Needs to have google chrome web browser in the system.
 |<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/higher_scale_map.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/higher_scale_mask.png">|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/map_us_1.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/mask_us_1.png">|
 |<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/raj_map_1.jpeg">  |  <img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/raj_mask_1.png">|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/us_1_map.jpeg">|<img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/us_1_mask.png">|
 
+[Back to Top](#contents)
+
+
 ## YouTube video 
 
 If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
 
+[Back to Top](#contents)
 
 
 ## Sample of the images downloaded
@@ -83,8 +112,7 @@ If you are confused with the documentation, please see this video, to see the sc
 <a href="https://www.youtube.com/watch?v=wCbZhtWe72w" alt="yt video" target="_blank"><img src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%></a>
 </center>
 
-#### 📁 Download the whole dataset 
-* Contains map tiles for Kolkata region [https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp](https://drive.google.com/u/3/uc?id=1-2LeYNZquto5vZlDnyuIxXhTzBh2EjRp).
+[Back to Top](#contents)
 
 
 #### Perks 
@@ -95,24 +123,36 @@ code to your own requirements! This is done so that you could download about **4
 If you want to re-fetch tiles, remember to delete/move tiles after every fetch request done! Else you won't get the updated information (tiles) of satellite data after
 that tile. It is calculated automatically so that all the progress remains saved!
 
+[Back to Top](#contents)
+
 
 ## Additional Note
 
 This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! 
 **This is created for educational and research purposes only! The [authors](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md) are not liable for any damage to private property.**
 
+[Back to Top](#contents)
 
 
-## 📓 TODOs
+## TODOs
 
 Please check [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), since this project needs collaborators.
 
+[Back to Top](#contents)
+
+
 ## Questions or want to discuss about something ?
+
 Submit an issue. 
 
-## 💻 Contribution
+[Back to Top](#contents)
+
+
+## Contribution
 
 Please see [Contributing.md](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTING.md)
+
+[Back to Top](#contents)
 
 
 ## [LICENSE](https://github.com/Jimut123/jimutmap/blob/master/LICENSE)
@@ -124,6 +164,9 @@ Please see [Contributing.md](https://github.com/Jimut123/jimutmap/blob/master/CO
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
 ```
+
+[Back to Top](#contents)
+
 
 # BibTeX and citations
 
@@ -138,4 +181,4 @@ Please see [Contributing.md](https://github.com/Jimut123/jimutmap/blob/master/CO
 }
 ```
 
-[Back to Top](#purpose)
+[Back to Top](#contents)
