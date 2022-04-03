@@ -40,8 +40,7 @@
 
 ## Purpose 
 
-This manually brute forces [apple-map](https://satellites.pro/#32.916485,62.578125,4). It Then scraps all the tiles (image and road mask pair) as given by the 
-parameters provided by the user. This uses an API-key generated at the time of browsing the map. 
+This manually brute forces [apple-map](https://satellites.pro/#32.916485,62.578125,4). It Then scraps all the tiles (image and road mask pair) as given by the parameters provided by the user. This uses an API-key generated at the time of browsing the map. 
 
 The api `accessKey` token is automatically fetched if you have Google Chrome or Chromium installed using `chromedriver-autoinstaller`. Otherwise, you'll have to fetch it manually and set the `ac_key` parameter (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network, looking at the assets, and finding the part of the link beginning with `&accessKey=` until the next `&`) every 10-15 mins. 
 
@@ -124,11 +123,10 @@ If you are confused with the documentation, please see this video, to see the sc
 
 #### Perks 
 
-Well I'm not that bad. This is done through parallel proccessing, so this will take all the thread in your CPU, change the 
-code to your own requirements! This is done so that you could download about **40K** images in **30 mins!** (That's too fast!!!)
+This is done through parallel proccessing, so this will take maximum threads available in your CPU, change the 
+code to your own requirements! 
 
-If you want to re-fetch tiles, remember to delete/move tiles after every fetch request done! Else you won't get the updated information (tiles) of satellite data after
-that tile. It is calculated automatically so that all the progress remains saved!
+If you want to re-fetch tiles, remember to delete/move tiles after every fetch request done! Else you won't get the updated information (tiles) of satellite data after that tile. It is calculated automatically so that all the progress remains saved!
 
 [[Back to Top](#contents)]
 
