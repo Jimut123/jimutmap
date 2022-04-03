@@ -17,8 +17,8 @@ import requests
 import numpy as np
 import datetime as dt
 from tqdm import tqdm
-from typing import Tuple
 import multiprocessing
+from typing import Tuple
 from selenium import webdriver
 import chromedriver_autoinstaller
 from multiprocessing.pool import ThreadPool
