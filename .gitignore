@@ -1,5 +1,5 @@
-8*/
-91/
+# numbers are for selenium drivers, we should ignore them
+[0-9]*
 .ipynb_checkpoints
 jimutmap/__pycache__
 __pycache__ 

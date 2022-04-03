@@ -12,16 +12,22 @@ import ssl
 import os
 import time
 import math
-from os.path import join, exists, normpath, relpath
 import imghdr
-from multiprocessing.pool import ThreadPool
-from typing import Tuple
-from tqdm import tqdm
-import datetime as dt
-import numpy as np
 import requests
+import numpy as np
+import datetime as dt
+from tqdm import tqdm
+from typing import Tuple
+import multiprocessing
 from selenium import webdriver
 import chromedriver_autoinstaller
+from multiprocessing.pool import ThreadPool
+from os.path import join, exists, normpath, relpath
+
+
+
+
+
 
 # Ignore SSL certificate errors
 ctx = ssl.create_default_context()
@@ -31,6 +37,10 @@ ctx.verify_mode = ssl.CERT_NONE
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0'
 }
+
+
+
+
 
 # To synchronize
 
@@ -63,7 +73,7 @@ class api:
             Helpful debugging output
 
         threads_: int (default= 4)
-            Thread limit for process. Max 50
+            Thread limit for process. Max depending on CPU cores
 
         container_dir:str (default= "")
             When downloading images, place them in this directory.
@@ -80,6 +90,12 @@ class api:
         self.zoom = zoom
         self.verbose = bool(verbose)
         LOCKING_LIMIT = threads_
+        
+        # To get the maximum number of threads
+        MAX_CORES = multiprocessing.cpu_count()
+        if threads_> MAX_CORES:
+            print("Sorry, {} -- threads unavailable, using maximum CPU threads : {}".format(threads_,MAX_CORES))
+            threads_ = MAX_CORES
         if self.verbose:
             print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom,self.verbose,LOCKING_LIMIT)
         self._getMasks = True
