@@ -401,6 +401,5 @@ class api:
                 # process has cleared. As a practical matter, this will
                 # clear _several_ threads and keep up performance
                 tp.join()
-        
-        # now call the sanity checker for checking the downloads 
+
         

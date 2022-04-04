@@ -20,10 +20,10 @@ import datetime as dt
 from tqdm import tqdm
 import multiprocessing
 from jimutmap import api
-from file_size import get_folder_size
 from typing import Tuple
 from selenium import webdriver
 import chromedriver_autoinstaller
+from .file_size import get_folder_size
 from multiprocessing.pool import ThreadPool
 from os.path import join, exists, normpath, relpath
 
@@ -40,7 +40,7 @@ def generate_summary():
     print("Approx. estimated disk space required = {} MB".format(disk_space))
 
 
-def create_sanity_db(min_lat, max_lat, min_lon, max_lon, latLonResolution):
+def create_sanity_db(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg, latLonResolution=0.0005, verbose=False):
     # To save all the expected file names to be downloaded
     for i in tqdm(np.arange(min_lat, max_lat, latLonResolution)):
         for j in np.arange(min_lon, max_lon, latLonResolution):
@@ -134,7 +134,7 @@ def get_road_img_id():
 
 
 
-def sanity_check(threads_):
+def sanity_check(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg, zoom, verbose, threads_, container_dir = "myOutputFolder"):
     # This function contains the main loop for checking the sanity of download
     # till all the files are downloaded
 
@@ -147,8 +147,9 @@ def sanity_check(threads_):
 
     # check if the files are downloading or not, if so, then wait for certain seconds,
     # repeat this till the files stop downloading and then start the next batch of downloads
-    batch = 1
-    create_sanity_db(10,10.2,10,10.2,0.0005)  
+    batch = 1 
+    create_sanity_db(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg, latLonResolution=0.0005, verbose=False)  
+    generate_summary()
 
     while(shall_stop() == 0):
 
@@ -191,34 +192,39 @@ def sanity_check(threads_):
         tp.imap_unordered(lambda x: sanity_obj.get_img(x), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
         tp.close()
 
-        while(tp is not None):
-            print("Waiting for thread to finish downloading satellite tiles")
-            time.sleep(5)
-
-        URL_ALL = []
-        print("Downloading all the road tiles: ")
-        for road_tile_name in road_img_ids:
-            xTile = road_tile_name.split('_')[0]
-            yTile = road_tile_name.split('_')[1]
-            URL_ALL.append([xTile, yTile])
-
-        tp = ThreadPool(LOCKING_LIMIT)
-        tp.imap_unordered(lambda x: sanity_obj.get_img(x), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
-        tp.close()
-
-        while(tp is not None):
-            rint("Waiting for thread to finish downloading road tiles")
-            time.sleep(5)
-
-        # continue the loop till there is no file left to download
-        # generate the summary
-        generate_summary()
+        # while(tp is not None):
+        #     print("Waiting for thread to finish downloading satellite tiles")
+        #     time.sleep(5)
         update_sanity_db('myOutputFolder')
         # Save (commit) the changes
         con.commit()
 
+
+
+
+        # URL_ALL = []
+        # print("Downloading all the road tiles: ")
+        # for road_tile_name in road_img_ids:
+        #     xTile = road_tile_name.split('_')[0]
+        #     yTile = road_tile_name.split('_')[1]
+        #     URL_ALL.append([xTile, yTile])
+
+        # tp = ThreadPool(LOCKING_LIMIT)
+        # tp.imap_unordered(lambda x: sanity_obj.get_img(x), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
+        # tp.close()
+
+        # while(tp is not None):
+        #     rint("Waiting for thread to finish downloading road tiles")
+        #     time.sleep(5)
+
+        # continue the loop till there is no file left to download
+        # generate the summary
+        
+        
+
     # We can also close the connection if we are done with it.
     # Just be sure any changes have been committed or they will be lost.
+    print("Download Sucessful")
     con.close()
 
 
@@ -228,14 +234,23 @@ cur = con.cursor()
 
 # create the object of class jimutmap's api
 sanity_obj = api(min_lat_deg = 10,
-                      max_lat_deg = 10.2,
-                      min_lon_deg = 10,
-                      max_lon_deg = 10.2,
-                      zoom = 19,
-                      verbose = False,
-                      threads_ = 5, 
-                      container_dir = "myOutputFolder")
+                    max_lat_deg = 10.01,
+                    min_lon_deg = 10,
+                    max_lon_deg = 10.01,
+                    zoom = 19,
+                    verbose = False,
+                    threads_ = 5, 
+                    container_dir = "myOutputFolder")
+
+
 
 if __name__ == "__main__":
     # use main function for proper structuing of code
-    sanity_check(threads_=50)
+    sanity_check(min_lat_deg = 10,
+                    max_lat_deg = 10.01,
+                    min_lon_deg = 10,
+                    max_lon_deg = 10.01,
+                    zoom = 19,
+                    verbose = False,
+                    threads_ = 5, 
+                    container_dir = "myOutputFolder")

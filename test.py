@@ -3,15 +3,16 @@ Jimut Bahan Pal
 22-03-2021
 """
 
-from jimutmap import api
+from jimutmap import api, sanity_check
+
 
 download_obj = api(min_lat_deg = 10,
-                      max_lat_deg = 10.2,
+                      max_lat_deg = 10.01,
                       min_lon_deg = 10,
-                      max_lon_deg = 11,
+                      max_lon_deg = 10.01,
                       zoom = 19,
                       verbose = False,
-                      threads_ = 5, 
+                      threads_ = 50, 
                       container_dir = "myOutputFolder")
 
 # If you don't have Chrome and can't take advantage of the auto access key fetch, set
@@ -20,3 +21,22 @@ download_obj = api(min_lat_deg = 10,
 
 # getMasks = False if you just need the tiles 
 download_obj.download(getMasks = True)
+
+# create the object of class jimutmap's api
+sanity_obj = api(min_lat_deg = 10,
+                      max_lat_deg = 10.01,
+                      min_lon_deg = 10,
+                      max_lon_deg = 10.01,
+                      zoom = 19,
+                      verbose = False,
+                      threads_ = 50, 
+                      container_dir = "myOutputFolder")
+
+sanity_check(min_lat_deg = 10,
+                max_lat_deg = 10.01,
+                min_lon_deg = 10,
+                max_lon_deg = 10.01,
+                zoom = 19,
+                verbose = False,
+                threads_ = 50, 
+                container_dir = "myOutputFolder")
