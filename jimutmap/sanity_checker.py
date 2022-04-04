@@ -20,7 +20,7 @@ import datetime as dt
 from tqdm import tqdm
 import multiprocessing
 from jimutmap import api
-from jimutmap import get_folder_size
+from file_size import get_folder_size
 from typing import Tuple
 from selenium import webdriver
 import chromedriver_autoinstaller
@@ -113,19 +113,10 @@ def check_downloading():
 
 
 
-if __name__ == "__main__":
+def sanity_check():
+    # This function contains the main loop for checking the sanity of download
+    # till all the files are downloaded
 
-    # use main function for proper structuing of code
-
-    # create the object of class jimutmap's api
-    sanity_obj = api(min_lat_deg = 10,
-                        max_lat_deg = 10.2,
-                        min_lon_deg = 10,
-                        max_lon_deg = 11)
-
-    # connect to the temporary database that we shall use
-    con = sqlite3.connect('temp_sanity.sqlite')
-    cur = con.cursor()
 
     # Create table sanity with the coordinates, and the corresponding
     # satellite tile and the road tile, id as the primary key xTile_yTile
@@ -155,12 +146,21 @@ if __name__ == "__main__":
         # Save (commit) the changes
         con.commit()
 
-        
-
-
-
-    
-
     # We can also close the connection if we are done with it.
     # Just be sure any changes have been committed or they will be lost.
     con.close()
+
+
+# connect to the temporary database that we shall use
+con = sqlite3.connect('temp_sanity.sqlite')
+cur = con.cursor()
+
+# create the object of class jimutmap's api
+sanity_obj = api(min_lat_deg = 10,
+                    max_lat_deg = 10.2,
+                    min_lon_deg = 10,
+                    max_lon_deg = 11)
+
+if __name__ == "__main__":
+    # use main function for proper structuing of code
+    sanity_check()
