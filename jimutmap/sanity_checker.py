@@ -121,8 +121,10 @@ if __name__ == "__main__":
 
     # create_sanity_db(10,10.2,10,11,0.0005)
     # update_sanity_db('myOutputFolder')
-    print(shall_stop())
+    # print(shall_stop())
 
+    # check if the files are downloading or not, if so, then wait for certain seconds,
+    # repeat this till the files stop downloading and then start the next batch of downloads
     # while(shall_stop() == 0):
     #     # continue the loop
 
