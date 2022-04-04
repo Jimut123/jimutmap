@@ -112,6 +112,27 @@ def check_downloading():
     return 0
 
 
+def get_sat_img_id():
+    get_sat_0s = cur.execute(''' SELECT id FROM sanity WHERE satellite_tile = 0 ''')
+    get_sat_0s_val = cur.fetchall() #converts the cursor object to number
+    # print("Total number of satellite images needed to be downloaded = ", len(get_sat_0s_val))
+    get_sat_ids = []
+    for item in get_sat_0s_val:
+        get_sat_ids.append(item[0])
+    return get_sat_ids
+    
+
+def get_road_img_id():
+    get_road_0s = cur.execute(''' SELECT * FROM sanity WHERE road_tile = 0 ''')
+    get_road_0s_val = cur.fetchall() #converts the cursor object to number
+    # print("Total number of satellite images needed to be downloaded = ", len(get_road_0s_val))
+    get_road_ids = []
+    for item in get_road_0s_val:
+        get_road_ids.append(item[0])
+    return get_road_ids
+
+
+
 
 def sanity_check():
     # This function contains the main loop for checking the sanity of download
@@ -129,6 +150,12 @@ def sanity_check():
 
     batch = 1
     while(shall_stop() == 0):
+
+        sat_img_ids = get_sat_img_id()
+        road_img_ids = get_road_img_id()
+        # print(sat_img_ids)
+        # print(road_img_ids)
+
         if batch == 1:
             create_sanity_db(10,10.2,10,11,0.0005)  
 
@@ -138,6 +165,8 @@ def sanity_check():
         print("Batch ============================================================================= ",batch)
         print("===================================================================================")
         batch += 1
+
+        # begin the operation here
 
         # continue the loop till there is no file left to download
         # generate the summary
