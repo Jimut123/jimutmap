@@ -42,8 +42,8 @@ def generate_summary():
 
 def create_sanity_db(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg, latLonResolution=0.0005, verbose=False):
     # To save all the expected file names to be downloaded
-    for i in tqdm(np.arange(min_lat, max_lat, latLonResolution)):
-        for j in np.arange(min_lon, max_lon, latLonResolution):
+    for i in tqdm(np.arange(min_lat_deg, max_lat_deg, latLonResolution)):
+        for j in np.arange(min_lon_deg, max_lon_deg, latLonResolution):
             xTile, yTile = sanity_obj.ret_xy_tiles(i,j)
             # print(xTile," ",yTile)
             # create the primary key for tracking values
@@ -103,7 +103,7 @@ def check_downloading():
     # if there is a minute increase in byte size of the folder, we need to wait
     # till the multiprocessing thread finishes its execution
     get_folder_size_ini = get_folder_size('myOutputFolder')
-    time.sleep(5)
+    time.sleep(15)
     get_folder_size_final = get_folder_size('myOutputFolder')
     diff = get_folder_size_final - get_folder_size_ini
     if diff > 0:
@@ -161,7 +161,7 @@ def sanity_check(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg, zoom, verbo
         
 
         while(check_downloading()==1):
-            print("Waiting for 5 seconds... Busy downloading")
+            print("Waiting for 15 seconds... Busy downloading")
 
         print("Batch ============================================================================= ",batch)
         print("===================================================================================")
