@@ -89,13 +89,15 @@ class api:
         self.set_bounds(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg)
         self.zoom = zoom
         self.verbose = bool(verbose)
-        LOCKING_LIMIT = threads_
         
         # To get the maximum number of threads
         MAX_CORES = multiprocessing.cpu_count()
         if threads_> MAX_CORES:
             print("Sorry, {} -- threads unavailable, using maximum CPU threads : {}".format(threads_,MAX_CORES))
             threads_ = MAX_CORES
+        
+        LOCKING_LIMIT = threads_
+
         if self.verbose:
             print(self.ac_key,self.min_lat_deg,self.max_lat_deg,self.min_lon_deg,self.max_lon_deg,self.zoom,self.verbose,LOCKING_LIMIT)
         self._getMasks = True
@@ -315,7 +317,7 @@ class api:
                     pass
                 with open(file_name, 'wb') as fh:
                     fh.write(r.content)
-                if imghdr.what(file_name) is 'jpeg':
+                if imghdr.what(file_name) == 'jpeg':
                     if self.verbose:
                         print(file_name,"JPEG")
                 else:
@@ -341,7 +343,7 @@ class api:
                         r = requests.get(req_url, headers= headers)
                         with open(file_name_road, 'wb') as fh:
                             fh.write(r.content)
-                        if imghdr.what(file_name_road) is 'png':
+                        if imghdr.what(file_name_road) == 'png':
                             if self.verbose:
                                 print(file_name_road,"PNG")
                             break # Success

@@ -134,7 +134,7 @@ def get_road_img_id():
 
 
 
-def sanity_check():
+def sanity_check(threads_):
     # This function contains the main loop for checking the sanity of download
     # till all the files are downloaded
 
@@ -167,6 +167,47 @@ def sanity_check():
         batch += 1
 
         # begin the operation here
+        # url_str = [xtile, ytile]
+        # TODO
+
+         # To get the maximum number of threads
+        MAX_CORES = multiprocessing.cpu_count()
+        if threads_> MAX_CORES:
+            print("Sorry, {} -- threads unavailable, using maximum CPU threads : {}".format(threads_,MAX_CORES))
+            threads_ = MAX_CORES
+        
+        LOCKING_LIMIT = threads_
+
+        tp=None
+        URL_ALL = []
+        print("Downloading all the satellite tiles: ")
+        for sat_tile_name in sat_img_ids:
+            xTile = sat_tile_name.split('_')[0]
+            yTile = sat_tile_name.split('_')[0]
+            URL_ALL.append([xTile, yTile])
+
+            tp = ThreadPool(LOCKING_LIMIT)
+            tp.imap_unordered(lambda x: sanity_obj.get_img(x, **kwargs), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
+            tp.close()
+
+        while(tp is not None):
+            print("Waiting for thread to finish downloading satellite tiles")
+            time.sleep(5)
+
+        URL_ALL = []
+        print("Downloading all the road tiles: ")
+        for road_tile_name in road_img_ids:
+            xTile = road_tile_name.split('_')[0]
+            yTile = road_tile_name.split('_')[0]
+            URL_ALL.append([xTile, yTile])
+
+            tp = ThreadPool(LOCKING_LIMIT)
+            tp.imap_unordered(lambda x: sanity_obj.get_img(x, **kwargs), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
+            tp.close()
+
+        while(tp is not None):
+            rint("Waiting for thread to finish downloading road tiles")
+            time.sleep(5)
 
         # continue the loop till there is no file left to download
         # generate the summary
@@ -188,8 +229,8 @@ cur = con.cursor()
 sanity_obj = api(min_lat_deg = 10,
                     max_lat_deg = 10.2,
                     min_lon_deg = 10,
-                    max_lon_deg = 11)
+                    max_lon_deg = 10.2)
 
 if __name__ == "__main__":
     # use main function for proper structuing of code
-    sanity_check()
+    sanity_check(threads_=50)
