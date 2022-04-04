@@ -199,24 +199,6 @@ def sanity_check(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg, zoom, verbo
         # Save (commit) the changes
         con.commit()
 
-
-
-
-        # URL_ALL = []
-        # print("Downloading all the road tiles: ")
-        # for road_tile_name in road_img_ids:
-        #     xTile = road_tile_name.split('_')[0]
-        #     yTile = road_tile_name.split('_')[1]
-        #     URL_ALL.append([xTile, yTile])
-
-        # tp = ThreadPool(LOCKING_LIMIT)
-        # tp.imap_unordered(lambda x: sanity_obj.get_img(x), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
-        # tp.close()
-
-        # while(tp is not None):
-        #     rint("Waiting for thread to finish downloading road tiles")
-        #     time.sleep(5)
-
         # continue the loop till there is no file left to download
         # generate the summary
         
@@ -224,7 +206,7 @@ def sanity_check(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg, zoom, verbo
 
     # We can also close the connection if we are done with it.
     # Just be sure any changes have been committed or they will be lost.
-    print("Download Sucessful")
+    print("************************* Download Sucessful *************************")
     con.close()
 
 
