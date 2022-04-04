@@ -1,3 +1,4 @@
 # numbers are for selenium drivers, we should ignore them
 [0-9]*
 *.sqlite
+myOutputFolder

@@ -11,6 +11,7 @@ import ssl
 import os
 import time
 import math
+import glob
 import imghdr
 import requests
 import sqlite3
@@ -53,20 +54,23 @@ def create_sanity_db(min_lat, max_lat, min_lon, max_lon, latLonResolution):
 
 
 def update_sanity_db(folder_name):
+    print("Updating sanity db ...")
     all_files_folder = glob.glob('{}/*'.format(folder_name))
     for tile_name in tqdm(all_files_folder):
         if tile_name.count('_') == 1:
             # then it is a satellite imagery
-            xTile_val = tile_name.split('_')[0]
+            xTile_val = str(tile_name.split('_')[0]).split('/')[-1]
             yTile_val = str(tile_name.split('_')[-1]).split('.')[0]
             create_id = str(xTile_val)+"_"+str(yTile_val)
+            # print(create_id)
             cur.execute('''UPDATE sanity SET satellite_tile = 1 WHERE id = ?''',(str(create_id),))	# set the satellite_tile to 1
 
         if tile_name.count('_') == 2:
             # then it is a road mask 
-            xTile_val = tile_name.split('_')[0]
+            xTile_val = str(tile_name.split('_')[0]).split('/')[-1]
             yTile_val = str(tile_name.split('_')[-2])
             create_id = str(xTile_val)+"_"+str(yTile_val)
+            # print(create_id)
             cur.execute('''UPDATE sanity SET road_tile = 1 WHERE id = ?''',(str(create_id),))	# set the road_tile to 1
     con.commit()
 
@@ -76,7 +80,21 @@ def shall_stop():
     # this function returns 1 if we need to stop, i.e., if all the entries are 1
     # which means all the required files are downloaded in the folder specified
     # even if one file is missing, we return 0
-    pass
+    
+    # get all the number of 0 entries for satellite imagery
+    get_sat_0s = cur.execute(''' SELECT * FROM sanity WHERE satellite_tile = 0 ''')
+    get_sat_0s_val = cur.fetchall() #converts the cursor object to number
+    total_number_of_sat0s = len(get_sat_0s_val)
+    print("Total number of satellite images needed to be downloaded = ", total_number_of_sat0s)
+
+    get_road_0s = cur.execute(''' SELECT * FROM sanity WHERE road_tile = 0 ''')
+    get_road_0s_val = cur.fetchall() #converts the cursor object to number
+    total_number_of_road0s = len(get_road_0s_val)
+    print("Total number of satellite images needed to be downloaded = ", total_number_of_road0s)
+
+    if total_number_of_sat0s == 0 and total_number_of_road0s == 0:
+        return 1
+    return 0
 
     
 
@@ -102,6 +120,11 @@ if __name__ == "__main__":
                 (id TEXT primary key, xTile INTEGER, yTile INTEGER, satellite_tile INTEGER, road_tile INTEGER )''')
 
     # create_sanity_db(10,10.2,10,11,0.0005)
+    # update_sanity_db('myOutputFolder')
+    print(shall_stop())
+
+    # while(shall_stop() == 0):
+    #     # continue the loop
 
     # Save (commit) the changes
     con.commit()
