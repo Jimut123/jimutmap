@@ -69,6 +69,8 @@ sudo apt-get install sqlite sqlitebrowser
 
 Needs to have google chrome web browser in the system.
 
+For example usage, check test.py
+
 ```python3
 >>from jimutmap import api
 
