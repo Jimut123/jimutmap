@@ -27,29 +27,6 @@ from os.path import join, exists, normpath, relpath
 
 
 
-# create the object of class jimutmap's api
-
-sanity_obj = api(min_lat_deg = 10,
-                    max_lat_deg = 10.2,
-                    min_lon_deg = 10,
-                    max_lon_deg = 11)
-
-
-
-
-# connect to the temporary database that we shall use
-con = sqlite3.connect('temp_sanity.sqlite')
-
-cur = con.cursor()
-
-# Create table sanity with the coordinates, and the corresponding
-# satellite tile and the road tile, id as the primary key xTile_yTile
-
-cur.execute('''CREATE TABLE IF NOT EXISTS sanity
-               (id TEXT primary key, xTile INTEGER, yTile INTEGER, satellite_tile INTEGER, road_tile INTEGER )''')
-
-
-
 def generate_summary():
     # Create an approximate analysis of the space required
     total_files_downloaded = cur.execute(''' SELECT * FROM sanity ''')
@@ -77,27 +54,61 @@ def create_sanity_db(min_lat, max_lat, min_lon, max_lon, latLonResolution):
 
 def update_sanity_db(folder_name):
     all_files_folder = glob.glob('{}/*'.format(folder_name))
-    for tile_name in all_files_folder:
+    for tile_name in tqdm(all_files_folder):
         if tile_name.count('_') == 1:
             # then it is a satellite imagery
             xTile_val = tile_name.split('_')[0]
             yTile_val = str(tile_name.split('_')[-1]).split('.')[0]
             create_id = str(xTile_val)+"_"+str(yTile_val)
-            cur.execute('''UPDATE sanity SET satellite_tile = 1 WHERE id = ?''',(str(create_id),))	# the link is visited once
+            cur.execute('''UPDATE sanity SET satellite_tile = 1 WHERE id = ?''',(str(create_id),))	# set the satellite_tile to 1
 
         if tile_name.count('_') == 2:
             # then it is a road mask 
-
-create_sanity_db(10,10.2,10,11,0.0005)
-# Save (commit) the changes
-con.commit()
-
-# generate the summary
-generate_summary()
+            xTile_val = tile_name.split('_')[0]
+            yTile_val = str(tile_name.split('_')[-2])
+            create_id = str(xTile_val)+"_"+str(yTile_val)
+            cur.execute('''UPDATE sanity SET road_tile = 1 WHERE id = ?''',(str(create_id),))	# set the road_tile to 1
+    con.commit()
 
 
 
+def shall_stop():
+    # this function returns 1 if we need to stop, i.e., if all the entries are 1
+    # which means all the required files are downloaded in the folder specified
+    # even if one file is missing, we return 0
+    pass
 
-# We can also close the connection if we are done with it.
-# Just be sure any changes have been committed or they will be lost.
-con.close()
+    
+
+if __name__ == "__main__":
+
+    # use main function for proper structuing of code
+
+    # create the object of class jimutmap's api
+    sanity_obj = api(min_lat_deg = 10,
+                        max_lat_deg = 10.2,
+                        min_lon_deg = 10,
+                        max_lon_deg = 11)
+    
+
+    # connect to the temporary database that we shall use
+    con = sqlite3.connect('temp_sanity.sqlite')
+    cur = con.cursor()
+
+    # Create table sanity with the coordinates, and the corresponding
+    # satellite tile and the road tile, id as the primary key xTile_yTile
+
+    cur.execute('''CREATE TABLE IF NOT EXISTS sanity
+                (id TEXT primary key, xTile INTEGER, yTile INTEGER, satellite_tile INTEGER, road_tile INTEGER )''')
+
+    # create_sanity_db(10,10.2,10,11,0.0005)
+
+    # Save (commit) the changes
+    con.commit()
+
+    # generate the summary
+    generate_summary()
+
+    # We can also close the connection if we are done with it.
+    # Just be sure any changes have been committed or they will be lost.
+    con.close()
