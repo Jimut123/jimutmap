@@ -147,8 +147,9 @@ def sanity_check(threads_):
 
     # check if the files are downloading or not, if so, then wait for certain seconds,
     # repeat this till the files stop downloading and then start the next batch of downloads
-
     batch = 1
+    create_sanity_db(10,10.2,10,10.2,0.0005)  
+
     while(shall_stop() == 0):
 
         sat_img_ids = get_sat_img_id()
@@ -156,8 +157,7 @@ def sanity_check(threads_):
         # print(sat_img_ids)
         # print(road_img_ids)
 
-        if batch == 1:
-            create_sanity_db(10,10.2,10,11,0.0005)  
+        
 
         while(check_downloading()==1):
             print("Waiting for 5 seconds... Busy downloading")
@@ -183,12 +183,13 @@ def sanity_check(threads_):
         print("Downloading all the satellite tiles: ")
         for sat_tile_name in sat_img_ids:
             xTile = sat_tile_name.split('_')[0]
-            yTile = sat_tile_name.split('_')[0]
+            yTile = sat_tile_name.split('_')[1]
             URL_ALL.append([xTile, yTile])
 
-            tp = ThreadPool(LOCKING_LIMIT)
-            tp.imap_unordered(lambda x: sanity_obj.get_img(x, **kwargs), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
-            tp.close()
+        # print(URL_ALL)
+        tp = ThreadPool(LOCKING_LIMIT)
+        tp.imap_unordered(lambda x: sanity_obj.get_img(x), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
+        tp.close()
 
         while(tp is not None):
             print("Waiting for thread to finish downloading satellite tiles")
@@ -198,12 +199,12 @@ def sanity_check(threads_):
         print("Downloading all the road tiles: ")
         for road_tile_name in road_img_ids:
             xTile = road_tile_name.split('_')[0]
-            yTile = road_tile_name.split('_')[0]
+            yTile = road_tile_name.split('_')[1]
             URL_ALL.append([xTile, yTile])
 
-            tp = ThreadPool(LOCKING_LIMIT)
-            tp.imap_unordered(lambda x: sanity_obj.get_img(x, **kwargs), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
-            tp.close()
+        tp = ThreadPool(LOCKING_LIMIT)
+        tp.imap_unordered(lambda x: sanity_obj.get_img(x), URL_ALL) #pylint: disable= unnecessary-lambda #cSpell:words imap
+        tp.close()
 
         while(tp is not None):
             rint("Waiting for thread to finish downloading road tiles")
@@ -227,9 +228,13 @@ cur = con.cursor()
 
 # create the object of class jimutmap's api
 sanity_obj = api(min_lat_deg = 10,
-                    max_lat_deg = 10.2,
-                    min_lon_deg = 10,
-                    max_lon_deg = 10.2)
+                      max_lat_deg = 10.2,
+                      min_lon_deg = 10,
+                      max_lon_deg = 10.2,
+                      zoom = 19,
+                      verbose = False,
+                      threads_ = 5, 
+                      container_dir = "myOutputFolder")
 
 if __name__ == "__main__":
     # use main function for proper structuing of code
