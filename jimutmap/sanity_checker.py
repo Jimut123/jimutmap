@@ -20,6 +20,7 @@ import datetime as dt
 from tqdm import tqdm
 import multiprocessing
 from jimutmap import api
+from jimutmap import get_folder_size
 from typing import Tuple
 from selenium import webdriver
 import chromedriver_autoinstaller
@@ -96,7 +97,21 @@ def shall_stop():
         return 1
     return 0
 
-    
+
+def check_downloading():
+    # checks if the multiprocessing tool is still downloading the files or not
+    # if there is a minute increase in byte size of the folder, we need to wait
+    # till the multiprocessing thread finishes its execution
+    get_folder_size_ini = get_folder_size('myOutputFolder')
+    time.sleep(5)
+    get_folder_size_final = get_folder_size('myOutputFolder')
+    diff = get_folder_size_final - get_folder_size_ini
+    if diff > 0:
+        # we need to sleep for 5 seconds again
+        return 1
+    return 0
+
+
 
 if __name__ == "__main__":
 
@@ -107,7 +122,6 @@ if __name__ == "__main__":
                         max_lat_deg = 10.2,
                         min_lon_deg = 10,
                         max_lon_deg = 11)
-    
 
     # connect to the temporary database that we shall use
     con = sqlite3.connect('temp_sanity.sqlite')
@@ -119,20 +133,33 @@ if __name__ == "__main__":
     cur.execute('''CREATE TABLE IF NOT EXISTS sanity
                 (id TEXT primary key, xTile INTEGER, yTile INTEGER, satellite_tile INTEGER, road_tile INTEGER )''')
 
-    # create_sanity_db(10,10.2,10,11,0.0005)
-    # update_sanity_db('myOutputFolder')
-    # print(shall_stop())
-
     # check if the files are downloading or not, if so, then wait for certain seconds,
     # repeat this till the files stop downloading and then start the next batch of downloads
-    # while(shall_stop() == 0):
-    #     # continue the loop
 
-    # Save (commit) the changes
-    con.commit()
+    batch = 1
+    while(shall_stop() == 0):
+        if batch == 1:
+            create_sanity_db(10,10.2,10,11,0.0005)  
 
-    # generate the summary
-    generate_summary()
+        while(check_downloading()==1):
+            print("Waiting for 5 seconds... Busy downloading")
+
+        print("Batch ============================================================================= ",batch)
+        print("===================================================================================")
+        batch += 1
+
+        # continue the loop till there is no file left to download
+        # generate the summary
+        generate_summary()
+        update_sanity_db('myOutputFolder')
+        # Save (commit) the changes
+        con.commit()
+
+        
+
+
+
+    
 
     # We can also close the connection if we are done with it.
     # Just be sure any changes have been committed or they will be lost.
