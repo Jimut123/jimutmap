@@ -13,7 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - All feature branch shall be here, which are not yet merged to master
 
+## [1.4.0] - 2022-04-05
 
+### Added
+- pip 1.4.0
+- file_size.py - to calculate file/directory size passed to it
+- sanity_checker.py - to index all the expected data and to make sure to fetch them via retries.
+
+### Modified
+- jimutmap.py
+- 
+
+### Removed
+- unnecessary files
 
 ## [1.3.8] - 2021-02-25
 
