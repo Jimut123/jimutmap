@@ -26,6 +26,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - unnecessary files
 
+
+## [1.3.9] - 2022-04-29
+
+### Added
+- pip 1.3.9
+- docs - documentation added
+
+### Modified
+
+### Removed
+
+
 ## [1.3.8] - 2021-02-25
 
 ### Added
