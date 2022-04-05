@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - All feature branch shall be here, which are not yet merged to master
 
-## [1.4.0] - 2022-04-05
+## [1.4.0] - 2022-04-04
 
 ### Added
 - pip 1.4.0
@@ -22,7 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Modified
 - jimutmap.py
-- 
 
 ### Removed
 - unnecessary files
