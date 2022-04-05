@@ -150,8 +150,7 @@ If you want to re-fetch tiles, remember to delete/move tiles after every fetch r
 
 ## Additional Note
 
-This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! 
-**This is created for educational and research purposes only! The [authors](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md) are not liable for any damage to private property.**
+This is created for educational and research purposes only! The [authors](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md) are not liable for any damage to private property.
 
 [[Back to Top](#contents)]
 
