@@ -11,8 +11,9 @@
 Though first template is preferable. 
 
 - [ ] Get roads route in json format from specified latitude longitudes.
-
-- [ ] Get all the local stores and shops in a certain radius of a coordinate.
+- [ ] Convert all the class of objects present in the map to JSON data via image processing, which can help the geoscientists to process information at a large scale.
+- [ ] Find all the unique items that can be present in the map. (Like caffe icon, shop icon, temple icon etc.)
+- [ ] Fetch all the necessary objects (shops/caffe etc.) that are queried to in a certain radius of coordinate.
 
 
 ------------------------------------------------------------------------------
