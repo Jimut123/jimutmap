@@ -14,8 +14,6 @@
   - [x] [requests](https://requests.readthedocs.io) -- with Sphinx theme
   - [ ] [AX](https://ax.dev/) 
 
-Though first template is preferable. 
-
 
 ------------------------------------------------------------------------------
 
