@@ -106,8 +106,10 @@ def check_downloading():
     time.sleep(15)
     get_folder_size_final = get_folder_size('myOutputFolder')
     diff = get_folder_size_final - get_folder_size_ini
+    speed_download = diff/(15.0*1024*1024) # get the speed in MB
     if diff > 0:
         # we need to sleep for 5 seconds again
+        print("Downloading speed == {} MiB/s ".format(speed_download))
         return 1
     return 0
 
