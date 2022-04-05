@@ -40,7 +40,7 @@
 
 ## Purpose 
 
-This manually brute forces [apple-map](https://satellites.pro/#32.916485,62.578125,4). It Then scraps all the tiles (image and road mask pair) as given by the parameters provided by the user. This uses an API-key generated at the time of browsing the map. 
+This manually brute forces [apple-map](https://satellites.pro/#32.916485,62.578125,4). It Then scraps all the tiles (image and road mask pair) as given by the parameters provided by the user. This uses an API-key generated at the time of browsing the map. There are some future plans for this project, check [TODO](https://github.com/Jimut123/jimutmap/blob/master/TODO.md) to see what this will support in the future.
 
 The api `accessKey` token is automatically fetched if you have Google Chrome or Chromium installed using `chromedriver-autoinstaller`. Otherwise, you'll have to fetch it manually and set the `ac_key` parameter (which can be found out by selecting one tile from Apple Map, through chrome/firefox by going Developer->Network, looking at the assets, and finding the part of the link beginning with `&accessKey=` until the next `&`) every 10-15 mins. 
 
