@@ -72,24 +72,41 @@ Needs to have google chrome web browser in the system.
 For example usage, check test.py
 
 ```python3
->>from jimutmap import api
-
->>download_obj = api(min_lat_deg = 10,
-                      max_lat_deg = 10.2,
-                      min_lon_deg = 10,
-                      max_lon_deg = 11,
-                      zoom = 19,
-                      verbose = False,
-                      threads_ = 5, 
-                      container_dir = "myOutputFolder")
-
-# If you don't have Chrome and can't take advantage of the auto access key fetch, set
-# a.ac_key = ACCESS_KEY_STRING
-# here
-
->>download_obj.download(getMasks = True)
-
-100%|██████████████████████████████████████████████████████████████                     | 1000/10000000 [00:02<00:00, 3913.19it/s
+(venv) jimut@jimut:~$ python3 test.py 
+Initializing jimutmap ... Please wait...
+Sorry, 50 -- threads unavailable, using maximum CPU threads : 8
+Initializing jimutmap ... Please wait...
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:00<00:00, 332.47it/s]
+Sorry, 50 -- threads unavailable, using maximum CPU threads : 8
+Initializing jimutmap ... Please wait...
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:00<00:00, 4418.78it/s]
+Total satellite images to be downloaded =  225
+Total roads tiles to be downloaded =  225
+Approx. estimated disk space required = 4.39453125 MB
+Total number of satellite images needed to be downloaded =  225
+Total number of satellite images needed to be downloaded =  225
+Batch =============================================================================  1
+===================================================================================
+Sorry, 50 -- threads unavailable, using maximum CPU threads : 8
+Downloading all the satellite tiles: 
+Updating sanity db ...
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:00<00:00, 1817.74it/s]
+Total number of satellite images needed to be downloaded =  210
+Total number of satellite images needed to be downloaded =  210
+Waiting for 15 seconds... Busy downloading
+Batch =============================================================================  2
+===================================================================================
+Downloading all the satellite tiles: 
+Updating sanity db ...
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 450/450 [00:00<00:00, 177724.75it/s]
+Total number of satellite images needed to be downloaded =  0
+Total number of satellite images needed to be downloaded =  0
+************************* Download Sucessful *************************
+Cleaning up... hold on
+Temporary sqlite files to be deleted = ['temp_sanity.sqlite'] ? 
+(y/N) : y
+Temporary chromedriver folders to be deleted = ['99'] ? 
+(y/N) : y
 
 ```
 
