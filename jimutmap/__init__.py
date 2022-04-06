@@ -1,7 +1,17 @@
 
 
+# ========================================================
+# This package provides useful tools for data analysts
+# and geoscientists for free
+# OPEN SOURCED UNDER GPL-V3.0.
+# Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
+# Project Website: https://github.com/Jimut123/jimutmap
+# pylint: disable = global-statement
+# cSpell: words imghdr, tqdm, asinh, jimut, bahan
+# ========================================================
+
 __name__ = "jimutmap"
-__version__ = "1.3.8"
+__version__ = "1.4.0"
 __author__ = "Jimut Bahan Pal| jimutbahanpal@yahoo.com"
 __release_date__ = '4-May-2019'
 from .jimutmap import api

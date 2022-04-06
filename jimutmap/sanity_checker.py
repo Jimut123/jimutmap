@@ -1,10 +1,8 @@
 # ======================================================
-# This program downloads / scrapes Apple maps for free.
+# This program checks the sanity of download.
 # OPEN SOURCED UNDER GPL-V3.0.
 # Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
 # Project Website: https://github.com/Jimut123/jimutmap
-# pylint: disable = global-statement
-# cSpell: words imghdr, tqdm, asinh, jimut, bahan
 # ======================================================
 
 import ssl

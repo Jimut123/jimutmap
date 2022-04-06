@@ -1,3 +1,10 @@
+# ======================================================
+# This program returns the size of folders/files.
+# OPEN SOURCED UNDER GPL-V3.0.
+# Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
+# Project Website: https://github.com/Jimut123/jimutmap
+# ======================================================
+
 # https://stackoverflow.com/questions/1392413/calculating-a-directorys-size-using-python
 
 from pathlib import Path
