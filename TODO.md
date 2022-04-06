@@ -1,6 +1,7 @@
 #### Here are the list of todos **(Open an issue if you want to contribute!)**:
 
-- [ ] Generate a high resolution map by assembling tiles, similar to [label-maker](https://github.com/developmentseed/label-maker).
+
+- [ ] Stitch tiles by specifying length and breadth of tiles. 
 - [ ] Get roads route in json format from specified latitude longitudes, this can help the data scientists to create optimal routes from point A to B.
 - [ ] Convert all the class of objects present in the map to JSON data via image processing, which can help the geoscientists to process information at a large scale.
 - [ ] Find all the unique items that can be present in the map. (Like caffe icon, shop icon, temple icon etc.)
@@ -9,6 +10,7 @@
 
 #### Done
 
+- [x] Generate a high resolution map by assembling tiles, similar to [label-maker](https://github.com/developmentseed/label-maker).
 - [x] Probably make a documentation website similar to 
   - [ ] [GPy](https://gpy.readthedocs.io) 
   - [x] [requests](https://requests.readthedocs.io) -- with Sphinx theme
