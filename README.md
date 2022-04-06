@@ -73,43 +73,59 @@ Needs to have google chrome web browser in the system.
 
 For example usage, check [test.py](https://github.com/Jimut123/jimutmap/blob/master/test.py)
 
-```python3
-(venv) jimut@jimut:~$ python3 test.py 
+```python3jimut@jimut:~/Desktop/GIT/jimutmap$ python3 test.py 
+Sorry, 5 -- threads unavailable, using maximum CPU threads : 4
 Initializing jimutmap ... Please wait...
-Sorry, 50 -- threads unavailable, using maximum CPU threads : 8
+Sorry, 50 -- threads unavailable, using maximum CPU threads : 4
 Initializing jimutmap ... Please wait...
-100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:00<00:00, 332.47it/s]
-Sorry, 50 -- threads unavailable, using maximum CPU threads : 8
+100%|██████████████████████████████████████████████| 20/20 [00:00<00:00, 113.67it/s]
+Sorry, 50 -- threads unavailable, using maximum CPU threads : 4
 Initializing jimutmap ... Please wait...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:00<00:00, 4418.78it/s]
-Total satellite images to be downloaded =  225
-Total roads tiles to be downloaded =  225
-Approx. estimated disk space required = 4.39453125 MB
-Total number of satellite images needed to be downloaded =  225
-Total number of satellite images needed to be downloaded =  225
+100%|██████████████████████████████████████████████| 20/20 [00:00<00:00, 722.10it/s]
+Total satellite images to be downloaded =  210
+Total roads tiles to be downloaded =  210
+Approx. estimated disk space required = 4.1015625 MB
+Total number of satellite images needed to be downloaded =  210
+Total number of satellite images needed to be downloaded =  210
 Batch =============================================================================  1
 ===================================================================================
-Sorry, 50 -- threads unavailable, using maximum CPU threads : 8
+Sorry, 50 -- threads unavailable, using maximum CPU threads : 4
 Downloading all the satellite tiles: 
 Updating sanity db ...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:00<00:00, 1817.74it/s]
-Total number of satellite images needed to be downloaded =  210
-Total number of satellite images needed to be downloaded =  210
+100%|████████████████████████████████████████████| 27/27 [00:00<00:00, 13291.81it/s]
+Total number of satellite images needed to be downloaded =  197
+Total number of satellite images needed to be downloaded =  196
+Downloading speed == 0.09333877563476563 MiB/s 
+Waiting for 15 seconds... Busy downloading
+Downloading speed == 0.11976458231608073 MiB/s 
+Waiting for 15 seconds... Busy downloading
+Downloading speed == 0.01717344919840495 MiB/s 
 Waiting for 15 seconds... Busy downloading
 Batch =============================================================================  2
 ===================================================================================
 Downloading all the satellite tiles: 
 Updating sanity db ...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 450/450 [00:00<00:00, 177724.75it/s]
+100%|██████████████████████████████████████████| 420/420 [00:00<00:00, 99921.03it/s]
 Total number of satellite images needed to be downloaded =  0
 Total number of satellite images needed to be downloaded =  0
 ************************* Download Sucessful *************************
 Cleaning up... hold on
-Temporary sqlite files to be deleted = ['temp_sanity.sqlite'] ? 
+Updating sticher db ...
+100%|██████████████████████████████████████████| 420/420 [00:00<00:00, 24357.17it/s]
+Total number of satellite images needed to be downloaded =  0
+Total number of satellite images needed to be downloaded =  0
+Calculating bounding boxes for tiles :: 
+Total number of rows present in the database=  210
+100%|█████████████████████████████████████████| 210/210 [00:00<00:00, 528693.78it/s]
+Min lat tile = 390842, Max lat tile = 390855, Min lon tile = 228264, Max lon tile = 228278
+No. of tiles in latitude = 13, and longitude = 14
+Creating an image of size : 3328x3584 pixels ...
+100%|███████████████████████████████████████████████| 13/13 [00:00<00:00, 28.89it/s]
+100%|███████████████████████████████████████████████| 13/13 [00:00<00:00, 42.02it/s]
+Temporary sqlite files to be deleted = ['temp_sanity.sqlite', 'sticher.sqlite'] ? 
 (y/N) : y
-Temporary chromedriver folders to be deleted = ['99'] ? 
+Temporary chromedriver folders to be deleted = ['100'] ? 
 (y/N) : y
-
 ```
 
 [[Back to Top](#contents)]
