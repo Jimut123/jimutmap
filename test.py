@@ -1,19 +1,24 @@
-"""
-Jimut Bahan Pal
-First updated : 22-03-2021
-Last updated : 04-04-2022
-"""
+
+# ======================================================
+# This tests the working of jimutmap package.
+# Note this doesnot uses multi-processing 
+# OPEN SOURCED UNDER GPL-V3.0.
+# Author : Jimut Bahan Pal | jimutbahanpal@yahoo.com
+# Project Website: https://github.com/Jimut123/jimutmap
+# ======================================================
+
+# Using map tiles for Kolkata, my hometown!
 
 import os
 import glob
 import shutil
-from jimutmap import api, sanity_check, stitch_whole_folder
+from jimutmap import api, sanity_check, stitch_whole_tile
 
 
-download_obj = api(min_lat_deg = 10,
-                      max_lat_deg = 10.01,
-                      min_lon_deg = 10,
-                      max_lon_deg = 10.01,
+download_obj = api(min_lat_deg = 22.35,
+                      max_lat_deg = 22.36,
+                      min_lon_deg = 88.0,
+                      max_lon_deg = 88.01,
                       zoom = 19,
                       verbose = False,
                       threads_ = 50, 
@@ -27,19 +32,19 @@ download_obj = api(min_lat_deg = 10,
 download_obj.download(getMasks = True)
 
 # create the object of class jimutmap's api
-sanity_obj = api(min_lat_deg = 10,
-                      max_lat_deg = 10.01,
-                      min_lon_deg = 10,
-                      max_lon_deg = 10.01,
+sanity_obj = api(min_lat_deg = 22.35,
+                      max_lat_deg = 22.36,
+                      min_lon_deg = 88.0,
+                      max_lon_deg = 88.01,
                       zoom = 19,
                       verbose = False,
                       threads_ = 50, 
                       container_dir = "myOutputFolder")
 
-sanity_check(min_lat_deg = 10,
-                max_lat_deg = 10.01,
-                min_lon_deg = 10,
-                max_lon_deg = 10.01,
+sanity_check(min_lat_deg = 22.35,
+                max_lat_deg = 22.36,
+                min_lon_deg = 88.0,
+                max_lon_deg = 88.01,
                 zoom = 19,
                 verbose = False,
                 threads_ = 50, 
@@ -70,4 +75,6 @@ except OSError as e:
 
 
 
-# stitch_whole_folder("myOutputFolder")
+# update_stitcher_db("myOutputFolder")
+# get_bbox_lat_lon()
+stitch_whole_tile(save_name="Kolkata", folder_name="myOutputFolder")

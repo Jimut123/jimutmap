@@ -17,4 +17,4 @@ __release_date__ = '4-May-2019'
 from .jimutmap import api
 from .file_size import get_folder_size
 from .sanity_checker import sanity_check
-from .tiles_sticher import stitch_whole_folder
+from .tiles_sticher import update_stitcher_db, get_bbox_lat_lon, stitch_whole_tile
