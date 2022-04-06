@@ -13,6 +13,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - All feature branch shall be here, which are not yet merged to master
 
+
+## [1.4.1] - 2022-04-06
+
+### Added
+- pip 1.4.1
+- tiles_sticher.py - to stich tiles that are downloaded in the folder
+
+
+### Modified
+- jimutmap.py - updated the bug, now downloads road tiles with ease
+
 ## [1.4.0] - 2022-04-04
 
 ### Added
