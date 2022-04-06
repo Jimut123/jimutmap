@@ -302,6 +302,7 @@ class api:
         except AssertionError:
             try:
                 # get the image tile and the mask tile for the same
+                # sample sat tile: https://sat-cdn2.apple-mapkit.com/tile?style=7&size=1&scale=1&z=19&x=390843&y=228270&v=9262&accessKey=1649243787_2102081627305478489_%2F_hIz9LjsZkMj6NE7y%2BimXS9vFQbxfjLBClZR7yqyFtsE%3D&emphasis=standard&tint=light
                 req_url = f"https://sat-cdn1.apple-mapkit.com/tile?style=7&size=1&scale=1&z={self.zoom}&x={xTile}&y={yTile}&v={vNumber}{self.ac_key}"
                 if self.verbose:
                     print(req_url)
@@ -334,7 +335,16 @@ class api:
                 assert exists(file_name_road)
             except AssertionError:
                 for cdnLevel in range(1, 5):
-                    req_url = f"https://cdn{cdnLevel}.apple-mapkit.com/ti/tile?country=US&region=US&style=46&size=1&x={xTile}&y={yTile}&z={self.zoom}&scale=1&lang=en&v=2008184&poi=0{self.ac_key}&labels=0"
+                    # change the 2nd auth according to the datetime for downloading the roads masks
+                    today_date = str(dt.date.today())
+                    year = today_date[0:4]
+                    month = today_date[5:7]
+                    day = today_date[8:10]
+                    env_key = str(year)+str(month)+str(day)
+                    # sample road tile 1: https://cdn3.apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=390842&y=228268&z=19&scale=1&lang=en&v=2204054&poi=1&accessKey=1649243787_2102081627305478489_%2F_hIz9LjsZkMj6NE7y%2BimXS9vFQbxfjLBClZR7yqyFtsE%3D&emphasis=standard&tint=light
+                    # sample road tile 2: https://cdn4.apple-mapkit.com/ti/tile?country=IN&region=IN&style=46&size=1&x=296223&y=176608&z=19&scale=1&lang=en&v=2204054&poi=1&accessKey=1649243787_2102081627305478489_%2F_hIz9LjsZkMj6NE7y%2BimXS9vFQbxfjLBClZR7yqyFtsE%3D&emphasis=standard&tint=light
+                    
+                    req_url = f"https://cdn{cdnLevel}.apple-mapkit.com/ti/tile?country=US&region=US&style=46&size=1&x={xTile}&y={yTile}&z={self.zoom}&scale=1&lang=en&v={env_key}4&poi=1{self.ac_key}&emphasis=standard&tint=light"
                     try:
                         # image and mask retrieval
                         # For the roads data

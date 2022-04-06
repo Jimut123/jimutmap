@@ -136,7 +136,7 @@ def stitch_whole_tile(save_name="full_tile", folder_name="myOutputFolder"):
 
     # stich the satellite imagery tile
 
-    SAT_TILE_FULL = np.zeros([diff_lat*256,diff_lon*256,3])
+    SAT_TILE_FULL = np.zeros([diff_lon*256,diff_lat*256,3])
 
     for lat in tqdm(range(min_lat, max_lat)):
         for lon in range(min_lon, max_lon):
@@ -157,7 +157,7 @@ def stitch_whole_tile(save_name="full_tile", folder_name="myOutputFolder"):
 
     # stich the road imagery tile
 
-    ROAD_TILE_FULL = np.zeros([diff_lat*256,diff_lon*256,3])
+    ROAD_TILE_FULL = np.zeros([diff_lon*256,diff_lat*256,3])
 
     for lat in tqdm(range(min_lat, max_lat)):
         for lon in range(min_lon, max_lon):

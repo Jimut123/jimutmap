@@ -7,7 +7,7 @@
 # Project Website: https://github.com/Jimut123/jimutmap
 # ======================================================
 
-# Using map tiles for Kolkata, my hometown!
+# Using map tiles for Kolkata, Baranagar my hometown: 22.645899,88.373889,19
 
 import os
 import glob
@@ -15,10 +15,10 @@ import shutil
 from jimutmap import api, sanity_check, stitch_whole_tile
 
 
-download_obj = api(min_lat_deg = 22.35,
-                      max_lat_deg = 22.36,
-                      min_lon_deg = 88.0,
-                      max_lon_deg = 88.01,
+download_obj = api(min_lat_deg = 22.64,
+                      max_lat_deg = 22.65,
+                      min_lon_deg = 88.37,
+                      max_lon_deg = 88.38,
                       zoom = 19,
                       verbose = False,
                       threads_ = 50, 
@@ -32,19 +32,19 @@ download_obj = api(min_lat_deg = 22.35,
 download_obj.download(getMasks = True)
 
 # create the object of class jimutmap's api
-sanity_obj = api(min_lat_deg = 22.35,
-                      max_lat_deg = 22.36,
-                      min_lon_deg = 88.0,
-                      max_lon_deg = 88.01,
+sanity_obj = api(min_lat_deg = 22.64,
+                      max_lat_deg = 22.65,
+                      min_lon_deg = 88.37,
+                      max_lon_deg = 88.38,
                       zoom = 19,
                       verbose = False,
                       threads_ = 50, 
                       container_dir = "myOutputFolder")
 
-sanity_check(min_lat_deg = 22.35,
-                max_lat_deg = 22.36,
-                min_lon_deg = 88.0,
-                max_lon_deg = 88.01,
+sanity_check(min_lat_deg = 22.64,
+                max_lat_deg = 22.65,
+                min_lon_deg = 88.37,
+                max_lon_deg = 88.38,
                 zoom = 19,
                 verbose = False,
                 threads_ = 50, 
@@ -53,6 +53,13 @@ sanity_check(min_lat_deg = 22.35,
 print("Cleaning up... hold on")
 
 sqlite_temp_files = glob.glob('*.sqlite*')
+
+
+
+# update_stitcher_db("myOutputFolder")
+# get_bbox_lat_lon()
+stitch_whole_tile(save_name="Kolkata", folder_name="myOutputFolder")
+
 
 print("Temporary sqlite files to be deleted = {} ? ".format(sqlite_temp_files))
 inp = input("(y/N) : ")
@@ -72,9 +79,3 @@ try:
             shutil.rmtree(item)
 except OSError as e:
     print ("Error: %s - %s." % (e.filename, e.strerror))
-
-
-
-# update_stitcher_db("myOutputFolder")
-# get_bbox_lat_lon()
-stitch_whole_tile(save_name="Kolkata", folder_name="myOutputFolder")
