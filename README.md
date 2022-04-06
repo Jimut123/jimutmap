@@ -142,6 +142,16 @@ Temporary chromedriver folders to be deleted = ['100'] ?
 [[Back to Top](#contents)]
 
 
+## Stitched tiles for Kolkata
+
+| | | 
+|:-------------------------:|:-------------------------:|
+| <img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/stiched_kolkata/Kolkata_sat.png"> | <img width="1604" src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/stiched_kolkata/Kolkata_road.png"> |
+
+[[Back to Top](#contents)]
+
+
+
 ## YouTube video 
 
 If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
