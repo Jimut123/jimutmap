@@ -9,7 +9,7 @@ import glob
 import shutil
 from jimutmap import api, sanity_check, stitch_whole_folder
 
-"""
+
 download_obj = api(min_lat_deg = 10,
                       max_lat_deg = 10.01,
                       min_lon_deg = 10,
@@ -68,6 +68,6 @@ try:
 except OSError as e:
     print ("Error: %s - %s." % (e.filename, e.strerror))
 
-"""
 
-stitch_whole_folder("myOutputFolder")
+
+# stitch_whole_folder("myOutputFolder")

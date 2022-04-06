@@ -75,6 +75,9 @@ def stitch_whole_folder(folder_name = "myOutputFolder"):
     con.commit()
 
 
+
+
+
 # connect to the temporary database that we shall use
 con = sqlite3.connect('sticher.sqlite')
 cur = con.cursor()
