@@ -53,6 +53,8 @@ def create_sanity_db(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg, latLonR
 
 
 def update_sanity_db(folder_name):
+    # to take the files present in the folder and update all the entries of the 
+    # sanity database
     print("Updating sanity db ...")
     all_files_folder = glob.glob('{}/*'.format(folder_name))
     for tile_name in tqdm(all_files_folder):
@@ -113,6 +115,7 @@ def check_downloading():
 
 
 def get_sat_img_id():
+    # to get all the satellite image ids which are not yet being downloaded
     get_sat_0s = cur.execute(''' SELECT id FROM sanity WHERE satellite_tile = 0 ''')
     get_sat_0s_val = cur.fetchall() #converts the cursor object to number
     # print("Total number of satellite images needed to be downloaded = ", len(get_sat_0s_val))
@@ -123,6 +126,7 @@ def get_sat_img_id():
     
 
 def get_road_img_id():
+    # to get all the road  tiles image ids which are not yet being downloaded
     get_road_0s = cur.execute(''' SELECT * FROM sanity WHERE road_tile = 0 ''')
     get_road_0s_val = cur.fetchall() #converts the cursor object to number
     # print("Total number of satellite images needed to be downloaded = ", len(get_road_0s_val))
@@ -137,7 +141,6 @@ def get_road_img_id():
 def sanity_check(min_lat_deg, max_lat_deg, min_lon_deg, max_lon_deg, zoom, verbose, threads_, container_dir = "myOutputFolder"):
     # This function contains the main loop for checking the sanity of download
     # till all the files are downloaded
-
 
     # Create table sanity with the coordinates, and the corresponding
     # satellite tile and the road tile, id as the primary key xTile_yTile
