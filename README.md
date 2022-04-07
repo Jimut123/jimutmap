@@ -15,6 +15,11 @@
   <a href="https://pypistats.org/packages/jimutmap">
     <img src="https://img.shields.io/pypi/dm/jimutmap.svg" alt="Downloads per month"/>
   </a>
+  <a href="https://zenodo.org/badge/latestdoi/169246557">
+    <img src="https://zenodo.org/badge/169246557.svg" alt="zenodo"/>
+  </a>
+
+
 </div>
 
 ***
