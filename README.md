@@ -25,7 +25,7 @@
 ***
 
 
-## Contents
+## 📋 Contents <a name="contents"></a>
 
 * [Purpose](#purpose)
 * [Need for scraping satellite data](#need-for-scraping-satellite-data)
@@ -41,7 +41,7 @@
 * [BibTeX and citations](#bibtex-and-citations)
 
 
-## Purpose 
+## 🔁 Purpose <a name="purpose"></a>
 
 This package collects data from [satellites.pro](https://satellites.pro/#32.916485,62.578125,4). It fetches all the tiles (image and road mask pair) as given by the parameters provided by the user. This uses an API-key generated at the time of browsing the map. **There are some future plans for this project, check [TODO](https://github.com/Jimut123/jimutmap/blob/master/TODO.md) to see what this will support in the future.**
 
@@ -50,7 +50,7 @@ The api `accessKey` token is automatically fetched if you have Google Chrome or 
 [[Back to Top](#contents)]
 
 
-## Need for scraping satellite data
+## 💡 Need for scraping satellite data <a name="need-for-scraping-satellite-data"></a>
 
 Well it's good (best in the world) satellite images, we just need to give the coordinates (Lat,Lon, and zoom) to get your dataset
 of high resolution satellite images! Create your own dataset and apply ML algorithms :')
@@ -61,7 +61,7 @@ The scraping API is present, call it and download it.
 [[Back to Top](#contents)]
 
 
-## Installation and Usages
+## 🛠 Installation and Usages <a name="installation-and-usages"></a>
 
 ```
 sudo pip3 install jimutmap
@@ -136,7 +136,7 @@ Temporary chromedriver folders to be deleted = ['100'] ?
 [[Back to Top](#contents)]
 
 
-## Some of the example images downloaded at different scales
+## 📚 Some of the example images downloaded at different scales <a name="some-of-the-example-images-downloaded-at-different-scales"></a>
 
 | | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
@@ -147,7 +147,7 @@ Temporary chromedriver folders to be deleted = ['100'] ?
 [[Back to Top](#contents)]
 
 
-## Stitched tiles for Kolkata
+## 📚 Stitched tiles for Kolkata 
 
 | | | 
 |:-------------------------:|:-------------------------:|
@@ -157,14 +157,14 @@ Temporary chromedriver folders to be deleted = ['100'] ?
 
 
 
-## YouTube video 
+## 📹 YouTube video <a name="youtube-video"></a>
 
 If you are confused with the documentation, please see this video, to see the scraping in action [Apple Maps API to get enormous amount of satellite data for free using Python3](https://www.youtube.com/watch?v=voH0qhGXfsU).
 
 [[Back to Top](#contents)]
 
 
-## Sample of the images downloaded
+## 📚 Sample of the images downloaded <a name="sample-of-the-images-downloaded"></a>
 
 <center>
 <a href="https://www.youtube.com/watch?v=wCbZhtWe72w" alt="yt video" target="_blank"><img src="https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/scrn.png" alt="img of sat dat" width=85% height=85%></a>
@@ -173,7 +173,7 @@ If you are confused with the documentation, please see this video, to see the sc
 [[Back to Top](#contents)]
 
 
-#### Perks 
+#### :feelsgood: Perks <a name="perks"></a>
 
 This is done through parallel proccessing, so this will take maximum threads available in your CPU, change the 
 code to your own requirements! 
@@ -183,35 +183,35 @@ If you want to re-fetch tiles, remember to delete/move tiles after every fetch r
 [[Back to Top](#contents)]
 
 
-## Additional Note
+## 📓 Additional Note <a name="additional-note"></a>
 
 This is created for educational and research purposes only! The [authors](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md) are not liable for any damage to private property.
 
 [[Back to Top](#contents)]
 
 
-## TODOs
+## :atom: TODOs <a name="todos"></a>
 
 Please check [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), since this project needs collaborators.
 
 [[Back to Top](#contents)]
 
 
-## Questions or want to discuss about something ?
+## ❓ Questions or want to discuss about something ? <a name=""></a>
 
 Submit an issue. 
 
 [[Back to Top](#contents)]
 
 
-## Contribution
+## 🤝 Contribution <a name="contribution"></a>
 
 Please see [Contributing.md](https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTING.md)
 
 [[Back to Top](#contents)]
 
 
-## [LICENSE](https://github.com/Jimut123/jimutmap/blob/master/LICENSE)
+## 🛡️ [LICENSE](https://github.com/Jimut123/jimutmap/blob/master/LICENSE) <a name="license"></a>
 ```
  GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
@@ -224,7 +224,7 @@ Please see [Contributing.md](https://github.com/Jimut123/jimutmap/blob/master/CO
 [[Back to Top](#contents)]
 
 
-# BibTeX and citations
+# 📝 BibTeX and citations <a name="bibtex-and-citations"></a>
 
 ```
 @misc{jimutmap_2019,
