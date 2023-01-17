@@ -241,7 +241,8 @@ class api:
         """
         n = 2**self.zoom
         lon_deg = int(xTile)/n * 360.0 - 180.0
-        lat_rad = math.atan(math.asinh(math.pi * (1 - 2 * int(yTile)/n)))
+#         lat_rad = math.atan(math.asinh(math.pi * (1 - 2 * int(yTile)/n)))
+        lat_rad=2*((math.pi/4)-math.atan(math.exp(-1*math.pi*(1-2* int(yTile)/n))))
         lat_deg = lat_rad * 180.0 / math.pi
         return lat_deg, lon_deg
 
