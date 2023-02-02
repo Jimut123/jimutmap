@@ -16,7 +16,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="jimutmap",
-    version="1.4.1.2",
+    version="1.4.2",
     author="Jimut Bahan Pal and the Jimutmap Contributors",
     author_email="jimutbahanpal@yahoo.com",
     description="To get enormous amount of map tiles with ease",
