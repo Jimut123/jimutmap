@@ -41,6 +41,9 @@
 * [BibTeX and citations](#bibtex-and-citations)
 
 
+
+**Note:** I am actively looking for project maintainers who can volunteer to fix bugs/issues and work on [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), due to my limited time in maintaining this project. If you want to be a maintainer, either solve a bug or successfully complete a TODO, then email me for the role (This process is for selecting valid maintainers).
+
 ## 🔁 Purpose <a name="purpose"></a>
 
 This package collects data from [satellites.pro](https://satellites.pro/#32.916485,62.578125,4). It fetches all the tiles (image and road mask pair) as given by the parameters provided by the user. This uses an API-key generated at the time of browsing the map. **There are some future plans for this project, check [TODO](https://github.com/Jimut123/jimutmap/blob/master/TODO.md) to see what this will support in the future.**
