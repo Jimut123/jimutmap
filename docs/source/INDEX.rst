@@ -1,6 +1,6 @@
 --------------
 
-.. image:: https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/logo.png
+.. image:: https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/logo.png
     :alt: jimutmap logo
 	:width: 100 %
    :align: center
@@ -22,12 +22,8 @@ The **jimutmap** Documentation
 -  `Need for scraping satellite
    data <#need-for-scraping-satellite-data>`__
 -  `Installation and Usages <#installation-and-usages>`__
--  `Some of the example images downloaded at different
-   scales <#some-of-the-example-images-downloaded-at-different-scales>`__
 -  `Datasets <#datasets>`__
 -  `YouTube video <#youtube-video>`__
--  `Sample of the images
-   downloaded <#sample-of-the-images-downloaded>`__
 -  `Perks <#perks>`__
 -  `Additional Note <#additional-note>`__
 -  `TODOs <#todos>`__
@@ -102,30 +98,15 @@ For example usage, check
 
 [`Back to Top <#contents>`__]
 
-📚 Some of the example images downloaded at different scales 
-----------------------------------------------------------------
-
-==
-\    
-\    
-\    
-==
-
-[`Back to Top <#contents>`__]
 
 📘 Datasets 
-==========
+============
 
 Jimutmap might behave weirdly in some cases. Please check the list of
 `datasets
 here <https://github.com/Jimut123/jimutmap/blob/master/DATASETS.md>`__.
 
-📚 Stitched tiles for Kolkata
----------------------------------
 
-==
-\  
-==
 
 [`Back to Top <#contents>`__]
 
