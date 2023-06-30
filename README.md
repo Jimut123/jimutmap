@@ -31,6 +31,7 @@
 * [Need for scraping satellite data](#need-for-scraping-satellite-data)
 * [Installation and Usages](#installation-and-usages)
 * [Some of the example images downloaded at different scales](#some-of-the-example-images-downloaded-at-different-scales)
+* [Datasets](#datasets)
 * [YouTube video](#youtube-video)
 * [Sample of the images downloaded](#sample-of-the-images-downloaded)
 * [Perks](#perks)
@@ -149,6 +150,9 @@ Temporary chromedriver folders to be deleted = ['100'] ?
 
 [[Back to Top](#contents)]
 
+# 📘 Datasets
+
+Jimutmap might behave weirdly in some cases. Please check the list of [datasets here](https://github.com/Jimut123/jimutmap/blob/master/DATASETS.md).
 
 ## 📚 Stitched tiles for Kolkata 
 
