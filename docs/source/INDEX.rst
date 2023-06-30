@@ -1,19 +1,15 @@
 --------------
 
-.. raw:: html
-
-   <p align="center">
-
 .. image:: https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/logo.png
     :alt: jimutmap logo
 	:width: 100 %
    :align: center
    
-…Bringing Data to Humans
+The **jimutmap** Documentation
+===============================
 
-.. raw:: html
+                        …Bringing Data to Humans
 
-   </p>
 
 --------------
 
@@ -21,8 +17,6 @@
 
 --------------
 
-The jimutmap documentation!
----------------------------------
 
 -  `Purpose <#purpose>`__
 -  `Need for scraping satellite
@@ -42,19 +36,6 @@ The jimutmap documentation!
 -  `BibTeX and citations <#bibtex-and-citations>`__
 
 
-.. toctree::
-   :maxdepth: 2
-   :caption: External Contents:
-   INDEX
-   LICENSE
-   DATASETS
-   PARAMETERS
-   REQUIREMENTS
-   CODE_OF_CONDUCT
-   CONTRIBUTING
-   CONTRIBUTORS
-   BUG_REPORTS
-   TODO
 
 
 **Note:** I am actively looking for project maintainers who can
@@ -248,4 +229,17 @@ Please see
 [`Back to Top <#contents>`__]
 
 
+.. toctree::
+   :maxdepth: 2
+   :caption: External Contents:
+   INDEX
+   LICENSE
+   DATASETS
+   PARAMETERS
+   REQUIREMENTS
+   CODE_OF_CONDUCT
+   CONTRIBUTING
+   CONTRIBUTORS
+   BUG_REPORTS
+   TODO
 
