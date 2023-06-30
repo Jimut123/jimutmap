@@ -79,13 +79,13 @@ def setup(builder):
 # -- Project information -----------------------------------------------------
 
 project = 'jimutmap'
-copyright = '2019-2021, Jimut Bahan pal and Philip Kahn'
-author = 'Jimut Bahan pal, Philip Kahn'
+copyright = '2019-2023, Jimut Bahan Pal'
+author = 'Jimut Bahan pal'
 
 # The short X.Y version
-version = '1.3.9'
+version = '1.4.2'
 # The full version, including alpha/beta/rc tags
-release = '1.3.9-stable'
+release = '1.4.2-stable'
 
 
 # -- General configuration ---------------------------------------------------
@@ -197,7 +197,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'jimutmap.tex', 'jimutmap Documentation',
-     'Jimut Bahan pal, Philip Kahn', 'manual'),
+     'Jimut Bahan Pal', 'manual'),
 ]
 
 

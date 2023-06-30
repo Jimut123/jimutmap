@@ -1,146 +1,219 @@
-.. jimutmap documentation master file, created by
-   sphinx-quickstart on Thu Apr 29 18:54:11 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+--------------
 
-.. image:: https://raw.githubusercontent.com/wiki/jimut123/jimutmap/satellite_data/logo.png
-    :alt: jimutmap logo
-	:width: 100 %
+.. raw:: html
 
+   <p align="center">
 
+…Bringing Data to Humans
 
-The **jimutmap** Documentation
-===============================
+.. raw:: html
 
-.. image:: https://pepy.tech/badge/jimutmap
-    :target: https://pepy.tech/project/jimutmap
+   </p>
 
-.. image:: https://img.shields.io/pypi/dm/jimutmap.svg
-    :target: https://pypistats.org/packages/jimutmap
+--------------
 
-.. image:: https://readthedocs.org/projects/pip/badge/?version=latest&style=plastic
-    :target: https://jimutmap.readthedocs.io/en/latest/index.html
+.. container::
 
-.. image:: https://img.shields.io/pypi/l/jimutmap.svg
-    :target: https://pypi.org/project/jimutmap/
+--------------
 
-.. image:: https://img.shields.io/pypi/wheel/jimutmap.svg
-    :target: https://pypi.org/project/jimutmap/
+📋 Contents 
+----------
 
-.. image:: https://img.shields.io/pypi/pyversions/jimutmap.svg
-    :target: https://pypi.org/project/jimutmap/
+-  `Purpose <#purpose>`__
+-  `Need for scraping satellite
+   data <#need-for-scraping-satellite-data>`__
+-  `Installation and Usages <#installation-and-usages>`__
+-  `Some of the example images downloaded at different
+   scales <#some-of-the-example-images-downloaded-at-different-scales>`__
+-  `YouTube video <#youtube-video>`__
+-  `Sample of the images
+   downloaded <#sample-of-the-images-downloaded>`__
+-  `Perks <#perks>`__
+-  `Additional Note <#additional-note>`__
+-  `TODOs <#todos>`__
+-  `Contribution <#contribution>`__
+-  `LICENSE <#license>`__
+-  `BibTeX and citations <#bibtex-and-citations>`__
 
-API to get enormous amount of high resolution satellite images from apple maps quickly through multi-threading! create map your own map dataset (**for research purposes only**). 
-This manually brute forces `apple-map <https://satellites.pro/#32.916485,62.578125,4)>`_. It Then scraps all the tiles (image and road mask pair) as given by the 
-parameters provided by the user. This uses an API-key generated at the time of browsing the map. 
+**Note:** I am actively looking for project maintainers who can
+volunteer to fix bugs/issues and work on
+`TODOs <https://github.com/Jimut123/jimutmap/blob/master/TODO.md>`__,
+due to my limited time in maintaining this project. If you want to be a
+maintainer, either solve a bug or successfully complete a TODO, then
+email me for the role (this process is for selecting valid maintainers).
 
-The api `accessKey` token is automatically fetched if you have Google Chrome or Chromium installed using `chromedriver-autoinstaller`. 
-Otherwise, you'll have to fetch it manually and set the `ac_key` parameter (which can be found out by selecting one tile from Apple Map, 
-through chrome/firefox by going Developer->Network, looking at the assets, and finding the part of the link beginning with `&accessKey=` until 
-the next `&`) every 10-15 mins. 
+🔁 Purpose 
+---------
 
-*version*: |version|
+This package collects data from
+`satellites.pro <https://satellites.pro/#32.916485,62.578125,4>`__. It
+fetches all the tiles (image and road mask pair) as given by the
+parameters provided by the user. This uses an API-key generated at the
+time of browsing the map. **There are some future plans for this
+project,
+check**\ `TODO <https://github.com/Jimut123/jimutmap/blob/master/TODO.md>`__\ **to
+see what this will support in the future.**
 
+The api ``accessKey`` token is automatically fetched if you have Google
+Chrome or Chromium installed using ``chromedriver-autoinstaller``.
+Otherwise, you’ll have to fetch it manually and set the ``ac_key``
+parameter (which can be found out by selecting one tile from Apple Map,
+through chrome/firefox by going Developer->Network, looking at the
+assets, and finding the part of the link beginning with ``&accessKey=``
+until the next ``&``) every 10-15 mins.
 
-Why jimutmap?
-~~~~~~~~~~~~~~~~~~~~
+[`Back to Top <#contents>`__]
 
-Well it's good (best in the world) satellite images, we just need to give the coordinates (Lat,Lon, and zoom) to get your dataset
-of high resolution satellite images! Create your own dataset and apply ML algorithms :')
+💡 Need for scraping satellite data 
+----------------------------------
 
-
-
-
-Standard pip install
-~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: bash
-
-   sudo pip3 install jimutmap
+Well it’s good (best in the world) satellite images, we just need to
+give the coordinates (Lat,Lon, and zoom) to get your dataset of high
+resolution satellite images! Create your own dataset and apply ML
+algorithms :’)
 
 The scraping API is present, call it and download it.
 
-.. code-block:: python3
-	
-	from jimutmap import api
+[`Back to Top <#contents>`__]
 
-	download_obj = api(min_lat_deg = 10,
-					max_lat_deg = 10.2,
-					min_lon_deg = 10,
-					max_lon_deg = 11,
-					zoom = 19,
-					verbose = False,
-					threads_ = 5, 
-					container_dir = "myOutputFolder")
+🛠 Installation and Usages 
+-------------------------
 
-	# If you don't have Chrome and can't take advantage of the auto access key fetch, set
-	# a.ac_key = ACCESS_KEY_STRING
-	# here
+::
 
-	download_obj.download(getMasks = True)
+   sudo pip3 install jimutmap
 
-After setting the parameters, the files will start downloading as follows:
+   # Install google chrome for chrome driver
+   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+   sudo apt install ./google-chrome-stable_current_amd64.deb
 
-.. code-block:: bash
+   # optional for viewing the temporary files generated by internal databases
+   sudo apt-get install sqlite sqlitebrowser
 
-	download_obj.download(getMasks = True)
+Needs to have google chrome web browser in the system.
 
-	100%|██████████████████████████████████████████████████████████████                     | 1000/10000000 [00:02<00:00, 3913.19it/s
+For example usage, check
+`test.py <https://github.com/Jimut123/jimutmap/blob/master/test.py>`__
 
-.. note::
+``python3jimut@jimut:~/Desktop/GIT/jimutmap$ python3 test.py  Sorry, 5 -- threads unavailable, using maximum CPU threads : 4 Initializing jimutmap ... Please wait... Sorry, 50 -- threads unavailable, using maximum CPU threads : 4 Initializing jimutmap ... Please wait... 100%|██████████████████████████████████████████████| 20/20 [00:00<00:00, 113.67it/s] Sorry, 50 -- threads unavailable, using maximum CPU threads : 4 Initializing jimutmap ... Please wait... 100%|██████████████████████████████████████████████| 20/20 [00:00<00:00, 722.10it/s] Total satellite images to be downloaded =  210 Total roads tiles to be downloaded =  210 Approx. estimated disk space required = 4.1015625 MB Total number of satellite images needed to be downloaded =  210 Total number of satellite images needed to be downloaded =  210 Batch =============================================================================  1 =================================================================================== Sorry, 50 -- threads unavailable, using maximum CPU threads : 4 Downloading all the satellite tiles:  Updating sanity db ... 100%|████████████████████████████████████████████| 27/27 [00:00<00:00, 13291.81it/s] Total number of satellite images needed to be downloaded =  197 Total number of satellite images needed to be downloaded =  196 Downloading speed == 0.09333877563476563 MiB/s  Waiting for 15 seconds... Busy downloading Downloading speed == 0.11976458231608073 MiB/s  Waiting for 15 seconds... Busy downloading Downloading speed == 0.01717344919840495 MiB/s  Waiting for 15 seconds... Busy downloading Batch =============================================================================  2 =================================================================================== Downloading all the satellite tiles:  Updating sanity db ... 100%|██████████████████████████████████████████| 420/420 [00:00<00:00, 99921.03it/s] Total number of satellite images needed to be downloaded =  0 Total number of satellite images needed to be downloaded =  0 ************************* Download Sucessful ************************* Cleaning up... hold on Updating sticher db ... 100%|██████████████████████████████████████████| 420/420 [00:00<00:00, 24357.17it/s] Total number of satellite images needed to be downloaded =  0 Total number of satellite images needed to be downloaded =  0 Calculating bounding boxes for tiles ::  Total number of rows present in the database=  210 100%|█████████████████████████████████████████| 210/210 [00:00<00:00, 528693.78it/s] Min lat tile = 390842, Max lat tile = 390855, Min lon tile = 228264, Max lon tile = 228278 No. of tiles in latitude = 13, and longitude = 14 Creating an image of size : 3328x3584 pixels ... 100%|███████████████████████████████████████████████| 13/13 [00:00<00:00, 28.89it/s] 100%|███████████████████████████████████████████████| 13/13 [00:00<00:00, 42.02it/s] Temporary sqlite files to be deleted = ['temp_sanity.sqlite', 'sticher.sqlite'] ?  (y/N) : y Temporary chromedriver folders to be deleted = ['100'] ?  (y/N) : y``
 
-	This also uses multithreading, which may overload your computer, so set the parameters in the API, minimise the pool else your PC may hang! This is created for educational and research purposes only! The `authors <https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md>`_ are not liable for any damage to private property.
+[`Back to Top <#contents>`__]
 
+📚 Some of the example images downloaded at different scales 
+-----------------------------------------------------------
 
+==
+\    
+\    
+\    
+==
 
+[`Back to Top <#contents>`__]
 
+📚 Stitched tiles for Kolkata
+----------------------------
 
+==
+\  
+==
 
-youtube tutorial
-~~~~~~~~~~~~~~~~
+[`Back to Top <#contents>`__]
 
-(old version - will be updated soon)
+📹 YouTube video 
+---------------
 
-.. youtube:: voH0qhGXfsU
-            :height: 300
-            :width: 600
-            :align: center
+If you are confused with the documentation, please see this video, to
+see the scraping in action `Apple Maps API to get enormous amount of
+satellite data for free using
+Python3 <https://www.youtube.com/watch?v=voH0qhGXfsU>`__.
 
+[`Back to Top <#contents>`__]
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+📚 Sample of the images downloaded 
+---------------------------------
 
-   LICENSE
-   Requirements
-   Parameters
-   Datasets
-   Contributing
-   TODO
-   
+.. raw:: html
 
+   <center>
 
-   
+.. raw:: html
 
+   </center>
 
+[`Back to Top <#contents>`__]
 
-Indices and tables
-==================
+:feelsgood: Perks 
+^^^^^^^^^^^^^^^^^
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+This is done through parallel proccessing, so this will take maximum
+threads available in your CPU, change the code to your own requirements!
 
-.. note::
-	Bibtex and Citations (if you are into research):
+If you want to re-fetch tiles, remember to delete/move tiles after every
+fetch request done! Else you won’t get the updated information (tiles)
+of satellite data after that tile. It is calculated automatically so
+that all the progress remains saved!
 
-	@misc{jimutmap_2019,
-		author = {Jimut Bahan Pal and Philip Kahn},
-		title = {jimutmap},
-		year = {2019},
-		publisher = {GitHub},
-		journal = {GitHub repository},
-		howpublished = {\url{https://github.com/Jimut123/jimutmap}}
-		}
+[`Back to Top <#contents>`__]
 
+📓 Additional Note 
+-----------------
 
+This is created for educational and research purposes only! The
+`authors <https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md>`__
+are not liable for any damage to private property.
+
+[`Back to Top <#contents>`__]
+
+:atom: TODOs 
+------------
+
+Please check
+`TODOs <https://github.com/Jimut123/jimutmap/blob/master/TODO.md>`__,
+since this project needs collaborators.
+
+[`Back to Top <#contents>`__]
+
+❓ Questions or want to discuss about something ? 
+------------------------------------------------
+
+Submit an issue.
+
+[`Back to Top <#contents>`__]
+
+🤝 Contribution 
+--------------
+
+Please see
+`Contributing.md <https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTING.md>`__
+
+[`Back to Top <#contents>`__]
+
+🛡️ `LICENSE <https://github.com/Jimut123/jimutmap/blob/master/LICENSE>`__ 
+-------------------------------------------------------------------------
+
+::
+
+    GNU GENERAL PUBLIC LICENSE
+                          Version 3, 29 June 2007
+
+    Copyright (C) 2019-20 Jimut Bahan Pal, <https://jimut123.github.io/>
+    Everyone is permitted to copy and distribute verbatim copies
+    of this license document, but changing it is not allowed.
+
+[`Back to Top <#contents>`__]
+
+📝 BibTeX and citations 
+======================
+
+::
+
+   @misc{jimutmap_2019,
+     author = {Jimut Bahan Pal},
+     title = {jimutmap},
+     year = {2019},
+     publisher = {GitHub},
+     journal = {GitHub repository},
+     howpublished = {\url{https://github.com/Jimut123/jimutmap}}
+   }
+
+[`Back to Top <#contents>`__]
