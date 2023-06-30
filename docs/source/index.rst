@@ -36,6 +36,21 @@
 -  `LICENSE <#license>`__
 -  `BibTeX and citations <#bibtex-and-citations>`__
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   LICENSE
+   DATASETS
+   PARAMETERS
+   REQUIREMENTS
+   CODE_OF_CONDUCT
+   CONTRIBUTING
+   CONTRIBUTORS
+   BUG_REPORTS
+   TODO
+
+
 **Note:** I am actively looking for project maintainers who can
 volunteer to fix bugs/issues and work on
 `TODOs <https://github.com/Jimut123/jimutmap/blob/master/TODO.md>`__,
@@ -57,7 +72,7 @@ see what this will support in the future.**
 
 The api ``accessKey`` token is automatically fetched if you have Google
 Chrome or Chromium installed using ``chromedriver-autoinstaller``.
-Otherwise, you’ll have to fetch it manually and set the ``ac_key``
+Otherwise, you'll have to fetch it manually and set the ``ac_key``
 parameter (which can be found out by selecting one tile from Apple Map,
 through chrome/firefox by going Developer->Network, looking at the
 assets, and finding the part of the link beginning with ``&accessKey=``
@@ -227,17 +242,4 @@ Please see
 [`Back to Top <#contents>`__]
 
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   LICENSE
-   DATASETS
-   PARAMETERS
-   REQUIREMENTS
-   CODE_OF_CONDUCT
-   CONTRIBUTING
-   CONTRIBUTORS
-   BUG_REPORTS
-   TODO
 
