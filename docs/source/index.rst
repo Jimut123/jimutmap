@@ -225,3 +225,19 @@ Please see
    }
 
 [`Back to Top <#contents>`__]
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   LICENSE
+   DATASETS
+   PARAMETERS
+   REQUIREMENTS
+   CODE_OF_CONDUCT
+   CONTRIBUTING
+   CONTRIBUTORS
+   BUG_REPORTS
+   TODO
+
