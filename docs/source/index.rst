@@ -25,6 +25,7 @@
 -  `Installation and Usages <#installation-and-usages>`__
 -  `Some of the example images downloaded at different
    scales <#some-of-the-example-images-downloaded-at-different-scales>`__
+-  `Datasets <#datasets>`__
 -  `YouTube video <#youtube-video>`__
 -  `Sample of the images
    downloaded <#sample-of-the-images-downloaded>`__
@@ -109,6 +110,13 @@ For example usage, check
 ==
 
 [`Back to Top <#contents>`__]
+
+📘 Datasets 
+==========
+
+Jimutmap might behave weirdly in some cases. Please check the list of
+`datasets
+here <https://github.com/Jimut123/jimutmap/blob/master/DATASETS.md>`__.
 
 📚 Stitched tiles for Kolkata
 ----------------------------
