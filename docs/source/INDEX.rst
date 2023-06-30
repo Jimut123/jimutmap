@@ -4,6 +4,11 @@
 
    <p align="center">
 
+.. image:: https://raw.githubusercontent.com/Jimut123/jimutmap/master/satellite_data/logo.png
+    :alt: jimutmap logo
+	:width: 100 %
+   :align: center
+   
 …Bringing Data to Humans
 
 .. raw:: html
@@ -39,7 +44,7 @@
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+   INDEX
    LICENSE
    DATASETS
    PARAMETERS
