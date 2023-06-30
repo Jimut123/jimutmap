@@ -8,15 +8,11 @@
 The **jimutmap** Documentation
 ===============================
 
-                        …Bringing Data to Humans
-
-
 --------------
 
 .. container::
 
 --------------
-
 
 -  `Purpose <#purpose>`__
 -  `Need for scraping satellite
@@ -30,9 +26,6 @@ The **jimutmap** Documentation
 -  `Contribution <#contribution>`__
 -  `LICENSE <#license>`__
 -  `BibTeX and citations <#bibtex-and-citations>`__
-
-
-
 
 **Note:** I am actively looking for project maintainers who can
 volunteer to fix bugs/issues and work on
