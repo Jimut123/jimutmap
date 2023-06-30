@@ -46,7 +46,7 @@ maintainer, either solve a bug or successfully complete a TODO, then
 email me for the role (this process is for selecting valid maintainers).
 
 🔁 Purpose 
----------
+--------------
 
 This package collects data from
 `satellites.pro <https://satellites.pro/#32.916485,62.578125,4>`__. It
@@ -68,7 +68,7 @@ until the next ``&``) every 10-15 mins.
 [`Back to Top <#contents>`__]
 
 💡 Need for scraping satellite data 
-----------------------------------
+---------------------------------------
 
 Well it’s good (best in the world) satellite images, we just need to
 give the coordinates (Lat,Lon, and zoom) to get your dataset of high
@@ -80,7 +80,7 @@ The scraping API is present, call it and download it.
 [`Back to Top <#contents>`__]
 
 🛠 Installation and Usages 
--------------------------
+------------------------------
 
 ::
 
@@ -103,7 +103,7 @@ For example usage, check
 [`Back to Top <#contents>`__]
 
 📚 Some of the example images downloaded at different scales 
------------------------------------------------------------
+----------------------------------------------------------------
 
 ==
 \    
@@ -121,7 +121,7 @@ Jimutmap might behave weirdly in some cases. Please check the list of
 here <https://github.com/Jimut123/jimutmap/blob/master/DATASETS.md>`__.
 
 📚 Stitched tiles for Kolkata
-----------------------------
+---------------------------------
 
 ==
 \  
@@ -130,7 +130,7 @@ here <https://github.com/Jimut123/jimutmap/blob/master/DATASETS.md>`__.
 [`Back to Top <#contents>`__]
 
 📹 YouTube video 
----------------
+--------------------
 
 If you are confused with the documentation, please see this video, to
 see the scraping in action `Apple Maps API to get enormous amount of
@@ -140,7 +140,7 @@ Python3 <https://www.youtube.com/watch?v=voH0qhGXfsU>`__.
 [`Back to Top <#contents>`__]
 
 📚 Sample of the images downloaded 
----------------------------------
+--------------------------------------
 
 .. raw:: html
 
@@ -166,7 +166,7 @@ that all the progress remains saved!
 [`Back to Top <#contents>`__]
 
 📓 Additional Note 
------------------
+----------------------
 
 This is created for educational and research purposes only! The
 `authors <https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTORS.md>`__
@@ -175,7 +175,7 @@ are not liable for any damage to private property.
 [`Back to Top <#contents>`__]
 
 :atom: TODOs 
-------------
+-----------------
 
 Please check
 `TODOs <https://github.com/Jimut123/jimutmap/blob/master/TODO.md>`__,
@@ -184,14 +184,14 @@ since this project needs collaborators.
 [`Back to Top <#contents>`__]
 
 ❓ Questions or want to discuss about something ? 
-------------------------------------------------
+-----------------------------------------------------
 
 Submit an issue.
 
 [`Back to Top <#contents>`__]
 
 🤝 Contribution 
---------------
+---------------
 
 Please see
 `Contributing.md <https://github.com/Jimut123/jimutmap/blob/master/CONTRIBUTING.md>`__
@@ -213,7 +213,7 @@ Please see
 [`Back to Top <#contents>`__]
 
 📝 BibTeX and citations 
-======================
+========================
 
 ::
 
