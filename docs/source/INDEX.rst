@@ -21,7 +21,7 @@
 
 --------------
 
-📋 Contents 
+INDEX
 ----------
 
 -  `Purpose <#purpose>`__
@@ -41,9 +41,10 @@
 -  `LICENSE <#license>`__
 -  `BibTeX and citations <#bibtex-and-citations>`__
 
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: External Contents:
    INDEX
    LICENSE
    DATASETS
