@@ -10,8 +10,9 @@
 <div align="center">
   <a href="https://pepy.tech/project/jimutmap"><img src="https://pepy.tech/badge/jimutmap"></a>
   <a href="https://pypi.org/project/jimutmap/"><img src="https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.4.2"></a>
-  <a href="https://jimutmap.readthedocs.io/en/latest/index.html"><img src="https://readthedocs.org/projects/pip/badge/?version=latest&style=plastic" alt="read-the-docs"></a>
-  <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
+<a href='https://jimutmap.readthedocs.io/?badge=latest'>
+    <img src='https://readthedocs.org/projects/jimutmap/badge/?version=latest' alt='Documentation Status' />
+</a>  <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
   <a href="https://pypistats.org/packages/jimutmap">
     <img src="https://img.shields.io/pypi/dm/jimutmap.svg" alt="Downloads per month"/>
   </a>
