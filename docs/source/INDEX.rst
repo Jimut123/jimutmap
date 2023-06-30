@@ -21,7 +21,7 @@
 
 --------------
 
-INDEX
+The jimutmap documentation!
 ----------
 
 -  `Purpose <#purpose>`__
