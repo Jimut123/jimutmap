@@ -22,7 +22,7 @@
 --------------
 
 The jimutmap documentation!
-----------
+---------------------------------
 
 -  `Purpose <#purpose>`__
 -  `Need for scraping satellite
