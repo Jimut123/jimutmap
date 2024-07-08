@@ -25,6 +25,8 @@
 
 ***
 
+> [!CAUTION]
+> **I am actively looking for project maintainers who can volunteer to fix bugs/issues and work on [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), due to my limited time in maintaining this project. If you want to be a maintainer, either solve a bug (by making this software work for newer versions of apple maps) or successfully complete a TODO, then email me for the role (this process is for selecting valid maintainers).**
 
 ## 📋 Contents <a name="contents"></a>
 
@@ -42,9 +44,6 @@
 * [LICENSE](#license)
 * [BibTeX and citations](#bibtex-and-citations)
 
-
-
-**Note:** **I am actively looking for project maintainers who can volunteer to fix bugs/issues and work on [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), due to my limited time in maintaining this project. If you want to be a maintainer, either solve a bug or successfully complete a TODO, then email me for the role (this process is for selecting valid maintainers).**
 
 ## 🔁 Purpose <a name="purpose"></a>
 
