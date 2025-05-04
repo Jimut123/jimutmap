@@ -28,6 +28,8 @@
 > [!CAUTION]
 > **I am actively looking for project maintainers who can volunteer to fix bugs/issues and work on [TODOs](https://github.com/Jimut123/jimutmap/blob/master/TODO.md), due to my limited time in maintaining this project. If you want to be a maintainer, either solve a bug (by making this software work for newer versions of apple maps) or successfully complete a TODO, then email me for the role (this process is for selecting valid maintainers).**
 
+### May, 2025: [Please find the AI-generated jimutmap wiki here](https://deepwiki.com/Jimut123/jimutmap/1-overview)
+
 ## 📋 Contents <a name="contents"></a>
 
 * [Purpose](#purpose)
