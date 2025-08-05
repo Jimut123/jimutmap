@@ -7,6 +7,7 @@
 
 --------------------------------------------------------------------
 
+
 <div align="center">
   <a href="https://pepy.tech/project/jimutmap"><img src="https://pepy.tech/badge/jimutmap"></a>
   <a href="https://pypi.org/project/jimutmap/"><img src="https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.4.2"></a>
