@@ -20,7 +20,7 @@ import numpy as np
 import datetime as dt
 from tqdm import tqdm
 import multiprocessing
-from jimutmap import api
+from jimutmap_1 import api
 from typing import Tuple
 from selenium import webdriver
 import chromedriver_autoinstaller

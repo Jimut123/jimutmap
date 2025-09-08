@@ -1,4 +1,3 @@
-
 # ========================================================
 # This program fetches tiles from satellites.pro for free.
 # OPEN SOURCED UNDER GPL-V3.0.
@@ -412,5 +411,3 @@ class api:
                 # process has cleared. As a practical matter, this will
                 # clear _several_ threads and keep up performance
                 tp.join()
-
-        
